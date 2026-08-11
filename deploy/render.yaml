@@ -1,0 +1,24 @@
+# Deploy to Render as a Cron Job (free tier: 1 cron job, runs on schedule).
+services:
+  - type: cron
+    name: bloggy-worker
+    runtime: python
+    plan: free
+    schedule: "0 6 * * *"
+    buildCommand: "pip install -r worker/requirements.txt"
+    startCommand: "python -m worker.app run-once --source all"
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_BASE_URL
+        value: https://api.openai.com/v1
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+      - key: SITE_URL
+        sync: false
+      - key: DEVTO_API_KEY
+        sync: false

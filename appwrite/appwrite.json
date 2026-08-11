@@ -1,0 +1,18 @@
+{
+  "$schema": "https://raw.githubusercontent.com/appwrite/appwrite/main/appwrite.io/schemas/appwrite-cli.json",
+  "functions": [
+    {
+      "name": "bloggy-worker",
+      "$id": "bloggy-worker",
+      "entrypoint": "main.py",
+      "runtime": "python-3.12",
+      "path": "appwrite/function",
+      "ignore": ["node_modules", ".git"],
+      "commands": "pip install -r requirements.txt",
+      "schedule": "0 */6 * * *",
+      "timeout": 900,
+      "enabled": true,
+      "vars": {}
+    }
+  ]
+}

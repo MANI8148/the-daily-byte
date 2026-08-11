@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ site_name }} — {{ site_tagline }}</title>
+<meta name="description" content="{{ site_tagline }}: AI, ML, open source, tech news and skills for students worldwide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Archivo:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+.front-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin:10px 0 34px}
+@media(max-width:800px){.front-grid{grid-template-columns:1fr}}
+.lead-story{grid-column:1/-1;border-bottom:3px double var(--ink);padding-bottom:22px}
+.lead-story a.head{font-family:var(--display);font-weight:900;font-size:clamp(26px,4vw,40px);line-height:1.1;color:var(--ink);text-decoration:none;display:block;margin:8px 0}
+.story a.head{font-family:var(--display);font-weight:700;font-size:21px;line-height:1.25;color:var(--ink);text-decoration:none;display:block;margin:6px 0}
+a.head:hover{color:var(--accent)}
+.story{border-bottom:1px dotted var(--rule);padding-bottom:18px}
+.standfirst{color:#3c3a35;font-size:16px;line-height:1.55;margin:6px 0}
+.byline-s{font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<div class="dateline"><div class="wrap">
+  <span>{{ today }}</span>
+  <span>{{ site_tagline }} · Read by students in 40+ countries</span>
+</div></div>
+
+<header class="masthead">
+  <div class="kicker-bar">The Independent Student Review of Technology</div>
+  <h1>{{ site_name }}</h1>
+  <div class="tagline">AI · ML · Open Source · Tech News · Skills</div>
+  <div class="double-rule"></div>
+</header>
+
+<nav class="sections"><div class="wrap"><ul>
+  <li><a href="/">Home</a></li>
+  <li><a href="#">Artificial Intelligence</a></li>
+  <li><a href="#">Machine Learning</a></li>
+  <li><a href="#">Open Source</a></li>
+  <li><a href="#">Tech News</a></li>
+  <li><a href="#">Skills</a></li>
+</ul></div></nav>
+
+<div class="wrap">
+<main>
+  {% if posts %}
+  <div class="front-grid">
+    {% set lead = posts[0] %}
+    <div class="lead-story">
+      <div class="kicker" style="font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--accent)">{{ lead.kicker }}</div>
+      <a class="head" href="/posts/{{ lead.slug }}">{{ lead.title }}</a>
+      <p class="standfirst">{{ lead.description }}</p>
+      <div class="byline-s">{{ lead.author }} · {{ lead.date }}</div>
+    </div>
+    {% for p in posts[1:] %}
+    <div class="story">
+      <div class="kicker" style="font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)">{{ p.kicker }}</div>
+      <a class="head" href="/posts/{{ p.slug }}">{{ p.title }}</a>
+      <p class="standfirst">{{ p.description }}</p>
+      <div class="byline-s">{{ p.author }} · {{ p.date }}</div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+    <p style="margin:60px 0;font-style:italic">No articles yet — the workers are at the news desk. Check back after the first pipeline run.</p>
+  {% endif %}
+
+  <div class="side-box newsletter" style="max-width:520px;margin:0 auto 40px">
+    <h3 style="font-family:var(--sans);font-size:12px;letter-spacing:.22em;text-transform:uppercase;border-bottom:2px solid var(--ink);padding-bottom:6px;margin-bottom:12px">The Weekly Byte</h3>
+    <p style="font-size:14px">One email every Sunday: the 3 posts that mattered, one repo to star, one skill to learn.</p>
+    <div class="field" style="display:flex;gap:8px;margin-top:10px">
+      <input type="email" placeholder="you@university.edu" style="flex:1;padding:9px 12px;border:1px solid var(--rule);font-family:var(--sans);font-size:14px;background:var(--paper)">
+      <button style="background:var(--accent);color:#fff;border:0;padding:9px 16px;font-family:var(--sans);font-size:12px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer">Subscribe</button>
+    </div>
+  </div>
+</main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>{{ site_name }}</h4>
+        <p style="font-size:13px;line-height:1.7">{{ site_tagline }} — fetched, written, checked, and published by the Bloggy pipeline.</p>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul><li><a href="#">Artificial Intelligence</a></li><li><a href="#">Machine Learning</a></li><li><a href="#">Open Source</a></li><li><a href="#">Tech News</a></li></ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul><li><a href="#">Roadmaps</a></li><li><a href="#">Cheat sheets</a></li><li><a href="#">Repo of the week</a></li><li><a href="#">Newsletter archive</a></li></ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul><li><a href="#">GitHub</a></li><li><a href="#">X / Twitter</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">Discord</a></li></ul>
+      </div>
+    </div>
+    <div class="copyright">© {{ year }} {{ site_name }} · Built with the Bloggy pipeline · Source-linked journalism for students</div>
+  </div>
+</footer>
+
+</body>
+</html>

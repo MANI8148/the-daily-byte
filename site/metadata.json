@@ -1,0 +1,6 @@
+{
+  "name": "The Daily Byte - Student AI & Tech Edition",
+  "description": "A vintage newspaper-style AI and tech daily for students: interactive page-turning magazine reader, historical archives, AI article generator, audio reader, and press sheet simulation — fed by the free-stack Bloggy pipeline.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

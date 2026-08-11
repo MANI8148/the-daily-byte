@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Byte — Student Tech Edition</title>
+<!-- Self-contained demo of the newspaper design. Open this file in a browser. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Archivo:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f7f2e7; --ink:#1a1a1a; --rule:#8a8578; --accent:#8b1e1e; --muted:#5c584f;
+  --serif:"Source Serif 4",Georgia,serif; --display:"Playfair Display",Georgia,serif;
+  --sans:"Archivo",system-ui,sans-serif; --mono:"JetBrains Mono",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.7}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+/* ---------- dateline bar ---------- */
+.dateline{background:var(--ink);color:var(--paper);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:8px 0}
+.dateline .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* ---------- masthead ---------- */
+.masthead{padding:26px 0 8px;text-align:center}
+.masthead .kicker-bar{font-family:var(--sans);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.masthead h1{font-family:var(--display);font-weight:900;font-size:clamp(44px,8vw,84px);letter-spacing:-.01em;line-height:.95}
+.masthead .tagline{font-family:var(--sans);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-top:8px}
+.double-rule{border-top:3px double var(--ink);margin:14px 0 0}
+.thin-rule{border-top:1px solid var(--rule)}
+
+/* ---------- section nav ---------- */
+nav.sections{border-bottom:3px double var(--ink);border-top:1px solid var(--rule);margin:0 0 28px}
+nav.sections ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:0 28px;padding:9px 0}
+nav.sections a{font-family:var(--sans);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);text-decoration:none;font-weight:600}
+nav.sections a:hover{color:var(--accent)}
+
+/* ---------- layout ---------- */
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:40px}
+@media(max-width:920px){.grid{grid-template-columns:1fr}}
+
+/* ---------- article ---------- */
+article .kicker{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--accent)}
+article h1{font-family:var(--display);font-weight:900;font-size:clamp(30px,4.6vw,48px);line-height:1.06;margin:10px 0 14px}
+.deck{font-size:20px;line-height:1.5;color:#3c3a35;font-style:italic;margin-bottom:18px}
+.byline{font-family:var(--sans);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:9px 0;margin-bottom:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.byline .pub{color:var(--accent);font-weight:700}
+
+article p{margin-bottom:1.25em}
+article p:first-of-type::first-letter{float:left;font-family:var(--display);font-weight:900;font-size:64px;line-height:.82;padding:4px 10px 0 0;color:var(--accent)}
+article h2{font-family:var(--display);font-weight:700;font-size:26px;margin:1.6em 0 .5em;padding-top:.4em;border-top:1px solid var(--rule)}
+article h3{font-family:var(--sans);font-size:15px;letter-spacing:.1em;text-transform:uppercase;margin:1.4em 0 .4em}
+article a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+article blockquote{border-left:4px solid var(--accent);margin:1.6em 0;padding:0.2em 1.4em;background:#efe8d8;font-style:italic;font-size:20px}
+article ul,article ol{margin:0 0 1.25em 1.4em}
+article li{margin-bottom:.35em}
+article code{font-family:var(--mono);font-size:.86em;background:#e9e2d0;padding:.1em .35em;border-radius:3px}
+article pre{background:var(--ink);color:#e8e4d8;padding:18px 20px;border-radius:6px;overflow-x:auto;margin:0 0 1.25em;font-size:14px}
+article pre code{background:none;color:inherit;padding:0}
+article figure{margin:1.8em 0}
+article figure img{width:100%;border:1px solid var(--rule);filter:grayscale(20%) sepia(12%)}
+article figcaption{font-family:var(--sans);font-size:12px;color:var(--muted);padding:8px 0 0;letter-spacing:.04em}
+
+.key-takeaways{background:#efe8d8;border:1px solid var(--rule);padding:18px 22px;margin:1.8em 0;font-size:16px}
+.key-takeaways h3{color:var(--accent);letter-spacing:.2em;margin:0 0 .6em}
+
+/* ---------- sidebar ---------- */
+aside .side-box{border:1px solid var(--rule);padding:18px;margin-bottom:26px;background:#fbf7ee}
+aside .side-box h3{font-family:var(--sans);font-size:12px;letter-spacing:.22em;text-transform:uppercase;border-bottom:2px solid var(--ink);padding-bottom:6px;margin-bottom:12px}
+aside .side-box li{list-style:none;margin-bottom:12px;border-bottom:1px dotted var(--rule);padding-bottom:10px}
+aside .side-box li:last-child{border:0;margin:0;padding:0}
+aside .side-box a{color:var(--ink);text-decoration:none;font-size:15px;line-height:1.5;display:block}
+aside .side-box a:hover{color:var(--accent)}
+.side-box .meta{font-family:var(--sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+.newsletter .field{display:flex;gap:8px;margin-top:10px}
+.newsletter input{flex:1;padding:9px 12px;border:1px solid var(--rule);font-family:var(--sans);font-size:14px;background:var(--paper)}
+.newsletter button{background:var(--accent);color:#fff;border:0;padding:9px 16px;font-family:var(--sans);font-size:12px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.newsletter button:hover{background:#5f1414}
+
+/* ---------- tags + share ---------- */
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}
+.tags span{font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--rule);padding:4px 10px;border-radius:20px;color:var(--muted)}
+.share{display:flex;gap:10px;align-items:center;margin:26px 0}
+.share .lbl{font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.share a{font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);text-decoration:none;border:1px solid var(--rule);padding:6px 14px;border-radius:3px}
+.share a:hover{background:var(--ink);color:var(--paper)}
+
+/* ---------- footer ---------- */
+footer{margin-top:46px;background:#efe8d8;border-top:4px double var(--ink);padding:34px 0 20px;font-size:14px}
+footer .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:28px}
+footer h4{font-family:var(--sans);font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px}
+footer ul{list-style:none}
+footer a{color:var(--ink);text-decoration:none;line-height:1.9}
+footer a:hover{color:var(--accent)}
+.copyright{border-top:1px solid var(--rule);margin-top:26px;padding-top:14px;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center}
+
+/* ---------- print ---------- */
+@media print{
+  body{background:#fff}
+  .dateline,nav.sections,aside,.share,.newsletter,footer{display:none}
+  .grid{display:block}
+  a{color:var(--ink);text-decoration:none}
+}
+</style>
+</head>
+<body>
+
+<div class="dateline"><div class="wrap">
+  <span>Tuesday, August 11, 2026</span>
+  <span>Student Tech Edition · Est. 2026 · Read by students in 40+ countries</span>
+</div></div>
+
+<header class="masthead">
+  <div class="kicker-bar">The Independent Student Review of Technology</div>
+  <h1>THE DAILY BYTE</h1>
+  <div class="tagline">AI · ML · Open Source · Tech News · Skills</div>
+  <div class="double-rule"></div>
+</header>
+
+<nav class="sections"><div class="wrap"><ul>
+  <li><a href="#">Artificial Intelligence</a></li>
+  <li><a href="#">Machine Learning</a></li>
+  <li><a href="#">Open Source</a></li>
+  <li><a href="#">Tech News</a></li>
+  <li><a href="#">Skills</a></li>
+  <li><a href="#">Repositories</a></li>
+</ul></div></nav>
+
+<div class="wrap grid">
+<main>
+<article>
+  <div class="kicker">Artificial Intelligence</div>
+  <h1>AI Agents Are Eating the Software Stack: A Student's Guide to 2026</h1>
+  <p class="deck">Coding assistants became the compiler of the decade — and knowing how agents actually work is now a career skill, not a novelty.</p>
+  <div class="byline">
+    <span>By <strong>Manikanta Potla</strong> — Staff Writer</span>
+    <span class="pub">August 11, 2026 · 4 min read</span>
+  </div>
+
+  <p>The change is not coming; it is already here. By one measure, a meaningful share of new code in 2026 lands in repositories with an AI assistant open in a second monitor. For students, the shift is an opportunity dressed as a disruption: everything you learn about building software is now being evaluated by how well you coordinate machines, not just how well you type.</p>
+
+  <p>An agent, at its core, is a loop. A model receives a goal, takes an action, observes the result, and repeats — until the goal is met or the budget runs out. The magic is not the model itself. It is the loop, the tools, and the guardrails wrapped around it.</p>
+
+  <h2>What separates an agent from a chatbot</h2>
+  <p>A chatbot answers. An agent <em>acts</em>. The difference is the tool call: when a model emits a structured request to run code, query a database, or edit a file, it stops being a text generator and becomes a worker. Frameworks like LangGraph, CrewAI, and OpenAI's Agents SDK all exist to make that loop safe and legible.</p>
+
+  <h2>Why this matters for your next semester</h2>
+  <p>Employers are no longer asking "can you write code?" — they are asking "can you direct an agent to write it correctly, and know when it is lying to you?" That second half is the skill gap students can exploit. Every AI-generated answer deserves a skeptical human pass; the student who verifies will outperform the student who copies.</p>
+
+  <blockquote>“The student who can verify an agent's work is the student who gets hired.” — the working reality of 2026</blockquote>
+
+  <h2>Try it: a five-line agent loop</h2>
+  <p>You can see the loop without any framework:</p>
+  <pre><code>while budget_remaining():
+    plan = model.plan(goal, observations)     # think
+    result = execute(plan.next_action)        # act
+    observations.append(result)               # observe
+    if plan.says_done: break</code></pre>
+
+  <figure>
+    <div style="height:180px;border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;background:#efe8d8">
+      <span style="font-family:var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)">Figure 1 — The agent loop: think → act → observe</span>
+    </div>
+    <figcaption>The same loop powers coding assistants, web agents, and robot pilots. Master it once; reuse it everywhere.</figcaption>
+  </figure>
+
+  <div class="key-takeaways">
+    <h3>Key Takeaways</h3>
+    <ul>
+      <li>An agent = goal + loop + tools + guardrails; the model is only the brain.</li>
+      <li>Verification is the skill that compounds — never trust, always check.</li>
+      <li>Walk through one real agent framework before your next internship interview.</li>
+    </ul>
+  </div>
+</article>
+
+<div class="share">
+  <span class="lbl">Share</span>
+  <a href="#">X</a><a href="#">LinkedIn</a><a href="#">Reddit</a><a href="#">Hacker News</a>
+</div>
+
+<div class="tags"><span>ai</span><span>agents</span><span>career</span><span>tutorial</span></div>
+</main>
+
+<aside>
+  <div class="side-box">
+    <h3>More in this edition</h3>
+    <ul>
+      <li><a href="#">Repo of the week: a new vector database you can run on a Raspberry Pi</a><div class="meta">Open Source · 3 min</div></li>
+      <li><a href="#">Papers students should read before interviews: the 2026 shortlist</a><div class="meta">Machine Learning · 5 min</div></li>
+      <li><a href="#">Rust is sneaking into every kernel; here's the 101</a><div class="meta">Skills · 4 min</div></li>
+      <li><a href="#">The best free GPUs for student projects right now</a><div class="meta">Tech News · 3 min</div></li>
+    </ul>
+  </div>
+  <div class="side-box newsletter">
+    <h3>The Weekly Byte</h3>
+    <p style="font-size:14px">One email every Sunday: the 3 posts that mattered, one repo to star, one skill to learn.</p>
+    <div class="field">
+      <input type="email" placeholder="you@university.edu">
+      <button>Subscribe</button>
+    </div>
+  </div>
+  <div class="side-box">
+    <h3>From the news desk</h3>
+    <p style="font-size:14px">Every article here starts from a real source: this week's fastest-growing GitHub repos, Hacker News, arXiv, and r/MachineLearning. Nothing is invented; everything is linked.</p>
+  </div>
+</aside>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>The Daily Byte</h4>
+        <p style="font-size:13px;line-height:1.7">An automated student-tech newspaper: fetched, written, checked, and published by the Bloggy pipeline — then read by students everywhere.</p>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul><li><a href="#">Artificial Intelligence</a></li><li><a href="#">Machine Learning</a></li><li><a href="#">Open Source</a></li><li><a href="#">Tech News</a></li></ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul><li><a href="#">Roadmaps</a></li><li><a href="#">Cheat sheets</a></li><li><a href="#">Repo of the week</a></li><li><a href="#">Newsletter archive</a></li></ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul><li><a href="#">GitHub</a></li><li><a href="#">X / Twitter</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">Discord</a></li></ul>
+      </div>
+    </div>
+    <div class="copyright">© 2026 The Daily Byte · Built with the Bloggy pipeline · Source-linked journalism for students</div>
+  </div>
+</footer>
+
+</body>
+</html>

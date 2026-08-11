@@ -1,0 +1,56 @@
+# The cheapest reliable "cloud machine": GitHub Actions runs the worker on a cron.
+# Free for public repos; private repos get 2,000 min/month (a 5-min daily run is ~150).
+# Put secrets in Settings -> Secrets and variables -> Actions.
+name: bloggy-daily
+
+on:
+  schedule:
+    - cron: "0 * * * *"   # every hour on the hour — one fresh dispatch per run
+  workflow_dispatch: {}   # run manually from the Actions tab
+
+concurrency:
+  group: bloggy-run
+  cancel-in-progress: true   # never overlap two runs
+
+jobs:
+  write-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      # Free LLM endpoints work here. Examples:
+      #   Groq:        OPENAI_BASE_URL=https://api.groq.com/openai/v1,  model=llama-3.3-70b-versatile
+      #   Gemini:      OPENAI_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai/, model=gemini-2.0-flash (key = AI Studio key)
+      #   OpenRouter:  OPENAI_BASE_URL=https://openrouter.ai/api/v1,    model=meta-llama/llama-3.3-70b-instruct:free
+      OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
+      LLM_SCORE_MODEL: ${{ secrets.LLM_SCORE_MODEL }}   # cheap model for curation
+      LLM_SCORE_THRESHOLD: "6"
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}          # opens review PRs (content/drafts/)
+      GIT_REPO: ${{ secrets.GIT_REPO }}                  # "owner/bloggy"
+      DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
+      MEDIUM_TOKEN: ${{ secrets.MEDIUM_TOKEN }}
+      HASHNODE_TOKEN: ${{ secrets.HASHNODE_TOKEN }}
+      HASHNODE_PUBLICATION: ${{ secrets.HASHNODE_PUBLICATION }}
+      GHOST_ADMIN_KEY: ${{ secrets.GHOST_ADMIN_KEY }}
+      GHOST_URL: ${{ secrets.GHOST_URL }}
+      BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+      BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+      BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      SITE_URL: ${{ secrets.SITE_URL }}
+      AUTO_PUBLISH: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install OSS scraper deps
+        run: pip install -r worker/requirements.txt
+      - name: Install opencode CLI (4th LLM fallback tier)
+        run: npm i -g opencode-ai || curl -fsSL https://opencode.ai/install | bash
+      - name: Run one pipeline pass (draft + checks; publishes only if AUTO_PUBLISH=true)
+        run: python worker/app.py run-once --source all

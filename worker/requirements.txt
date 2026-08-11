@@ -1,0 +1,6 @@
+# Runtime deps — OSS scrapers/collectors (free, permissively licensed):
+feedparser>=6.0        # robust RSS/Atom parsing
+trafilatura>=2.0       # article-text + metadata extraction
+rapidfuzz>=3.0         # fuzzy dedup ledger (M1)
+# Dev/test only:
+pytest>=8.0
