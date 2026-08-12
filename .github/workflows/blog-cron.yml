@@ -39,6 +39,7 @@ jobs:
       OPENCODE_MODEL: ${{ secrets.OPENCODE_MODEL }}
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
       SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+      SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
       DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
       MEDIUM_TOKEN: ${{ secrets.MEDIUM_TOKEN }}
       HASHNODE_TOKEN: ${{ secrets.HASHNODE_TOKEN }}
