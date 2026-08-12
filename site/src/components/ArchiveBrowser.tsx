@@ -196,8 +196,8 @@ export const ArchiveBrowser: React.FC<ArchiveBrowserProps> = ({
                   />
                 )}
 
-                {/* Every article in this edition — clickable, opens full blog. */}
-                <div className="mb-4 border-t border-[#1A1A1A]/20 pt-3">
+                {/* Every article in this edition — 2-per-row cards with image + date + section. */}
+                <div className="mb-4 border-t border-[#1A1A1A]/20 pt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {allArts
                     .filter((a) => a.date === issue.dateStr)
                     .map((a) => (
@@ -207,14 +207,23 @@ export const ArchiveBrowser: React.FC<ArchiveBrowserProps> = ({
                           e.stopPropagation();
                           onSelectArticle(a);
                         }}
-                        className="w-full text-left flex justify-between items-baseline gap-2 py-1.5 border-b border-[#1A1A1A]/10 hover:bg-[#1A1A1A] hover:text-[#F9F7F2] transition-colors px-1"
+                        className="text-left group flex flex-col gap-2 p-2 border-2 border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#F9F7F2] transition-colors"
                       >
-                        <span className="font-serif text-xs font-semibold leading-snug truncate">
+                        {a.imageUrl && (
+                          <img
+                            src={a.imageUrl}
+                            onError={imgError}
+                            alt={a.title}
+                            className="w-full h-28 object-cover border border-[#1A1A1A]/30 vintage-sepia"
+                          />
+                        )}
+                        <span className="font-serif text-sm font-bold leading-snug line-clamp-2">
                           {a.title}
                         </span>
-                        <span className="font-sans text-[9px] uppercase tracking-wider text-[#b91c1c] shrink-0">
-                          {a.section.split(' ')[0]}
-                        </span>
+                        <div className="flex justify-between items-center text-[9px] font-sans uppercase tracking-wider">
+                          <span className="text-[#b91c1c]">{a.section}</span>
+                          <span className="opacity-70">{a.date}</span>
+                        </div>
                       </button>
                     ))}
                 </div>

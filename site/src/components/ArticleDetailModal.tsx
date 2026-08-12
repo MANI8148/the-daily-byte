@@ -140,26 +140,29 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
             </p>
           </div>
 
-          {article.imageUrl && (
-            <div className="my-6">
-              <img
-                src={article.imageUrl}
-                onError={imgError}
-                alt={article.title}
-                className="w-full max-h-[400px] object-cover border-2 border-[#1A1A1A] vintage-sepia"
-              />
-              <p className="p-2 bg-[#EEEBE1] text-xs font-sans text-[#1A1A1A] italic border-b-2 border-l-2 border-r-2 border-[#1A1A1A]">
-                {article.imageCaption || 'Official Gazette Photogram.'}
-              </p>
-            </div>
-          )}
+          {/* Image beside / above the body text */}
+          <div className={`flex flex-col ${article.imageUrl ? 'md:flex-row' : ''} gap-6 my-4`}>
+            {article.imageUrl && (
+              <figure className="md:w-2/5 shrink-0">
+                <img
+                  src={article.imageUrl}
+                  onError={imgError}
+                  alt={article.title}
+                  className="w-full max-h-[480px] object-cover border-2 border-[#1A1A1A] vintage-sepia"
+                />
+                <figcaption className="p-2 bg-[#EEEBE1] text-xs font-sans text-[#1A1A1A] italic border-b-2 border-l-2 border-r-2 border-[#1A1A1A]">
+                  {article.imageCaption || 'Official Gazette Photogram.'}
+                </figcaption>
+              </figure>
+            )}
 
-          {/* Body Text */}
-          <div className="font-serif text-base text-[#1A1A1A] leading-relaxed drop-cap space-y-4">
-            <p>{article.leadParagraph}</p>
-            {article.bodyParagraphs.map((para, idx) => (
-              <p key={idx}>{para}</p>
-            ))}
+            {/* Body Text */}
+            <div className="font-serif text-base text-[#1A1A1A] leading-relaxed drop-cap space-y-4 flex-1">
+              <p>{article.leadParagraph}</p>
+              {article.bodyParagraphs.map((para, idx) => (
+                <p key={idx}>{para}</p>
+              ))}
+            </div>
           </div>
 
           {article.pullQuote && (

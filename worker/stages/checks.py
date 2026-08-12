@@ -175,20 +175,35 @@ def refusal_check(fm: dict, body: str) -> tuple[str, str, str]:
 
     A draft that contains an apology for not being able to write, a request for
     the source text, or is just a skeleton must NEVER become a posted blog.
+
+    Markers are deliberately specific to avoid false positives on legitimate
+    prose that merely contains words like "cannot" (e.g. "AI cannot replace").
     """
     text = f"{fm.get('title', '')}\n{body}".lower()
-    # Refusal / inability patterns (case-insensitive substrings).
+    head = text[:400]  # refusals open with the apology; scan the lead first
+    # Specific, high-precision refusal signatures only.
     refusal_markers = [
-        "i'm sorry", "i am sorry", "i cannot", "i can't", "i can not",
-        "i don't have access", "i do not have access", "unable to access",
-        "cannot access", "don't have access", "do not have access",
-        "i don't have the", "i do not have the", "without the actual",
-        "without the source", "provide the", "if you can provide",
-        "can't produce", "cannot produce", "unable to produce",
-        "i'm not able", "i am not able", "as an ai", "i am unable",
-        "i'm unable", "i cannot help", "cannot help with",
+        "i'm sorry", "i am sorry",
+        "i don't have access", "i do not have access",
+        "i don't have the", "i do not have the",
+        "without the actual", "without the source",
+        "if you can provide", "if you provide",
+        "i'm unable", "i am unable", "i'm not able", "i am not able",
+        "as an ai language model", "as a language model",
+        "i cannot fulfill", "i can't fulfill", "i cannot help with",
+        "i cannot assist", "i can't assist",
+        "i cannot produce", "i can't produce", "unable to produce",
+        "i cannot write", "i can't write",
     ]
+    # Apology-based markers must appear in the lead (refusals open that way).
+    apology_markers = ["i'm sorry", "i am sorry", "i cannot fulfill", "i can't fulfill",
+                       "i cannot help with", "i cannot assist", "i can't assist",
+                       "i cannot write", "i can't write", "i'm unable", "i am unable",
+                       "i'm not able", "i am not able"]
     hits = [m for m in refusal_markers if m in text]
+    lead_hits = [m for m in apology_markers if m in head]
+    if lead_hits:
+        return ("refusal", "fail", f"LLM refusal/stub detected: {lead_hits[0]!r}")
     if hits:
         return ("refusal", "fail", f"LLM refusal/stub detected: {hits[0]!r}")
     # Stub signals: body is too short to be a real article AND has no structure.
