@@ -34,10 +34,11 @@ def _draft_one(cfg: Config, db, brief: dict, mock_llm: bool, auto_publish: bool 
     art: dict = {"brief": {k: brief.get(k) for k in ("title", "url", "source", "published", "summary")}}
 
     # ---- write ----
-    doc, model = write.generate(cfg, brief, mock=mock_llm)
-    if doc is None:
+    result = write.generate(cfg, brief, mock=mock_llm)
+    if result is None:
         art["status"] = "write-failed"
         return art
+    doc, model = result
     fm, body = write.parse_frontmatter(doc)
 
     # ---- checks ----
