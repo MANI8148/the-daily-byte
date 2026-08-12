@@ -8,7 +8,14 @@ from __future__ import annotations
 import datetime as dt
 import re
 
-TOPIC_WORDS = re.compile(r"\b(ai|ml|llm|gpt|model|neural|open ?source|github|python|data|agent|robotic|quantum|security|cloud)\b", re.I)
+TOPIC_WORDS = re.compile(
+    r"\b(ai|ml|llm|gpt|gpt-5|chatgpt|openai|codex|claude|anthropic|gemini|"
+    r"llama|mistral|groq|ollama|openclaw|opencode|qwen|deepseek|mixtral|"
+    r"neural|open ?source|github|python|data|agent|agentic|robotic|quantum|"
+    r"security|cloud|router|llm router|inference|fine- ?tun|rag|embedding|"
+    r"free tier|free model|open weight|model release|api)\b",
+    re.I,
+)
 
 
 def _age_score(published: str, now: dt.datetime | None = None) -> float:

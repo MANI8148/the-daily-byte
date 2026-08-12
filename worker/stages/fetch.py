@@ -223,6 +223,13 @@ SOURCES = {
     "arstechnica": lambda cfg: rss(url="https://feeds.arstechnica.com/arstechnica/index", source_name="Ars Technica", n=cfg.max_candidates),
     "tomshardware": lambda cfg: rss(url="https://www.tomshardware.com/feeds/all", source_name="Tom's Hardware", n=cfg.max_candidates),
     "github.blog": lambda cfg: rss(url="https://github.blog/feed/", source_name="GitHub Blog", n=cfg.max_candidates),
+    "blog.google": lambda cfg: rss(url="https://blog.google/technology/ai/rss/", source_name="Google Blog", n=cfg.max_candidates),
+    # News ABOUT the major labs / coding agents / LLM routers / free offerings:
+    "openai": lambda cfg: rss(url="https://openai.com/blog/rss.xml", source_name="OpenAI Blog", n=cfg.max_candidates),
+    "anthropic": lambda cfg: rss(url="https://www.anthropic.com/news/rss.xml", source_name="Anthropic News", n=cfg.max_candidates),
+    "thedecoder": lambda cfg: rss(url="https://the-decoder.com/feed/", source_name="The Decoder", n=cfg.max_candidates),
+    "marktechpost": lambda cfg: rss(url="https://www.marktechpost.com/feed/", source_name="MarkTechPost", n=cfg.max_candidates),
+    "simonwillison": lambda cfg: rss(url="https://simonwillison.net/atom/everything/", source_name="Simon Willison", n=cfg.max_candidates),
     "thehackersnews": lambda cfg: rss(url="https://feeds.feedburner.com/TheHackersNews", source_name="The Hacker News", n=cfg.max_candidates),
 }
 

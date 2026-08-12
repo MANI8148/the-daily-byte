@@ -49,19 +49,67 @@ DEFAULT_RSS_FEEDS = [
     "https://github.blog/feed/",
     "https://blog.google/technology/ai/rss/",
     "https://feeds.feedburner.com/TheHackersNews",
+    # News ABOUT the major labs / coding agents / LLM routers / free offerings:
+    "https://openai.com/blog/rss.xml",
+    "https://www.anthropic.com/news/rss.xml",
+    "https://the-decoder.com/feed/",
+    "https://simonwillison.net/atom/everything/",
+    "https://www.marktechpost.com/feed/",
 ]
 
 # Topic lanes: each lane drafts (LANES_PER_RUN) posts per hourly run, pulling from
 # several sources so a topic always has coverage. A lane entry is either a bare source
 # key (hn, github, arxiv, reddit, rss) or a qualified call: "arxiv:cs.LG", "reddit:python".
+#
+# LANE_TOPICS below lists the entities/topics of interest per lane so the scorer
+# (TOPIC_WORDS in score.py) and the writer bias toward news ABOUT those subjects.
 DEFAULT_LANES = [
-    ["hn", "arxiv:cs.AI", "arxiv:cs.LG", "arxiv:cs.CL"],          # AI / ML
-    ["arxiv:cs.CR", "thehackersnews"],                             # Security
-    ["github", "github.blog"],                                     # Open Source
-    ["lobsters", "devto", "arxiv:cs.PL", "arxiv:cs.SE"],          # Dev Tools
-    ["verge", "arstechnica", "tomshardware", "arxiv:quant-ph"],    # Hardware / Consumer Tech (mobiles, laptops, GPUs, quantum)
-    ["blog.google", "rss"],                                        # Big Tech
+    # AI / ML — frontier labs, coding agents, LLM routers, open-weight releases
+    ["hn", "reddit:artificial", "reddit:LocalLLaMA", "arxiv:cs.AI", "arxiv:cs.LG", "arxiv:cs.CL",
+     "openai", "anthropic", "thedecoder"],
+    # Security
+    ["arxiv:cs.CR", "thehackersnews", "reddit:netsec"],
+    # Open Source
+    ["github", "github.blog", "reddit:opensource", "reddit:rust"],
+    # Dev Tools — coding agents (Codex, Claude Code, OpenCode, OpenClaw), free tiers
+    ["lobsters", "devto", "reddit:python", "reddit:rust", "arxiv:cs.PL", "arxiv:cs.SE",
+     "reddit:ClaudeAI", "reddit:codex", "reddit:ollama"],
+    # Hardware / Consumer Tech (mobiles, laptops, GPUs, quantum, AI accelerators)
+    ["verge", "arstechnica", "tomshardware", "arxiv:quant-ph", "reddit:hardware"],
+    # Big Tech — OpenAI/Google/Anthropic/Meta news, free model offerings
+    ["blog.google", "rss", "openai", "anthropic", "reddit:singularity"],
 ]
+
+# Per-lane topics of interest (entities + themes). The writer is instructed to favor
+# stories ABOUT these; the scorer (TOPIC_WORDS) boosts matching titles.
+LANE_TOPICS = {
+    "AI / ML": [
+        "OpenAI", "GPT", "ChatGPT", "Claude", "Anthropic", "Gemini", "Google AI",
+        "LLM routers", "Mixtral", "Llama", "Mistral", "Qwen", "DeepSeek", "open-weight releases",
+        "model fine-tuning", "RAG", "embeddings", "inference scaling", "agentic AI",
+    ],
+    "Security": [
+        "CVE", "exploit", "supply-chain", "LLM security", "prompt injection",
+        "ransomware", "zero-day", "auth bypass", "AI-assisted exploitation",
+    ],
+    "Open Source": [
+        "GitHub", "Linux", "Rust", "Python", "Apache", "CNCF", "funding", "license changes",
+        "OpenClaw", "OpenCode", "open-source releases",
+    ],
+    "Dev Tools": [
+        "Codex", "Claude Code", "OpenCode", "OpenClaw", "GitHub Copilot", "Cursor",
+        "free developer tiers", "CLI tools", "IDEs", "debuggers", "build systems",
+        "local LLMs for dev", "agentic coding",
+    ],
+    "Hardware / Consumer Tech": [
+        "smartphones", "laptops", "GPUs", "NPUs", "Apple Silicon", "Qualcomm",
+        "quantum computing", "wearables", "AI accelerators", "data-center hardware",
+    ],
+    "Big Tech": [
+        "OpenAI", "Google", "Anthropic", "Meta", "Microsoft", "Apple", "Amazon",
+        "free model offerings", "API launches", "earnings", "antitrust", "open models",
+    ],
+}
 
 
 def _parse_list(raw: str, default: list) -> list:
