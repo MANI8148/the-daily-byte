@@ -58,7 +58,7 @@ DEFAULT_LANES = [
     ["hn", "arxiv:cs.AI", "arxiv:cs.LG", "arxiv:cs.CL"],          # AI / ML
     ["arxiv:cs.CR", "rss"],                                        # Security
     ["github", "rss"],                                             # Open Source
-    ["hn", "arxiv:cs.SE", "arxiv:cs.DC", "rss"],                  # Dev / Tech
+    ["lobsters", "devto", "arxiv:cs.PL", "arxiv:cs.SE"],      # Dev / Tech (distinct from other lanes)
     ["blog.google", "rss"],                                        # Big Tech
 ]
 

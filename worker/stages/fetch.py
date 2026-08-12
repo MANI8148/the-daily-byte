@@ -217,6 +217,8 @@ SOURCES = {
     "arxiv": lambda cfg: arxiv(n=cfg.max_candidates),
     "reddit": lambda cfg: reddit_top(n=cfg.max_candidates),
     "rss": lambda cfg: _rss_bundle(cfg),
+    "lobsters": lambda cfg: rss(url="https://lobste.rs/rss", source_name="Lobsters", n=cfg.max_candidates),
+    "devto": lambda cfg: rss(url="https://dev.to/feed", source_name="dev.to", n=cfg.max_candidates),
 }
 
 
