@@ -44,19 +44,31 @@ create table if not exists public.suggestions (
   created_at timestamptz not null default now()
 );
 
--- RLS: lock everything down; anonymous INSERT into suggestions only -----------
+-- RLS: lock everything down by default; open anon write only where the public
+-- newspaper genuinely needs it (suggestions box + the dedup ledger + the post log).
+-- Posts are public content with no private data, so the worker's publishable key
+-- may insert/read them too (service-role key still bypasses RLS for everything).
 alter table public.posts enable row level security;
 alter table public.seen_links enable row level security;
 alter table public.publish_logs enable row level security;
 alter table public.suggestions enable row level security;
 
--- The service-role key (worker / editor CLI) bypasses RLS automatically.
--- The anon key (public, shipped in the front end) may ONLY drop a suggestion:
 create policy "anon can drop a suggestion" on public.suggestions
   for insert to anon with check (true);
-
 create policy "anon can read own suggestion" on public.suggestions
   for select to anon using (false);  -- editor reads via service key / dashboard
+
+-- anon may record the dedup ledger (so the worker's publishable key can dedupe)
+drop policy if exists "anon read seen" on public.seen_links;
+create policy "anon read seen" on public.seen_links for select to anon using (true);
+drop policy if exists "anon upsert seen" on public.seen_links;
+create policy "anon upsert seen" on public.seen_links for insert to anon with check (true);
+
+-- anon may write + read posts (public newspaper content; no PII)
+drop policy if exists "anon read posts" on public.posts;
+create policy "anon read posts" on public.posts for select to anon using (true);
+drop policy if exists "anon insert posts" on public.posts;
+create policy "anon insert posts" on public.posts for insert to anon with check (true);
 
 -- Indexes for the queries the worker runs -------------------------------------
 create index if not exists idx_seen_links_last_seen on public.seen_links (last_seen_at desc);
