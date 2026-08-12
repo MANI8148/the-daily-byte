@@ -72,38 +72,6 @@ export const PIPELINE_ARTICLES: Article[] = [
     "sourceName": "Lobsters"
   },
   {
-    "id": "pipeline-stealing-reasoning-traces-from-proprietary-llm-apis",
-    "date": "2026-08-12",
-    "section": "AI & ML",
-    "title": "STEALING REASONING TRACES FROM PROPRIETARY LLM APIS",
-    "subtitle": "A practical explainer of Stealing Reasoning Traces from Proprietary LLM APIs for students, with concrete examples and key takeaways.",
-    "author": "Manikanta",
-    "leadParagraph": "Stealing Reasoning Traces from Proprietary LLM APIs — this is why Hacker News matters this week. Students following AI and ML should care because it changes what tools, papers, and job descriptions look like next semester. The full source is linked below; every claim in this article traces to it.",
-    "bodyParagraphs": [
-      "What's actually going on",
-      "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewritten from primary sources with every claim linked. Nothing invented, nothing republished.",
-      "We cover the concrete facts from Hacker News — nothing invented, no fabricated numbers. If the original piece gives a figure, we repeat it with the source link right there so you can verify in one click. That habit is the entire editorial promise: source-linked journalism for students.",
-      "Why it matters for students",
-      "Learning about this now means you graduate ahead of the curve. Employers in 2026 ask two questions: can you direct an AI agent to write correct code, and can you tell when its output is wrong? Reading and explaining fresh developments trains exactly that second muscle — verification.",
-      "Try it yourself: open the source, extract the three strongest claims, and check each one against the actual repository or paper. If you can do that for every article you read this month, you will outperform most candidates at interviews."
-    ],
-    "pullQuote": "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewri",
-    "keyTakeaways": [
-      "Clone the repository or read the paper from the link above. - Build the toy version: even a broken implementation teaches more than a perfec",
-      "This topic is trending this week and worth one focused hour of study - Always verify claims against the linked source before sharing - Mock "
-    ],
-    "readTimeMinutes": 3,
-    "likesCount": 0,
-    "comments": [],
-    "tags": [
-      "ai",
-      "ml",
-      "tutorial"
-    ],
-    "stamp": "Darklord",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Hacker_in_the_dark.jpg/640px-Hacker_in_the_dark.jpg"
-  },
-  {
     "id": "pipeline-stealing-llm-traces",
     "date": "2026-08-12",
     "section": "AI & ML",
@@ -164,38 +132,6 @@ export const PIPELINE_ARTICLES: Article[] = [
     ],
     "stamp": "Darklord",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Hacker_in_the_dark.jpg/640px-Hacker_in_the_dark.jpg"
-  },
-  {
-    "id": "pipeline-statistically-secure-bit-commitment-and-coin-flipping-protocols-based-",
-    "date": "2026-08-12",
-    "section": "AI & ML",
-    "title": "STATISTICALLY-SECURE BIT COMMITMENT AND COIN FLIPPING PROTOC",
-    "subtitle": "A practical explainer of Statistically-Secure Bit Commitment and Coin Flipping Protocols Based for students, with concrete examples and key takeaways.",
-    "author": "Manikanta",
-    "leadParagraph": "Statistically-Secure Bit Commitment and Coin Flipping Protocols Based on Quantum Hardware Assumptions — this is why arXiv cs.CR matters this week. Students following AI and ML should care because it changes what tools, papers, and job descriptions look like next semester. The full source is linked below; every claim in this article traces to it.",
-    "bodyParagraphs": [
-      "What's actually going on",
-      "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewritten from primary sources with every claim linked. Nothing invented, nothing republished.",
-      "We cover the concrete facts from arXiv cs.CR — nothing invented, no fabricated numbers. If the original piece gives a figure, we repeat it with the source link right there so you can verify in one click. That habit is the entire editorial promise: source-linked journalism for students.",
-      "Why it matters for students",
-      "Learning about this now means you graduate ahead of the curve. Employers in 2026 ask two questions: can you direct an AI agent to write correct code, and can you tell when its output is wrong? Reading and explaining fresh developments trains exactly that second muscle — verification.",
-      "Try it yourself: open the source, extract the three strongest claims, and check each one against the actual repository or paper. If you can do that for every article you read this month, you will outperform most candidates at interviews."
-    ],
-    "pullQuote": "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewri",
-    "keyTakeaways": [
-      "Clone the repository or read the paper from the link above. - Build the toy version: even a broken implementation teaches more than a perfec",
-      "This topic is trending this week and worth one focused hour of study - Always verify claims against the linked source before sharing - Mock "
-    ],
-    "readTimeMinutes": 3,
-    "likesCount": 0,
-    "comments": [],
-    "tags": [
-      "ai",
-      "ml",
-      "tutorial"
-    ],
-    "stamp": "Darklord",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Quantum_entanglement.svg/640px-Quantum_entanglement.svg.png"
   },
   {
     "id": "pipeline-sanitize-llm-api-keys",
@@ -586,38 +522,6 @@ export const PIPELINE_ARTICLES: Article[] = [
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/High_voltage_power_lines.jpg/640px-High_voltage_power_lines.jpg"
   },
   {
-    "id": "pipeline-fcc-proposes-import-ban-on-chinese-optical-transceivers-blockade-targe",
-    "date": "2026-08-12",
-    "section": "AI & ML",
-    "title": "FCC PROPOSES IMPORT BAN ON CHINESE OPTICAL TRANSCEIVERS — BL",
-    "subtitle": "A practical explainer of FCC proposes import ban on Chinese optical transceivers — blockade tar for students, with concrete examples and key takeaways.",
-    "author": "Manikanta",
-    "leadParagraph": "FCC proposes import ban on Chinese optical transceivers — blockade targets key AI interconnects as China holds 56% global market share — this is why Tom's Hardware matters this week. Students following AI and ML should care because it changes what tools, papers, and job descriptions look like next semester. The full source is linked below; every claim in this article traces to it.",
-    "bodyParagraphs": [
-      "What's actually going on",
-      "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewritten from primary sources with every claim linked. Nothing invented, nothing republished.",
-      "We cover the concrete facts from Tom's Hardware — nothing invented, no fabricated numbers. If the original piece gives a figure, we repeat it with the source link right there so you can verify in one click. That habit is the entire editorial promise: source-linked journalism for students.",
-      "Why it matters for students",
-      "Learning about this now means you graduate ahead of the curve. Employers in 2026 ask two questions: can you direct an AI agent to write correct code, and can you tell when its output is wrong? Reading and explaining fresh developments trains exactly that second muscle — verification.",
-      "Try it yourself: open the source, extract the three strongest claims, and check each one against the actual repository or paper. If you can do that for every article you read this month, you will outperform most candidates at interviews."
-    ],
-    "pullQuote": "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewri",
-    "keyTakeaways": [
-      "Clone the repository or read the paper from the link above. - Build the toy version: even a broken implementation teaches more than a perfec",
-      "This topic is trending this week and worth one focused hour of study - Always verify claims against the linked source before sharing - Mock "
-    ],
-    "readTimeMinutes": 3,
-    "likesCount": 0,
-    "comments": [],
-    "tags": [
-      "ai",
-      "ml",
-      "tutorial"
-    ],
-    "stamp": "Darklord",
-    "imageUrl": "/images/2026-08-12/fcc-proposes-import-ban-on-chinese-optical-transceivers-blockade-targe.jpg"
-  },
-  {
     "id": "pipeline-fcc-import-ban-chinese-optical-transceivers",
     "date": "2026-08-12",
     "section": "Security",
@@ -650,38 +554,6 @@ export const PIPELINE_ARTICLES: Article[] = [
     ],
     "stamp": "Darklord",
     "imageUrl": "/images/2026-08-12/fcc-import-ban-chinese-optical-transceivers.jpg"
-  },
-  {
-    "id": "pipeline-eternityspring-shuohao-skills-ai-skill-agent-skills-for-ai-short-drama",
-    "date": "2026-08-12",
-    "section": "AI & ML",
-    "title": "ETERNITYSPRING/SHUOHAO-SKILLS: AI 短剧制作的 SKILL 集合：拆角色、出设定图、排大",
-    "subtitle": "A practical explainer of eternityspring/shuohao-skills: AI 短剧制作的 skill 集合：拆角色、出设定图、排大纲 | Agent for students, with concrete examples and key takeaways.",
-    "author": "Manikanta",
-    "leadParagraph": "eternityspring/shuohao-skills: AI 短剧制作的 skill 集合：拆角色、出设定图、排大纲 | Agent skills for AI short-drama production — character bibles, model sheets, adaptation outlines. Runs in Claude Code & codex. — this is why GitHub Trending matters this week. Students following AI and ML should care because it changes what tools, papers, and job descriptions look like next semester. The full source is linked below; every claim in this article traces to it.",
-    "bodyParagraphs": [
-      "What's actually going on",
-      "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewritten from primary sources with every claim linked. Nothing invented, nothing republished.",
-      "We cover the concrete facts from GitHub Trending — nothing invented, no fabricated numbers. If the original piece gives a figure, we repeat it with the source link right there so you can verify in one click. That habit is the entire editorial promise: source-linked journalism for students.",
-      "Why it matters for students",
-      "Learning about this now means you graduate ahead of the curve. Employers in 2026 ask two questions: can you direct an AI agent to write correct code, and can you tell when its output is wrong? Reading and explaining fresh developments trains exactly that second muscle — verification.",
-      "Try it yourself: open the source, extract the three strongest claims, and check each one against the actual repository or paper. If you can do that for every article you read this month, you will outperform most candidates at interviews."
-    ],
-    "pullQuote": "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewri",
-    "keyTakeaways": [
-      "Clone the repository or read the paper from the link above. - Build the toy version: even a broken implementation teaches more than a perfec",
-      "This topic is trending this week and worth one focused hour of study - Always verify claims against the linked source before sharing - Mock "
-    ],
-    "readTimeMinutes": 3,
-    "likesCount": 0,
-    "comments": [],
-    "tags": [
-      "ai",
-      "ml",
-      "tutorial"
-    ],
-    "stamp": "Darklord",
-    "imageUrl": "/images/2026-08-12/eternityspring-shuohao-skills-ai-skill-agent-skills-for-ai-short-drama.jpg"
   },
   {
     "id": "pipeline-england-hepatitis-c-free",
@@ -813,38 +685,6 @@ export const PIPELINE_ARTICLES: Article[] = [
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Pleiades_large.jpg/640px-Pleiades_large.jpg"
   },
   {
-    "id": "pipeline-company-offering-100-human-written-never-ai-medical-research-is-100-ai",
-    "date": "2026-08-12",
-    "section": "AI & ML",
-    "title": "COMPANY OFFERING '100% HUMAN-WRITTEN, NEVER AI' MEDICAL RESE",
-    "subtitle": "A practical explainer of Company Offering '100% Human-Written, Never AI' Medical Research Is 10 for students, with concrete examples and key takeaways.",
-    "author": "Manikanta",
-    "leadParagraph": "Company Offering '100% Human-Written, Never AI' Medical Research Is 100% AI — this is why Hacker News matters this week. Students following AI and ML should care because it changes what tools, papers, and job descriptions look like next semester. The full source is linked below; every claim in this article traces to it.",
-    "bodyParagraphs": [
-      "What's actually going on",
-      "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewritten from primary sources with every claim linked. Nothing invented, nothing republished.",
-      "We cover the concrete facts from Hacker News — nothing invented, no fabricated numbers. If the original piece gives a figure, we repeat it with the source link right there so you can verify in one click. That habit is the entire editorial promise: source-linked journalism for students.",
-      "Why it matters for students",
-      "Learning about this now means you graduate ahead of the curve. Employers in 2026 ask two questions: can you direct an AI agent to write correct code, and can you tell when its output is wrong? Reading and explaining fresh developments trains exactly that second muscle — verification.",
-      "Try it yourself: open the source, extract the three strongest claims, and check each one against the actual repository or paper. If you can do that for every article you read this month, you will outperform most candidates at interviews."
-    ],
-    "pullQuote": "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewri",
-    "keyTakeaways": [
-      "Clone the repository or read the paper from the link above. - Build the toy version: even a broken implementation teaches more than a perfec",
-      "This topic is trending this week and worth one focused hour of study - Always verify claims against the linked source before sharing - Mock "
-    ],
-    "readTimeMinutes": 3,
-    "likesCount": 0,
-    "comments": [],
-    "tags": [
-      "ai",
-      "ml",
-      "tutorial"
-    ],
-    "stamp": "Darklord",
-    "imageUrl": "/images/2026-08-12/company-offering-100-human-written-never-ai-medical-research-is-100-ai.jpg"
-  },
-  {
     "id": "pipeline-amie-real-time-video-consultations",
     "date": "2026-08-12",
     "section": "AI & ML",
@@ -876,38 +716,6 @@ export const PIPELINE_ARTICLES: Article[] = [
     ],
     "stamp": "Darklord",
     "imageUrl": "/images/2026-08-12/amie-real-time-video-consultations.jpg"
-  },
-  {
-    "id": "pipeline-amie-our-research-medical-ai-system-demonstrates-real-time-clinical-vi",
-    "date": "2026-08-12",
-    "section": "AI & ML",
-    "title": "AMIE, OUR RESEARCH MEDICAL AI SYSTEM, DEMONSTRATES REAL-TIME",
-    "subtitle": "A practical explainer of AMIE, our research medical AI system, demonstrates real-time clinical for students, with concrete examples and key takeaways.",
-    "author": "Manikanta",
-    "leadParagraph": "AMIE, our research medical AI system, demonstrates real-time clinical video consultation capabilities in a first-of-its-kind study. — this is why Google Blog matters this week. Students following AI and ML should care because it changes what tools, papers, and job descriptions look like next semester. The full source is linked below; every claim in this article traces to it.",
-    "bodyParagraphs": [
-      "What's actually going on",
-      "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewritten from primary sources with every claim linked. Nothing invented, nothing republished.",
-      "We cover the concrete facts from Google Blog — nothing invented, no fabricated numbers. If the original piece gives a figure, we repeat it with the source link right there so you can verify in one click. That habit is the entire editorial promise: source-linked journalism for students.",
-      "Why it matters for students",
-      "Learning about this now means you graduate ahead of the curve. Employers in 2026 ask two questions: can you direct an AI agent to write correct code, and can you tell when its output is wrong? Reading and explaining fresh developments trains exactly that second muscle — verification.",
-      "Try it yourself: open the source, extract the three strongest claims, and check each one against the actual repository or paper. If you can do that for every article you read this month, you will outperform most candidates at interviews."
-    ],
-    "pullQuote": "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewri",
-    "keyTakeaways": [
-      "Clone the repository or read the paper from the link above. - Build the toy version: even a broken implementation teaches more than a perfec",
-      "This topic is trending this week and worth one focused hour of study - Always verify claims against the linked source before sharing - Mock "
-    ],
-    "readTimeMinutes": 3,
-    "likesCount": 0,
-    "comments": [],
-    "tags": [
-      "ai",
-      "ml",
-      "tutorial"
-    ],
-    "stamp": "Darklord",
-    "imageUrl": "/images/2026-08-12/amie-our-research-medical-ai-system-demonstrates-real-time-clinical-vi.jpg"
   },
   {
     "id": "pipeline-ai-short-drama-skills",

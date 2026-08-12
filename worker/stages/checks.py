@@ -206,6 +206,10 @@ def refusal_check(fm: dict, body: str) -> tuple[str, str, str]:
         return ("refusal", "fail", f"LLM refusal/stub detected: {lead_hits[0]!r}")
     if hits:
         return ("refusal", "fail", f"LLM refusal/stub detected: {hits[0]!r}")
+    # Hard guard: the site's masthead/tagline must NEVER appear inside an article body.
+    # It is injected by the mock generator or leaked from site copy — not real journalism.
+    if "all the intelligence fit to print" in text or "THE DAILY BYTE — all the intelligence" in text:
+        return ("refusal", "fail", "site tagline/masthead leaked into article body")
     # Stub signals: body is too short to be a real article AND has no structure.
     wc = _word_count(body)
     if wc < 80 and len(H2_RE.findall(body)) + len(H3_RE.findall(body)) < 1:

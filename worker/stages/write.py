@@ -231,15 +231,7 @@ status: draft
 
 ## What's actually going on
 
-THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewritten from primary sources with every claim linked. Nothing invented, nothing republished.
-
-We cover the concrete facts from [{src}]({url}) — nothing invented, no fabricated numbers. If the original piece gives a figure, we repeat it with the source link right there so you can verify in one click. That habit is the entire editorial promise: source-linked journalism for students.
-
-## Why it matters for students
-
-Learning about this now means you graduate ahead of the curve. Employers in 2026 ask two questions: can you direct an AI agent to write correct code, and can you tell when its output is wrong? Reading and explaining fresh developments trains exactly that second muscle — verification.
-
-Try it yourself: open the source, extract the three strongest claims, and check each one against the actual repository or paper. If you can do that for every article you read this month, you will outperform most candidates at interviews.
+We cover the concrete facts from [{src}]({url}) — nothing invented, no fabricated numbers. If the original piece gives a figure, we repeat it with the source link right there so you can verify in one click.
 
 ## How to go deeper
 
