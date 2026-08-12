@@ -76,14 +76,21 @@ class Supabase:
         if self.dry:
             print("  [dry-run] insert posts:", json.dumps(post, indent=2)[:600])
             return {"id": "dry-" + post.get("slug", "x")}
-        res = self._call("POST", "/rest/v1/posts", post)
-        return res[0] if isinstance(res, list) and res else (res if isinstance(res, dict) else {})
+        try:
+            res = self._call("POST", "/rest/v1/posts", post)
+            return res[0] if isinstance(res, list) and res else (res if isinstance(res, dict) else {})
+        except Exception as e:
+            print(f"  [supabase] insert_post skipped ({type(e).__name__}); draft still saved locally")
+            return {"id": "local-" + post.get("slug", "x")}
 
     def set_status(self, post_id: str, status: str) -> None:
         if self.dry:
             print(f"  [dry-run] posts/{post_id} status -> {status}")
             return
-        self._call("PATCH", f"/rest/v1/posts?id=eq.{post_id}", {"status": status})
+        try:
+            self._call("PATCH", f"/rest/v1/posts?id=eq.{post_id}", {"status": status})
+        except Exception as e:
+            print(f"  [supabase] set_status skipped ({type(e).__name__})")
 
     def seen(self, url: str) -> bool:
         """True if url was already ingested. Checks the remote ledger when configured,
@@ -117,16 +124,28 @@ class Supabase:
     def recent_posts(self, limit: int = 20) -> list:
         if self.dry:
             return []
-        return self._get(f"/rest/v1/posts?select=title,content_md&order=created_at.desc&limit={limit}")
+        try:
+            return self._get(f"/rest/v1/posts?select=title,content_md&order=created_at.desc&limit={limit}")
+        except Exception as e:
+            # a misconfigured/unreachable Supabase must NOT block the run; file ledger handles dedup
+            print(f"  [supabase] recent_posts skipped ({type(e).__name__}); using file-ledger dedup")
+            return []
 
     def get_post(self, post_id: str) -> dict | None:
         if self.dry:
             return None
-        rows = self._get(f"/rest/v1/posts?id=eq.{post_id}&select=*")
-        return rows[0] if rows else None
+        try:
+            rows = self._get(f"/rest/v1/posts?id=eq.{post_id}&select=*")
+            return rows[0] if rows else None
+        except Exception as e:
+            print(f"  [supabase] get_post skipped ({type(e).__name__})")
+            return None
 
     def log_publish(self, row: dict) -> None:
         if self.dry:
             print("  [dry-run] publish_logs:", json.dumps(row))
             return
-        self._call("POST", "/rest/v1/publish_logs", row)
+        try:
+            self._call("POST", "/rest/v1/publish_logs", row)
+        except Exception as e:
+            print(f"  [supabase] log_publish skipped ({type(e).__name__})")
