@@ -5,7 +5,7 @@ name: bloggy-daily
 
 on:
   schedule:
-    - cron: "17 */2 * * *"   # every 2 hours — 5 topic posts per run (free-tier safe: ~12 runs/day)
+    - cron: "17 * * * *"   # every hour — rotates 3 of 6 lanes (3 distinct-topic posts/hr)
   workflow_dispatch:
     inputs:
       count:

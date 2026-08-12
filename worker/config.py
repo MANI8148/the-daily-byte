@@ -81,7 +81,7 @@ class Config:
 
     # Topic lanes (one draft per lane per run) — JSON list-of-lists in env
     lanes: list = field(default_factory=lambda: _parse_list(_env("LANES", ""), DEFAULT_LANES))
-    lanes_per_run: int = field(default_factory=lambda: int(_env("LANES_PER_RUN", "1") or 1))
+    lanes_per_run: int = field(default_factory=lambda: int(_env("LANES_PER_RUN", "3") or 3))
 
     # opencode CLI fallback (own account quota; separate from the HTTP providers)
     opencode_bin: str = field(default_factory=lambda: _env("OPENCODE_BIN", "opencode"))
@@ -103,9 +103,11 @@ class Config:
     score_model: str = field(default_factory=lambda: _env("LLM_SCORE_MODEL", "llama-3.1-8b-instant"))
     score_threshold: float = float(_env("LLM_SCORE_THRESHOLD", "6"))
 
-    # Supabase (service-role key). Missing -> dry-run mode (prints instead of storing).
+    # Supabase. The publishable (anon) key is safe to expose (RLS-gated); the
+    # service-role key (if you provision it) enables writes. Missing either -> dry-run
+    # mode falls back to the committed seen_links.json file ledger.
     supabase_url: str = field(default_factory=lambda: _env("SUPABASE_URL"))
-    supabase_key: str = field(default_factory=lambda: _env("SUPABASE_SERVICE_KEY"))
+    supabase_key: str = field(default_factory=lambda: _env("SUPABASE_SERVICE_KEY") or _env("SUPABASE_ANON_KEY"))
 
     # Site identity
     site_name: str = field(default_factory=lambda: _env("SITE_NAME", "The Daily Byte"))

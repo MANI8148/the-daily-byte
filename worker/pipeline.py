@@ -134,13 +134,22 @@ def run_once(
             "summary": f"Staff assignment: {topic}. Research it before writing.",
         } for _ in range(max(count, 1))]
     elif source == "all" and cfg.lanes:
-        # Per-lane coverage: pick the best `count` story from each lane's sources.
+        # Per-lane coverage. To keep each run FAST (3 posts/hr) yet cover ALL topics
+        # across the day, we rotate: pick cfg.lanes_per_run lanes, stepping by 2 from an
+        # hour-dependent offset, so every lane is hit every 2 runs.
+        import datetime as _dt
+        hour = _dt.datetime.now(_dt.timezone.utc).hour
+        n = len(cfg.lanes)
+        step = max(1, n // max(1, cfg.lanes_per_run))
+        start = hour % n
+        chosen = [cfg.lanes[(start + i * step) % n] for i in range(cfg.lanes_per_run)]
+        print(f"  [lanes] run covers {len(chosen)}/{n} lanes (hour={hour}, start={start}, step={step})")
         recent = db.recent_posts(50)
         recent_titles = [str(p.get("title", "")) for p in recent if isinstance(p, dict)]
         seen_urls: set[str] = set()
-        per = max(count, cfg.lanes_per_run)
+        per = max(count, 1)  # articles per chosen lane (default 1)
         briefs = []
-        for lane_sources in cfg.lanes:
+        for lane_sources in chosen:
             lane_items: list[dict] = []
             for sname in lane_sources:
                 try:

@@ -86,21 +86,33 @@ class Supabase:
         self._call("PATCH", f"/rest/v1/posts?id=eq.{post_id}", {"status": status})
 
     def seen(self, url: str) -> bool:
-        """True if url was already ingested (unique index on seen_links.url)."""
+        """True if url was already ingested. Checks the remote ledger when configured,
+        and always consults the local file ledger as a durable fallback."""
+        # local file ledger is the durable source of truth
+        data = _load_ledger()
+        local_seen = url in data.get("seen", [])
         if self.dry:
-            data = _load_ledger()
-            return url in data.get("seen", [])
-        res = self._call("POST", "/rest/v1/seen_links", {"url": url, "first_seen_at": "now()"})
-        return bool(isinstance(res, dict) and res.get("_conflict"))
+            return local_seen
+        # also check remote (best-effort; ignore network errors -> trust local)
+        try:
+            res = self._call("POST", "/rest/v1/seen_links", {"url": url, "first_seen_at": "now()"})
+            return bool(isinstance(res, dict) and res.get("_conflict")) or local_seen
+        except Exception:
+            return local_seen
 
     def mark_seen(self, url: str) -> None:
-        """Persist a URL as seen (file ledger in dry-run; no-op on remote success path)."""
-        if self.dry:
-            data = _load_ledger()
-            seen = data.setdefault("seen", [])
-            if url not in seen:
-                seen.append(url)
-                _save_ledger(data)
+        """Persist a URL as seen in BOTH the file ledger (always) and remote (best-effort)."""
+        data = _load_ledger()
+        seen = data.setdefault("seen", [])
+        if url not in seen:
+            seen.append(url)
+            _save_ledger(data)
+        if not self.dry:
+            try:
+                self._call("POST", "/rest/v1/seen_links", {"url": url, "first_seen_at": "now()"})
+            except Exception as e:
+                # anon key / RLS may block writes; file ledger already has it
+                print(f"  [dedup] remote mark_seen skipped ({type(e).__name__}); file ledger updated")
 
     def recent_posts(self, limit: int = 20) -> list:
         if self.dry:
