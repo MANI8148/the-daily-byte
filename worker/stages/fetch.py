@@ -219,6 +219,11 @@ SOURCES = {
     "rss": lambda cfg: _rss_bundle(cfg),
     "lobsters": lambda cfg: rss(url="https://lobste.rs/rss", source_name="Lobsters", n=cfg.max_candidates),
     "devto": lambda cfg: rss(url="https://dev.to/feed", source_name="dev.to", n=cfg.max_candidates),
+    "verge": lambda cfg: rss(url="https://www.theverge.com/rss/index.xml", source_name="The Verge", n=cfg.max_candidates),
+    "arstechnica": lambda cfg: rss(url="https://feeds.arstechnica.com/arstechnica/index", source_name="Ars Technica", n=cfg.max_candidates),
+    "tomshardware": lambda cfg: rss(url="https://www.tomshardware.com/feeds/all", source_name="Tom's Hardware", n=cfg.max_candidates),
+    "github.blog": lambda cfg: rss(url="https://github.blog/feed/", source_name="GitHub Blog", n=cfg.max_candidates),
+    "thehackersnews": lambda cfg: rss(url="https://feeds.feedburner.com/TheHackersNews", source_name="The Hacker News", n=cfg.max_candidates),
 }
 
 

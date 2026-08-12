@@ -56,9 +56,10 @@ DEFAULT_RSS_FEEDS = [
 # key (hn, github, arxiv, reddit, rss) or a qualified call: "arxiv:cs.LG", "reddit:python".
 DEFAULT_LANES = [
     ["hn", "arxiv:cs.AI", "arxiv:cs.LG", "arxiv:cs.CL"],          # AI / ML
-    ["arxiv:cs.CR", "rss"],                                        # Security
-    ["github", "rss"],                                             # Open Source
-    ["lobsters", "devto", "arxiv:cs.PL", "arxiv:cs.SE"],      # Dev / Tech (distinct from other lanes)
+    ["arxiv:cs.CR", "thehackersnews"],                             # Security
+    ["github", "github.blog"],                                     # Open Source
+    ["lobsters", "devto", "arxiv:cs.PL", "arxiv:cs.SE"],          # Dev Tools
+    ["verge", "arstechnica", "tomshardware", "arxiv:quant-ph"],    # Hardware / Consumer Tech (mobiles, laptops, GPUs, quantum)
     ["blog.google", "rss"],                                        # Big Tech
 ]
 
