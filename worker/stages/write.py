@@ -131,7 +131,7 @@ def _chat(cfg: Config, messages: list[dict], max_tokens: int = 2000, model: str 
                         if i > 0:
                             print(f"  [llm] rate-limit/down on primary — used fallback #{i} ({ep['base_url']})")
                         return content
-                    raise KeyError("empty content via curl rescue")
+                    raise RuntimeError("empty content via curl rescue")
                 except Exception as e2:
                     last_err = e2
                     print(f"  [llm] {ep['base_url']} -> 403 (urllib) and curl rescue failed ({type(e2).__name__}); trying next endpoint")
@@ -154,6 +154,12 @@ def _chat(cfg: Config, messages: list[dict], max_tokens: int = 2000, model: str 
     except Exception as e:
         last_err = e
         print(f"  [llm] opencode CLI failed: {type(e).__name__}: {str(e)[:120]}")
+    # Diagnose the common dead-credential case so the failure is actionable.
+    if last_err is not None and getattr(last_err, "code", None) == 403:
+        raise RuntimeError(
+            "All LLM endpoints returned 403 — check that OPENAI_API_KEY / LLM_FALLBACKS "
+            "keys are valid and not expired (a 403 means rejected credentials, not rate-limit)"
+        ) from last_err
     raise RuntimeError(f"All {len(endpoints)} LLM endpoints + opencode CLI failed") from last_err
 
 
@@ -171,7 +177,10 @@ def chat_via_opencode(cfg, messages: list[dict]) -> str | None:
     cmd = [cfg.opencode_bin, "run", prompt, "--format", "json"]
     if cfg.opencode_model:
         cmd += ["--model", cfg.opencode_model]
-    proc = subprocess.run(cmd, capture_output=True, text=True, timeout=240)
+    try:
+        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=240)
+    except FileNotFoundError:
+        raise RuntimeError("opencode binary not found on PATH (set OPENCODE_BIN or install opencode)")
     if proc.returncode != 0:
         raise RuntimeError(f"opencode exited {proc.returncode}: {proc.stderr.strip()[:150]}")
     parts = []
