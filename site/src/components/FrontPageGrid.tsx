@@ -49,32 +49,57 @@ export const FrontPageGrid: React.FC<FrontPageGridProps> = ({
             No dispatches filed under {activeCat.label} yet — the wire room is on it.
           </p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {matches.map((a) => (
-              <button
-                key={a.id}
-                onClick={() => onSelectArticle(a)}
-                className="text-left group cursor-pointer p-5 bg-[#F9F7F2] border-2 border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#F9F7F2] transition-colors flex flex-col gap-3"
-              >
-                {a.imageUrl && (
-                  <img
-                    src={a.imageUrl}
-                    onError={imgError}
-                    alt={a.title}
-                    className="w-full h-40 object-cover border-2 border-[#1A1A1A] vintage-sepia"
-                  />
-                )}
-                <div className="flex justify-between items-center text-[10px] font-mono-tech text-[#9a3412] font-bold group-hover:text-[#f59e0b]">
-                  <span className="uppercase tracking-widest">{a.section}</span>
-                  <span>{a.date}</span>
-                </div>
-                <h3 className="font-headline text-lg font-bold mt-1.5 leading-snug">{a.title}</h3>
-                <p className="font-serif text-xs mt-2 opacity-80 line-clamp-2">{a.leadParagraph}</p>
-                <span className="inline-block mt-3 text-[10px] font-sans font-bold uppercase tracking-wider border-b border-current pb-0.5">
-                  Read &rarr;
-                </span>
-              </button>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+            {/* Left column: blogs WITH photos */}
+            <div className="flex flex-col gap-6">
+              <h3 className="font-sans text-xs font-bold uppercase tracking-widest text-[#b91c1c] border-b border-[#1A1A1A]/20 pb-1">With Photographs</h3>
+              {matches.filter((a) => a.imageUrl).map((a) => (
+                <button
+                  key={a.id}
+                  onClick={() => onSelectArticle(a)}
+                  className="text-left group cursor-pointer p-4 bg-[#F9F7F2] border-2 border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#F9F7F2] transition-colors flex flex-col gap-3"
+                >
+                  {a.imageUrl && (
+                    <img
+                      src={a.imageUrl}
+                      onError={imgError}
+                      alt={a.title}
+                      className="w-full h-40 object-cover border-2 border-[#1A1A1A] vintage-sepia"
+                    />
+                  )}
+                  <div className="flex justify-between items-center text-[10px] font-mono-tech text-[#9a3412] font-bold group-hover:text-[#f59e0b]">
+                    <span className="uppercase tracking-widest">{a.section}</span>
+                    <span>{a.date}</span>
+                  </div>
+                  <h3 className="font-headline text-lg font-bold mt-1.5 leading-snug">{a.title}</h3>
+                  <p className="font-serif text-xs mt-2 opacity-80 line-clamp-2">{a.leadParagraph}</p>
+                </button>
+              ))}
+              {matches.filter((a) => a.imageUrl).length === 0 && (
+                <p className="font-serif italic text-sm text-[#1A1A1A]/50">No photographed dispatches in this edition.</p>
+              )}
+            </div>
+            {/* Right column: blogs WITHOUT photos */}
+            <div className="flex flex-col gap-6">
+              <h3 className="font-sans text-xs font-bold uppercase tracking-widest text-[#1A1A1A] border-b border-[#1A1A1A]/20 pb-1">Without Photographs</h3>
+              {matches.filter((a) => !a.imageUrl).map((a) => (
+                <button
+                  key={a.id}
+                  onClick={() => onSelectArticle(a)}
+                  className="text-left group cursor-pointer p-4 bg-[#F9F7F2] border-2 border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#F9F7F2] transition-colors flex flex-col gap-2"
+                >
+                  <div className="flex justify-between items-center text-[10px] font-mono-tech text-[#9a3412] font-bold group-hover:text-[#f59e0b]">
+                    <span className="uppercase tracking-widest">{a.section}</span>
+                    <span>{a.date}</span>
+                  </div>
+                  <h3 className="font-headline text-base font-bold leading-snug">{a.title}</h3>
+                  <p className="font-serif text-xs opacity-80 line-clamp-2">{a.leadParagraph}</p>
+                </button>
+              ))}
+              {matches.filter((a) => !a.imageUrl).length === 0 && (
+                <p className="font-serif italic text-sm text-[#1A1A1A]/50">Every dispatch in this edition has a photograph.</p>
+              )}
+            </div>
           </div>
         )}
       </div>
@@ -319,18 +344,22 @@ export const FrontPageGrid: React.FC<FrontPageGridProps> = ({
 
             <div className="divide-y divide-[#1A1A1A] space-y-3">
               {issue.techBriefs.map((brief, idx) => (
-                <div key={idx} className="pt-3 first:pt-0">
+                <button
+                  key={brief.id || idx}
+                  onClick={() => onSelectArticle(brief)}
+                  className="pt-3 first:pt-0 text-left w-full group block"
+                >
                   <div className="flex justify-between items-center text-[10px] font-sans font-bold uppercase mb-1">
-                    <span className="text-[#b91c1c]">{brief.category}</span>
-                    <span className="text-[#1A1A1A]/60">{brief.timeAgo}</span>
+                    <span className="text-[#b91c1c]">{brief.section}</span>
+                    <span className="text-[#1A1A1A]/60">{brief.date}</span>
                   </div>
-                  <h4 className="font-headline text-sm font-bold text-[#1A1A1A] hover:text-[#b91c1c] cursor-pointer leading-snug">
-                    {brief.headline}
+                  <h4 className="font-headline text-sm font-bold text-[#1A1A1A] group-hover:text-[#b91c1c] cursor-pointer leading-snug">
+                    {brief.title}
                   </h4>
-                  <p className="font-serif text-xs text-[#1A1A1A]/80 mt-1 leading-relaxed">
-                    {brief.snippet}
+                  <p className="font-serif text-xs text-[#1A1A1A]/80 mt-1 leading-relaxed line-clamp-2">
+                    {brief.leadParagraph}
                   </p>
-                </div>
+                </button>
               ))}
             </div>
           </div>

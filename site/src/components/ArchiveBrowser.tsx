@@ -196,42 +196,53 @@ export const ArchiveBrowser: React.FC<ArchiveBrowserProps> = ({
                   />
                 )}
 
-                {/* Every article in this edition — stacked list, image-left / text-right,
-                    full-width text when no image (no empty image gap). */}
-                <div className="mb-4 border-t border-[#1A1A1A]/20 pt-3 flex flex-col gap-3">
-                  {allArts
-                    .filter((a) => a.date === issue.dateStr)
-                    .map((a) => (
+                {/* Every article in this edition — split: left = with photos, right = without. */}
+                <div className="mb-4 border-t border-[#1A1A1A]/20 pt-3 grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+                  {/* Left: blogs WITH photos */}
+                  <div className="flex flex-col gap-3">
+                    <h4 className="font-sans text-[10px] font-bold uppercase tracking-widest text-[#b91c1c] border-b border-[#1A1A1A]/20 pb-1">With Photographs</h4>
+                    {allArts.filter((a) => a.date === issue.dateStr && a.imageUrl).map((a) => (
                       <button
                         key={a.id}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onSelectArticle(a);
-                        }}
+                        onClick={(e) => { e.stopPropagation(); onSelectArticle(a); }}
                         className="text-left group flex gap-4 p-3 border-2 border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#F9F7F2] transition-colors items-start"
                       >
-                        {a.imageUrl && (
-                          <img
-                            src={a.imageUrl}
-                            onError={imgError}
-                            alt={a.title}
-                            className="w-28 sm:w-36 shrink-0 h-28 sm:h-36 object-cover border-2 border-[#1A1A1A] vintage-sepia"
-                          />
-                        )}
+                        <img src={a.imageUrl} onError={imgError} alt={a.title} className="w-24 sm:w-32 shrink-0 h-24 sm:h-32 object-cover border-2 border-[#1A1A1A] vintage-sepia" />
                         <div className="flex-1 min-w-0 flex flex-col gap-1.5">
-                          <span className="font-serif text-base sm:text-lg font-bold leading-snug line-clamp-2">
-                            {a.title}
-                          </span>
+                          <span className="font-serif text-sm sm:text-base font-bold leading-snug line-clamp-2">{a.title}</span>
                           <div className="flex justify-between items-center text-[9px] font-sans uppercase tracking-wider">
                             <span className="text-[#b91c1c]">{a.section}</span>
                             <span className="opacity-70">{a.date}</span>
                           </div>
-                          {a.leadParagraph && (
-                            <p className="font-serif text-xs opacity-80 line-clamp-2">{a.leadParagraph}</p>
-                          )}
                         </div>
                       </button>
                     ))}
+                    {allArts.filter((a) => a.date === issue.dateStr && a.imageUrl).length === 0 && (
+                      <p className="font-serif italic text-xs text-[#1A1A1A]/50">No photographed dispatches.</p>
+                    )}
+                  </div>
+                  {/* Right: blogs WITHOUT photos */}
+                  <div className="flex flex-col gap-3">
+                    <h4 className="font-sans text-[10px] font-bold uppercase tracking-widest text-[#1A1A1A] border-b border-[#1A1A1A]/20 pb-1">Without Photographs</h4>
+                    {allArts.filter((a) => a.date === issue.dateStr && !a.imageUrl).map((a) => (
+                      <button
+                        key={a.id}
+                        onClick={(e) => { e.stopPropagation(); onSelectArticle(a); }}
+                        className="text-left group flex gap-4 p-3 border-2 border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#F9F7F2] transition-colors items-start"
+                      >
+                        <div className="flex-1 min-w-0 flex flex-col gap-1.5">
+                          <span className="font-serif text-sm sm:text-base font-bold leading-snug line-clamp-2">{a.title}</span>
+                          <div className="flex justify-between items-center text-[9px] font-sans uppercase tracking-wider">
+                            <span className="text-[#b91c1c]">{a.section}</span>
+                            <span className="opacity-70">{a.date}</span>
+                          </div>
+                        </div>
+                      </button>
+                    ))}
+                    {allArts.filter((a) => a.date === issue.dateStr && !a.imageUrl).length === 0 && (
+                      <p className="font-serif italic text-xs text-[#1A1A1A]/50">Every dispatch has a photograph.</p>
+                    )}
+                  </div>
                 </div>
               </div>
 

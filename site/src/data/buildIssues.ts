@@ -54,15 +54,10 @@ function buildPipelineIssue(dateStr: string, dayArticles: Article[], edition: nu
     leadHeroArticle: { ...hero, isHero: true },
     featuredArticles: featured,
     opinionPieces: [],
-    // Wire briefs = the articles NOT on the front page (still full articles,
-    // but rendered as a compact telegraph column). They remain clickable
-    // because the section/archive views pull from PIPELINE_ARTICLES directly.
-    techBriefs: dayArticles.slice(FRONT_PAGE_COUNT).map((a) => ({
-      headline: a.title.replace(/:.*$/, '').slice(0, 60),
-      snippet: (a.subtitle || a.leadParagraph).slice(0, 110),
-      timeAgo: 'PIPELINE',
-      category: a.section.replace(' & ', '/'),
-    })),
+    // Wire briefs = the articles NOT on the front page, capped at 10.
+    // Each carries the FULL Article so the telegraph column is clickable
+    // and opens the complete blog on click (no stripped, dead-end briefs).
+    techBriefs: dayArticles.slice(FRONT_PAGE_COUNT, FRONT_PAGE_COUNT + 10),
     marketTicker: [],
   };
 }

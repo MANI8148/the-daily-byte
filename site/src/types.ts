@@ -39,12 +39,7 @@ export interface GazetteIssue {
   leadHeroArticle: Article;
   featuredArticles: Article[];
   opinionPieces: Article[];
-  techBriefs: {
-    headline: string;
-    snippet: string;
-    timeAgo: string;
-    category: string;
-  }[];
+  techBriefs: Article[]; // full articles (capped at 10 on the front page), clickable
   marketTicker: {
     symbol: string;
     name: string;

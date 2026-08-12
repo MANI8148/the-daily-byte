@@ -7,9 +7,10 @@ const SUPABASE_ANON_KEY = (import.meta.env.VITE_SUPABASE_ANON_KEY as string | un
 export const SuggestionBox: React.FC = () => {
   const [text, setText] = useState('');
   const [sent, setSent] = useState(false);
+  const [note, setNote] = useState('');
 
   /** Real inbox first (Supabase `suggestions` table); localStorage only as dev fallback. */
-  const persist = async (body: string): Promise<void> => {
+  const persist = async (body: string): Promise<'supabase' | 'local' | 'error'> => {
     if (SUPABASE_URL && SUPABASE_ANON_KEY) {
       try {
         const res = await fetch(`${SUPABASE_URL}/rest/v1/suggestions`, {
@@ -22,7 +23,8 @@ export const SuggestionBox: React.FC = () => {
           },
           body: JSON.stringify({ text: body }),
         });
-        if (res.ok) return;
+        if (res.ok) return 'supabase';
+        return 'error';
       } catch {
         /* network hiccup — fall through to local */
       }
@@ -31,18 +33,26 @@ export const SuggestionBox: React.FC = () => {
       const list = JSON.parse(localStorage.getItem(KEY) || '[]');
       list.push({ text: body, at: new Date().toISOString() });
       localStorage.setItem(KEY, JSON.stringify(list));
+      return 'local';
     } catch {
-      /* ignore */
+      return 'error';
     }
   };
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!text.trim()) return;
-    void persist(text.trim());
-    setSent(true);
+    const status = await persist(text.trim());
     setText('');
-    window.setTimeout(() => setSent(false), 5000);
+    setSent(true);
+    setNote(
+      status === 'supabase'
+        ? '✓ Sent to the editor — logged in the backend drop box.'
+        : status === 'local'
+          ? 'Saved on this device only — backend not connected (set VITE_SUPABASE_* env).'
+          : 'Could not send — check the connection and try again.',
+    );
+    window.setTimeout(() => { setSent(false); setNote(''); }, 6000);
   };
 
   return (
@@ -72,8 +82,8 @@ export const SuggestionBox: React.FC = () => {
         </button>
       </form>
       {sent && (
-        <p className="mt-2 text-xs font-sans font-bold text-[#15803d] animate-fadeIn">
-          ✓ Logged to the drop box — the editor reads every one.
+        <p className="mt-2 text-xs font-sans font-bold animate-fadeIn text-[#15803d]">
+          {note}
         </p>
       )}
     </div>
