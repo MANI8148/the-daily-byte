@@ -160,8 +160,11 @@ def arxiv(category: str = "cs.AI", n: int = 8) -> list[dict]:
 
 
 def reddit_top(sub: str = "MachineLearning", n: int = 8) -> list[dict]:
-    """Top posts this week on a subreddit (public JSON endpoint)."""
-    data = _get_json(f"https://www.reddit.com/r/{sub}/top.json?t=week&limit={n}")
+    """Top posts this week on a subreddit (public JSON endpoint).
+
+    Uses old.reddit.com — www.reddit.com blocks many cloud CI IPs (403)."""
+    url = f"https://old.reddit.com/r/{sub}/top.json?t=week&limit={n}"
+    data = _get_json(url)
     out = []
     for ch in data.get("data", {}).get("children", []):
         p = ch.get("data", {})
@@ -236,15 +239,33 @@ def _guarded(fn, cfg) -> list[dict]:
 
 
 def fetch(name: str, cfg, recent_titles: list[str] | None = None, enrich: int = 6) -> list[dict]:
-    """Fetch + dedup (fuzzy) + enrich (trafilatura)."""
+    """Fetch + dedup (fuzzy) + enrich (trafilatura).
+
+    `name` is a source key (hn, github, arxiv, reddit, rss) or a qualified call:
+      arxiv:cs.AI   -> arxiv(category="cs.AI")
+      reddit:python -> reddit_top(sub="python")
+      blog.google    -> rss(url="https://blog.google/technology/ai/rss/")
+    """
     recent_titles = recent_titles or []
+
+    def resolve(n: str) -> list[dict]:
+        if n in ("blog.google",):
+            return rss(url="https://blog.google/technology/ai/rss/", source_name="Google Blog", n=cfg.max_candidates)
+        if ":" in n and not n.startswith("http"):
+            kind, arg = n.split(":", 1)
+            if kind == "arxiv":
+                return arxiv(category=arg, n=cfg.max_candidates)
+            if kind == "reddit":
+                return reddit_top(sub=arg, n=cfg.max_candidates)
+        return SOURCES[n](cfg)
+
     if name == "all":
         items = []
         for key in SOURCES:
             items.extend(_guarded(SOURCES[key], cfg))
     else:
         try:
-            items = SOURCES[name](cfg)
+            items = resolve(name)
         except Exception as e:  # a failing source never kills the run
             print(f"  [fetch:{name}] failed: {e}")
             return []

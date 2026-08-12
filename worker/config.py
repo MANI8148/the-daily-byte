@@ -51,6 +51,17 @@ DEFAULT_RSS_FEEDS = [
     "https://feeds.feedburner.com/TheHackersNews",
 ]
 
+# Topic lanes: each lane drafts (LANES_PER_RUN) posts per hourly run, pulling from
+# several sources so a topic always has coverage. A lane entry is either a bare source
+# key (hn, github, arxiv, reddit, rss) or a qualified call: "arxiv:cs.LG", "reddit:python".
+DEFAULT_LANES = [
+    ["hn", "arxiv:cs.AI", "arxiv:cs.LG", "arxiv:cs.CL"],          # AI / ML
+    ["arxiv:cs.CR", "rss"],                                        # Security
+    ["github", "rss"],                                             # Open Source
+    ["hn", "arxiv:cs.SE", "arxiv:cs.DC", "rss"],                  # Dev / Tech
+    ["blog.google", "rss"],                                        # Big Tech
+]
+
 
 def _parse_list(raw: str, default: list) -> list:
     if not raw:
@@ -66,6 +77,10 @@ def _parse_list(raw: str, default: list) -> list:
 class Config:
     # RSS feeds (feedparser) — JSON list in env, sensible defaults otherwise
     rss_feeds: list = field(default_factory=lambda: _parse_list(_env("RSS_FEEDS", ""), DEFAULT_RSS_FEEDS))
+
+    # Topic lanes (one draft per lane per run) — JSON list-of-lists in env
+    lanes: list = field(default_factory=lambda: _parse_list(_env("LANES", ""), DEFAULT_LANES))
+    lanes_per_run: int = field(default_factory=lambda: int(_env("LANES_PER_RUN", "1") or 1))
 
     # opencode CLI fallback (own account quota; separate from the HTTP providers)
     opencode_bin: str = field(default_factory=lambda: _env("OPENCODE_BIN", "opencode"))

@@ -109,7 +109,12 @@ def run_once(
     auto_publish: bool | None = None,
     count: int = 1,
 ) -> dict:
-    """One pass = N articles (default 1). Serial everywhere. Never raises."""
+    """One pass = N articles (default 1). Serial everywhere. Never raises.
+
+    If `source == "all"` and lanes are configured, we draft ONE post per lane
+    (one AI/ML, one Tech, one Open-Source ...), guaranteeing topic coverage every run.
+    `count` overrides the per-lane count when set > 1.
+    """
     db = Supabase(cfg.supabase_url, cfg.supabase_key)
     summary = {"source": source, "status": "idle", "articles": []}
 
@@ -122,6 +127,30 @@ def run_once(
             "published": "",
             "summary": f"Staff assignment: {topic}. Research it before writing.",
         } for _ in range(max(count, 1))]
+    elif source == "all" and cfg.lanes:
+        # Per-lane coverage: pick the best `count` story from each lane's sources.
+        recent = db.recent_posts(50)
+        recent_titles = [str(p.get("title", "")) for p in recent if isinstance(p, dict)]
+        seen_urls: set[str] = set()
+        per = max(count, cfg.lanes_per_run)
+        briefs = []
+        for lane_sources in cfg.lanes:
+            lane_items: list[dict] = []
+            for sname in lane_sources:
+                try:
+                    lane_items.extend(fetch.fetch(sname, cfg, recent_titles=recent_titles))
+                except Exception as e:
+                    print(f"  [fetch:{sname}] failed: {e}")
+            fresh = [it for it in lane_items if not db.seen(it["url"]) and it["url"] not in seen_urls]
+            if not fresh:
+                continue
+            picks = score.pick(fresh, per)
+            for p in picks:
+                seen_urls.add(p["url"])
+            briefs.extend(picks)
+        if not briefs:
+            summary["status"] = "no-candidates"
+            return summary
     else:
         recent = db.recent_posts(50)
         recent_titles = [str(p.get("title", "")) for p in recent if isinstance(p, dict)]

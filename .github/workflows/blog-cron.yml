@@ -5,8 +5,13 @@ name: bloggy-daily
 
 on:
   schedule:
-    - cron: "0 * * * *"   # every hour on the hour — one fresh dispatch per run
-  workflow_dispatch: {}   # run manually from the Actions tab
+    - cron: "0 * * * *"   # every hour on the hour — 3 articles per run (tunable below)
+  workflow_dispatch:
+    inputs:
+      count:
+        description: "Posts per lane this run (overrides LANES_PER_RUN)"
+        required: false
+        default: "2"
 
 concurrency:
   group: bloggy-run
@@ -62,7 +67,7 @@ jobs:
         run: npm i -g opencode-ai || curl -fsSL https://opencode.ai/install | bash
       # FIX: run as a module (-m worker.app) so the relative imports in worker/ resolve
       - name: Run one pipeline pass (draft + checks; publishes only if AUTO_PUBLISH=true)
-        run: python -m worker.app run-once --source all
+        run: python -m worker.app run-once --source all --count "${{ github.event.inputs.count || '2' }}"
       # Commit whatever drafts/images the cron produced (no-op if nothing changed)
       - name: Commit cron results
         run: |
