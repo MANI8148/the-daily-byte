@@ -50,54 +50,52 @@ export const FrontPageGrid: React.FC<FrontPageGridProps> = ({
           </p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-            {/* Left column: blogs WITH photos */}
+            {/* Left: blogs WITH a local photo */}
             <div className="flex flex-col gap-6">
-              <h3 className="font-sans text-xs font-bold uppercase tracking-widest text-[#b91c1c] border-b border-[#1A1A1A]/20 pb-1">With Photographs</h3>
-              {matches.filter((a) => a.imageUrl).map((a) => (
+              {matches.filter((a) => a.imageUrl && a.imageUrl.startsWith('/images/')).map((a) => (
                 <button
                   key={a.id}
                   onClick={() => onSelectArticle(a)}
-                  className="text-left group cursor-pointer p-4 bg-[#F9F7F2] border-2 border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#F9F7F2] transition-colors flex flex-col gap-3"
+                  className="text-left group cursor-pointer p-5 bg-[#F9F7F2] border-2 border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#F9F7F2] transition-colors flex flex-col gap-3"
                 >
                   {a.imageUrl && (
                     <img
                       src={a.imageUrl}
                       onError={imgError}
                       alt={a.title}
-                      className="w-full h-40 object-cover border-2 border-[#1A1A1A] vintage-sepia"
+                      className="w-full h-52 object-cover border-2 border-[#1A1A1A] vintage-sepia"
                     />
                   )}
                   <div className="flex justify-between items-center text-[10px] font-mono-tech text-[#9a3412] font-bold group-hover:text-[#f59e0b]">
                     <span className="uppercase tracking-widest">{a.section}</span>
                     <span>{a.date}</span>
                   </div>
-                  <h3 className="font-headline text-lg font-bold mt-1.5 leading-snug">{a.title}</h3>
-                  <p className="font-serif text-xs mt-2 opacity-80 line-clamp-2">{a.leadParagraph}</p>
+                  <h3 className="font-headline text-xl font-bold mt-1.5 leading-snug">{a.title}</h3>
+                  <p className="font-serif text-sm mt-2 opacity-80 line-clamp-2">{a.leadParagraph}</p>
                 </button>
               ))}
-              {matches.filter((a) => a.imageUrl).length === 0 && (
+              {matches.filter((a) => a.imageUrl && a.imageUrl.startsWith('/images/')).length === 0 && (
                 <p className="font-serif italic text-sm text-[#1A1A1A]/50">No photographed dispatches in this edition.</p>
               )}
             </div>
-            {/* Right column: blogs WITHOUT photos */}
+            {/* Right: blogs WITHOUT a local photo */}
             <div className="flex flex-col gap-6">
-              <h3 className="font-sans text-xs font-bold uppercase tracking-widest text-[#1A1A1A] border-b border-[#1A1A1A]/20 pb-1">Without Photographs</h3>
-              {matches.filter((a) => !a.imageUrl).map((a) => (
+              {matches.filter((a) => !(a.imageUrl && a.imageUrl.startsWith('/images/'))).map((a) => (
                 <button
                   key={a.id}
                   onClick={() => onSelectArticle(a)}
-                  className="text-left group cursor-pointer p-4 bg-[#F9F7F2] border-2 border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#F9F7F2] transition-colors flex flex-col gap-2"
+                  className="text-left group cursor-pointer p-5 bg-[#F9F7F2] border-2 border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#F9F7F2] transition-colors flex flex-col gap-2"
                 >
                   <div className="flex justify-between items-center text-[10px] font-mono-tech text-[#9a3412] font-bold group-hover:text-[#f59e0b]">
                     <span className="uppercase tracking-widest">{a.section}</span>
                     <span>{a.date}</span>
                   </div>
-                  <h3 className="font-headline text-base font-bold leading-snug">{a.title}</h3>
-                  <p className="font-serif text-xs opacity-80 line-clamp-2">{a.leadParagraph}</p>
+                  <h3 className="font-headline text-xl font-bold leading-snug">{a.title}</h3>
+                  <p className="font-serif text-sm opacity-80 line-clamp-2">{a.leadParagraph}</p>
                 </button>
               ))}
-              {matches.filter((a) => !a.imageUrl).length === 0 && (
-                <p className="font-serif italic text-sm text-[#1A1A1A]/50">Every dispatch in this edition has a photograph.</p>
+              {matches.filter((a) => !(a.imageUrl && a.imageUrl.startsWith('/images/'))).length === 0 && (
+                <p className="font-serif italic text-sm text-[#1A1A1A]/50">Every dispatch in this edition has a local photograph.</p>
               )}
             </div>
           </div>
