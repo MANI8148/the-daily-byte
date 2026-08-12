@@ -66,6 +66,28 @@ jobs:
         run: pip install -r worker/requirements.txt
       - name: Install opencode CLI (4th LLM fallback tier)
         run: npm i -g opencode-ai || curl -fsSL https://opencode.ai/install | bash
+      # DEBUG: confirm LLM fallback tiers are wired (root cause of "only Groq" hangs)
+      - name: Verify LLM fallback tiers loaded
+        run: |
+          python - <<'PY'
+          import os, json
+          raw = os.environ.get("LLM_FALLBACKS", "")
+          try:
+              ends = json.loads(raw) if raw else []
+              print(f"[llm-debug] LLM_FALLBACKS parsed: {len(ends)} tier(s)")
+              for i, e in enumerate(ends):
+                  url = (e.get("base_url") or "?").rstrip("/")
+                  model = e.get("model") or "?"
+                  key = "SET" if e.get("api_key") else "MISSING"
+                  print(f"  tier {i+1}: {url}  model={model}  key={key}")
+          except Exception as ex:
+              print(f"[llm-debug] LLM_FALLBACKS INVALID JSON ({type(ex).__name__}) -> only primary (Groq) will be tried")
+          prim = os.environ.get("OPENAI_BASE_URL", "?")
+          print(f"[llm-debug] PRIMARY (OPENAI_BASE_URL): {prim}")
+          PY
+        env:
+          LLM_FALLBACKS: ${{ secrets.LLM_FALLBACKS }}
+          OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
       # FIX: run as a module (-m worker.app) so the relative imports in worker/ resolve
       - name: Run one pipeline pass (draft + checks; publishes only if AUTO_PUBLISH=true)
         run: python -m worker.app run-once --source all --count "${{ github.event.inputs.count || '2' }}"
