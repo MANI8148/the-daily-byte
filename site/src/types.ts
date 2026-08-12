@@ -10,7 +10,7 @@ export interface Comment {
 export interface Article {
   id: string;
   date: string; // YYYY-MM-DD
-  section: 'AI & Neural Nets' | 'Cybernetics & Robotics' | 'Silicon & Quantum' | 'Editorial & Ethics' | 'Disruptions & Startups';
+  section: 'AI & ML' | 'Security' | 'Open Source' | 'Dev Tools' | 'Hardware / Consumer Tech' | 'Big Tech' | string;
   title: string;
   subtitle: string;
   author: string;

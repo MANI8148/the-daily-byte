@@ -154,6 +154,7 @@ export default function App() {
               setSelectedDateStr(dateStr);
               setReadingMode('newspaper');
             }}
+            onSelectArticle={(art) => setSelectedArticle(art)}
           />
         )}
       </main>

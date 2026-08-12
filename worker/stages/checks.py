@@ -170,9 +170,38 @@ def english_check(title: str, body: str) -> tuple[str, str, str]:
     return ("english", "pass", "English only")
 
 
+def refusal_check(fm: dict, body: str) -> tuple[str, str, str]:
+    """Hard gate: reject LLM refusals, stubs, and non-article drafts.
+
+    A draft that contains an apology for not being able to write, a request for
+    the source text, or is just a skeleton must NEVER become a posted blog.
+    """
+    text = f"{fm.get('title', '')}\n{body}".lower()
+    # Refusal / inability patterns (case-insensitive substrings).
+    refusal_markers = [
+        "i'm sorry", "i am sorry", "i cannot", "i can't", "i can not",
+        "i don't have access", "i do not have access", "unable to access",
+        "cannot access", "don't have access", "do not have access",
+        "i don't have the", "i do not have the", "without the actual",
+        "without the source", "provide the", "if you can provide",
+        "can't produce", "cannot produce", "unable to produce",
+        "i'm not able", "i am not able", "as an ai", "i am unable",
+        "i'm unable", "i cannot help", "cannot help with",
+    ]
+    hits = [m for m in refusal_markers if m in text]
+    if hits:
+        return ("refusal", "fail", f"LLM refusal/stub detected: {hits[0]!r}")
+    # Stub signals: body is too short to be a real article AND has no structure.
+    wc = _word_count(body)
+    if wc < 80 and len(H2_RE.findall(body)) + len(H3_RE.findall(body)) < 1:
+        return ("refusal", "fail", f"stub/non-article draft ({wc} words, no headings)")
+    return ("refusal", "pass", "article is a real draft")
+
+
 def run_all(cfg, article_md: str, brief: dict, recent: list | None, mock: bool = False) -> list[tuple[str, str, str]]:
     fm, body = parse_frontmatter(article_md)
     results = [
+        refusal_check(fm, body),
         format_check(fm, body),
         english_check(str(fm.get("title", "")), body),
         seo_check(fm, body, brief.get("title", "")),

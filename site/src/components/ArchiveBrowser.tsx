@@ -2,17 +2,20 @@ import React, { useState } from 'react';
 import { GazetteIssue, SECTIONS, categoryMatches } from '../types';
 import { Calendar, Search, Clock, ArrowRight, History, Newspaper } from 'lucide-react';
 import { imgError } from '../lib/img';
+import { allArticles } from '../data/buildIssues';
 
 interface ArchiveBrowserProps {
   issues: Record<string, GazetteIssue>;
   currentDateStr: string;
   onSelectDate: (dateStr: string) => void;
+  onSelectArticle: (article: Article) => void;
 }
 
 export const ArchiveBrowser: React.FC<ArchiveBrowserProps> = ({
   issues,
   currentDateStr,
   onSelectDate,
+  onSelectArticle,
 }) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [yearFilter, setYearFilter] = useState<string>('all');
@@ -21,19 +24,24 @@ export const ArchiveBrowser: React.FC<ArchiveBrowserProps> = ({
   const issueList = (Object.values(issues) as GazetteIssue[]).sort((a, b) => b.dateStr.localeCompare(a.dateStr));
   const years = [...new Set(issueList.map((i) => i.dateStr.slice(0, 4)))].sort().reverse();
 
+  // Every article across all editions, keyed for filtering.
+  const allArts = allArticles();
+
   const filteredIssues = issueList.filter((issue) => {
     if (yearFilter !== 'all' && !issue.dateStr.startsWith(yearFilter)) return false;
     if (sectionFilter !== 'all') {
       const activeCat = SECTIONS.find((s) => s.key === sectionFilter) ?? null;
-      const arts = [issue.leadHeroArticle, ...issue.featuredArticles];
-      if (activeCat && !arts.some((a) => a && categoryMatches(activeCat, a.section))) return false;
+      const arts = allArts.filter((a) => a.date === issue.dateStr);
+      if (activeCat && !arts.some((a) => categoryMatches(activeCat, a.section))) return false;
     }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
-      return (
-        issue.displayDate.toLowerCase().includes(q) ||
-        issue.leadHeroArticle.title.toLowerCase().includes(q) ||
-        issue.leadHeroArticle.leadParagraph.toLowerCase().includes(q)
+      const arts = allArts.filter((a) => a.date === issue.dateStr);
+      return arts.some(
+        (a) =>
+          a.title.toLowerCase().includes(q) ||
+          a.leadParagraph.toLowerCase().includes(q) ||
+          a.section.toLowerCase().includes(q),
       );
     }
     return true;
@@ -187,6 +195,29 @@ export const ArchiveBrowser: React.FC<ArchiveBrowserProps> = ({
                     className="w-full h-36 object-cover border border-[#1A1A1A]/30 vintage-sepia mb-4"
                   />
                 )}
+
+                {/* Every article in this edition — clickable, opens full blog. */}
+                <div className="mb-4 border-t border-[#1A1A1A]/20 pt-3">
+                  {allArts
+                    .filter((a) => a.date === issue.dateStr)
+                    .map((a) => (
+                      <button
+                        key={a.id}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onSelectArticle(a);
+                        }}
+                        className="w-full text-left flex justify-between items-baseline gap-2 py-1.5 border-b border-[#1A1A1A]/10 hover:bg-[#1A1A1A] hover:text-[#F9F7F2] transition-colors px-1"
+                      >
+                        <span className="font-serif text-xs font-semibold leading-snug truncate">
+                          {a.title}
+                        </span>
+                        <span className="font-sans text-[9px] uppercase tracking-wider text-[#b91c1c] shrink-0">
+                          {a.section.split(' ')[0]}
+                        </span>
+                      </button>
+                    ))}
+                </div>
               </div>
 
               <div className="pt-3 border-t border-[#1A1A1A]/30 flex justify-between items-center text-xs font-sans font-bold uppercase tracking-wider">

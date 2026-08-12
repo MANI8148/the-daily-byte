@@ -48,6 +48,15 @@ def _draft_one(cfg: Config, db, brief: dict, mock_llm: bool, auto_publish: bool 
     art["checks"] = {name: {"status": st, "detail": det} for name, st, det in results}
     art["eligible"] = ok
 
+    # ---- hard gate: never persist a draft that fails the checks ----
+    # A rejection (refusal/stub/bad-format/non-English/duplicate) must NOT become
+    # a posted blog. Skip DB insert, site copy, and dedup marking entirely.
+    if not ok:
+        art["status"] = "rejected"
+        art["reason"] = "; ".join(det for _, st, det in results if st == "fail")
+        _notify(cfg, f"⛔ Rejected (not posted): {fm.get('title', '?')} — {art['reason']}")
+        return art
+
     # ---- persist draft ----
     post = {
         "title": fm.get("title", ""),

@@ -3,6 +3,7 @@ import { GazetteIssue, Article, SECTIONS, categoryMatches } from '../types';
 import { Volume2, MessageSquare, ThumbsUp, ArrowRight, Quote, Clock, Award, Bookmark } from 'lucide-react';
 import { imgError } from '../lib/img';
 import { TechPuzzleSection } from './TechPuzzleSection';
+import { allArticles } from '../data/buildIssues';
 
 interface FrontPageGridProps {
   issue: GazetteIssue;
@@ -28,11 +29,14 @@ export const FrontPageGrid: React.FC<FrontPageGridProps> = ({
   const feat2 = issue.featuredArticles[1];
   const opinion = issue.opinionPieces[0];
 
-  // Section view — the five header subsections (AI & ML, Tech, Open Source, GitHub, Dev Skills)
+  // Section view — filter ALL articles in the current edition by section,
+  // not just the front-page hero/featured subset.
   const activeCat = SECTIONS.find((s) => s.key === sectionFilter) ?? null;
   if (sectionFilter && activeCat) {
-    const pool: Article[] = [hero, ...issue.featuredArticles, ...issue.opinionPieces].filter(Boolean);
-    const matches = pool.filter((a) => categoryMatches(activeCat, a.section));
+    const pool: Article[] = allArticles().filter(
+      (a) => a.date === issue.dateStr && categoryMatches(activeCat, a.section),
+    );
+    const matches = pool;
     return (
       <div className="max-w-7xl mx-auto px-4 py-8 newspaper-paper bg-[#F9F7F2]">
         <div className="border-b-4 border-[#1A1A1A] pb-4 mb-8 text-center">
