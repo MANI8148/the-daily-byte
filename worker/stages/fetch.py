@@ -83,14 +83,15 @@ def hn_top(n: int = 12) -> list[dict]:
 
 
 def github_trending(days: int = 7, n: int = 10) -> list[dict]:
-    """Fastest-growing repos this week via the free GitHub search API."""
+    """Fastest-growing repos this week via the GitHub search API.
+
+    Prefers authenticated access (gh CLI / GITHUB_TOKEN) because unauthenticated
+    calls from cloud CI IPs are rate-blocked (403). Falls back to a plain request."""
     since = (dt.date.today() - dt.timedelta(days=days)).isoformat()
-    q = urllib.parse.quote(f"created:>{since}")
-    data = _get_json(
-        f"https://api.github.com/search/repositories?q={q}&sort=stars&order=desc&per_page={n}"
-    )
+    q = f"created:>{since}"
     out = []
-    for r in data.get("items", []):
+    data = _gh_search_repos(q, n) or _http_search_repos(q, n)
+    for r in data:
         out.append(
             {
                 "title": f"{r['full_name']}: {r.get('description') or 'new open-source project'}",
@@ -105,6 +106,37 @@ def github_trending(days: int = 7, n: int = 10) -> list[dict]:
             }
         )
     return out
+
+
+def _gh_search_repos(q: str, n: int) -> list[dict]:
+    """Authenticated GitHub search via `gh api` (uses GITHUB_TOKEN / gh auth)."""
+    import json
+    import shutil
+    import subprocess
+
+    if not shutil.which("gh"):
+        return []
+    try:
+        cmd = ["gh", "api", "-X", "GET", "search/repositories",
+               "-f", f"q={q}", "-f", "sort=stars", "-f", "order=desc", "-f", f"per_page={n}",
+               "--jq", ".items[]"]
+        out = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+        if out.returncode != 0 or not out.stdout.strip():
+            return []
+        return [json.loads(line) for line in out.stdout.splitlines() if line.strip()]
+    except Exception:
+        return []
+
+
+def _http_search_repos(q: str, n: int) -> list[dict]:
+    try:
+        url = (
+            "https://api.github.com/search/repositories?"
+            + urllib.parse.urlencode({"q": q, "sort": "stars", "order": "desc", "per_page": n})
+        )
+        return _get_json(url).get("items", [])
+    except Exception:
+        return []
 
 
 def arxiv(category: str = "cs.AI", n: int = 8) -> list[dict]:
