@@ -16,6 +16,9 @@ jobs:
   write-and-publish:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    # Patch the default GITHUB_TOKEN to allow committing cron results (drafts -> content/)
+    permissions:
+      contents: write
     env:
       # Free LLM endpoints work here. Examples:
       #   Groq:        OPENAI_BASE_URL=https://api.groq.com/openai/v1,  model=llama-3.3-70b-versatile
@@ -26,10 +29,11 @@ jobs:
       OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
       LLM_SCORE_MODEL: ${{ secrets.LLM_SCORE_MODEL }}   # cheap model for curation
       LLM_SCORE_THRESHOLD: "6"
+      LLM_FALLBACKS: ${{ secrets.LLM_FALLBACKS }}
+      OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
+      OPENCODE_MODEL: ${{ secrets.OPENCODE_MODEL }}
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
       SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}          # opens review PRs (content/drafts/)
-      GIT_REPO: ${{ secrets.GIT_REPO }}                  # "owner/bloggy"
       DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
       MEDIUM_TOKEN: ${{ secrets.MEDIUM_TOKEN }}
       HASHNODE_TOKEN: ${{ secrets.HASHNODE_TOKEN }}
@@ -45,12 +49,24 @@ jobs:
       AUTO_PUBLISH: "false"
     steps:
       - uses: actions/checkout@v4
+        with:
+          # full clone so we can commit + push results back
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Install OSS scraper deps
+      - name: Install OSS scraper deps + pytest
         run: pip install -r worker/requirements.txt
       - name: Install opencode CLI (4th LLM fallback tier)
         run: npm i -g opencode-ai || curl -fsSL https://opencode.ai/install | bash
+      # FIX: run as a module (-m worker.app) so the relative imports in worker/ resolve
       - name: Run one pipeline pass (draft + checks; publishes only if AUTO_PUBLISH=true)
-        run: python worker/app.py run-once --source all
+        run: python -m worker.app run-once --source all
+      # Commit whatever drafts/images the cron produced (no-op if nothing changed)
+      - name: Commit cron results
+        run: |
+          git config user.name "the-daily-byte[bot]"
+          git config user.email "bot@the-daily-byte.local"
+          git add -A content site/public/images
+          git diff --cached --quiet || git commit -m "cron: $(date -u +%Y-%m-%dT%H:%M:%SZ) dispatch"
+          git push
