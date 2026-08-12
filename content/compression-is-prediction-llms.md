@@ -4,6 +4,7 @@ kicker: AI / ML
 description: "Explore how data compression and large language models both predict future symbols to reduce size, with practical examples and a hands‑on code snippet."
 slug: compression-is-prediction-llms
 date: 2026-08-12
+image_url: https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Pleiades_large.jpg/640px-Pleiades_large.jpg
 author: Manikanta
 tags: ["ai", "ml", "compression", "language-models", "tutorial"]
 model: -

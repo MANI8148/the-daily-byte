@@ -54,8 +54,16 @@ export const FrontPageGrid: React.FC<FrontPageGridProps> = ({
               <button
                 key={a.id}
                 onClick={() => onSelectArticle(a)}
-                className="text-left group cursor-pointer p-5 bg-[#F9F7F2] border-2 border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#F9F7F2] transition-colors"
+                className="text-left group cursor-pointer p-5 bg-[#F9F7F2] border-2 border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#F9F7F2] transition-colors flex flex-col gap-3"
               >
+                {a.imageUrl && (
+                  <img
+                    src={a.imageUrl}
+                    onError={imgError}
+                    alt={a.title}
+                    className="w-full h-40 object-cover border-2 border-[#1A1A1A] vintage-sepia"
+                  />
+                )}
                 <div className="flex justify-between items-center text-[10px] font-mono-tech text-[#9a3412] font-bold group-hover:text-[#f59e0b]">
                   <span className="uppercase tracking-widest">{a.section}</span>
                   <span>{a.date}</span>

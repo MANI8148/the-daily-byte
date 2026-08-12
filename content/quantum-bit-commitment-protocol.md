@@ -4,6 +4,7 @@ kicker: QUANTUM CRYPTO
 description: Researchers use hybrid locked physical unclonable functions to achieve statistically secure bit commitment protocols
 slug: quantum-bit-commitment-protocol
 date: 2026-08-12
+image_url: https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Bloch_sphere.svg/640px-Bloch_sphere.svg.png
 author: Manikanta
 tags: ["quantum", "cryptography", "security"]
 model: llama-3.3-70b-versatile

@@ -4,6 +4,7 @@ kicker: AI / Safety
 description: "Discover how the SHE framework lets LLM agents adapt their safety harnesses over time, improving context, memory, tool use, and runtime control."
 slug: safety-harness-evolution-llm
 date: 2026-08-12
+image_url: https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Shield_icon.svg/640px-Shield_icon.svg.png
 author: Manikanta
 tags: ["ai", "ml", "safety", "harness"]
 model: llama-3.3-70b-versatile

@@ -4,6 +4,7 @@ kicker: AI
 description: "A practical explainer of Stealing Reasoning Traces from Proprietary LLM APIs for students, with concrete examples and key takeaways."
 slug: stealing-reasoning-traces-from-proprietary-llm-apis
 date: 2026-08-12
+image_url: https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Hacker_in_the_dark.jpg/640px-Hacker_in_the_dark.jpg
 author: Manikanta
 tags: ["ai", "ml", "tutorial"]
 model: mock

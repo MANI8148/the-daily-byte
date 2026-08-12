@@ -4,6 +4,7 @@ kicker: AI
 description: "A practical explainer of Statistically-Secure Bit Commitment and Coin Flipping Protocols Based  for students, with concrete examples and key takeaways."
 slug: statistically-secure-bit-commitment-and-coin-flipping-protocols-based-
 date: 2026-08-12
+image_url: https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Quantum_entanglement.svg/640px-Quantum_entanglement.svg.png
 author: Manikanta
 tags: ["ai", "ml", "tutorial"]
 model: mock

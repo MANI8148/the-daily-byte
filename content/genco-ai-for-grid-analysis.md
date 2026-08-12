@@ -4,6 +4,7 @@ kicker: AI / OPEN SOURCE
 description: "Researchers introduce GENCO, a unified neural solver for steady-state transmission grid analysis, handling power flow and optimal power flow."
 slug: genco-ai-for-grid-analysis
 date: 2026-08-12
+image_url: https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/High_voltage_power_lines.jpg/640px-High_voltage_power_lines.jpg
 author: Manikanta
 tags: ["ai", "grid analysis", "neural solver"]
 model: llama-3.3-70b-versatile

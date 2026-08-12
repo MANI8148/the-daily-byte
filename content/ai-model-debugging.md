@@ -4,6 +4,7 @@ kicker: AI
 description: "Researchers develop a new method for understanding and controlling multimodal large language models, making it easier to identify and audit internal features."
 slug: ai-model-debugging
 date: 2026-08-12
+image_url: https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Neural_network.svg/640px-Neural_network.svg.png
 author: Manikanta
 tags: ["ai", "ml", "research"]
 model: llama-3.3-70b-versatile

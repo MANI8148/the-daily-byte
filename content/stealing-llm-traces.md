@@ -4,6 +4,7 @@ kicker: AI
 description: "Researchers discover a method to extract reasoning traces from proprietary LLM APIs, raising concerns about model security and intellectual property."
 slug: stealing-llm-traces
 date: 2026-08-12
+image_url: https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Hacker_in_the_dark.jpg/640px-Hacker_in_the_dark.jpg
 author: Manikanta
 tags: ["ai", "llm", "security"]
 model: llama-3.3-70b-versatile

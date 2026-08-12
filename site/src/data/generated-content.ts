@@ -100,7 +100,8 @@ export const PIPELINE_ARTICLES: Article[] = [
       "ml",
       "tutorial"
     ],
-    "stamp": "Darklord"
+    "stamp": "Darklord",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Hacker_in_the_dark.jpg/640px-Hacker_in_the_dark.jpg"
   },
   {
     "id": "pipeline-stealing-llm-traces",
@@ -130,7 +131,8 @@ export const PIPELINE_ARTICLES: Article[] = [
       "llm",
       "security"
     ],
-    "stamp": "Darklord"
+    "stamp": "Darklord",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Hacker_in_the_dark.jpg/640px-Hacker_in_the_dark.jpg"
   },
   {
     "id": "pipeline-stealing-llm-api-traces",
@@ -160,7 +162,8 @@ export const PIPELINE_ARTICLES: Article[] = [
       "llm",
       "security"
     ],
-    "stamp": "Darklord"
+    "stamp": "Darklord",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Hacker_in_the_dark.jpg/640px-Hacker_in_the_dark.jpg"
   },
   {
     "id": "pipeline-statistically-secure-bit-commitment-and-coin-flipping-protocols-based-",
@@ -191,7 +194,8 @@ export const PIPELINE_ARTICLES: Article[] = [
       "ml",
       "tutorial"
     ],
-    "stamp": "Darklord"
+    "stamp": "Darklord",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Quantum_entanglement.svg/640px-Quantum_entanglement.svg.png"
   },
   {
     "id": "pipeline-sanitize-llm-api-keys",
@@ -224,7 +228,8 @@ export const PIPELINE_ARTICLES: Article[] = [
       "security",
       "tutorial"
     ],
-    "stamp": "Darklord"
+    "stamp": "Darklord",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Padlock.svg/640px-Padlock.svg.png"
   },
   {
     "id": "pipeline-safety-harness-evolution-llm",
@@ -257,7 +262,8 @@ export const PIPELINE_ARTICLES: Article[] = [
       "safety",
       "harness"
     ],
-    "stamp": "Darklord"
+    "stamp": "Darklord",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Shield_icon.svg/640px-Shield_icon.svg.png"
   },
   {
     "id": "pipeline-quantum-bit-commitment-protocol",
@@ -287,7 +293,8 @@ export const PIPELINE_ARTICLES: Article[] = [
       "cryptography",
       "security"
     ],
-    "stamp": "Darklord"
+    "stamp": "Darklord",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Bloch_sphere.svg/640px-Bloch_sphere.svg.png"
   },
   {
     "id": "pipeline-pi-from-scratch",
@@ -412,7 +419,8 @@ export const PIPELINE_ARTICLES: Article[] = [
       "finance",
       "infrastructure"
     ],
-    "stamp": "Darklord"
+    "stamp": "Darklord",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Nvidia_DGX_H100.png/640px-Nvidia_DGX_H100.png"
   },
   {
     "id": "pipeline-minimal-nextjs-chatbot-template",
@@ -474,7 +482,8 @@ export const PIPELINE_ARTICLES: Article[] = [
       "trends",
       "community"
     ],
-    "stamp": "Darklord"
+    "stamp": "Darklord",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Terminal_window_in_Ubuntu_22.04.png/640px-Terminal_window_in_Ubuntu_22.04.png"
   },
   {
     "id": "pipeline-h3-c-inference-engine",
@@ -573,7 +582,8 @@ export const PIPELINE_ARTICLES: Article[] = [
       "grid analysis",
       "neural solver"
     ],
-    "stamp": "Darklord"
+    "stamp": "Darklord",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/High_voltage_power_lines.jpg/640px-High_voltage_power_lines.jpg"
   },
   {
     "id": "pipeline-fcc-proposes-import-ban-on-chinese-optical-transceivers-blockade-targe",
@@ -733,7 +743,8 @@ export const PIPELINE_ARTICLES: Article[] = [
       "ml",
       "tutorial"
     ],
-    "stamp": "Darklord"
+    "stamp": "Darklord",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Archive13_-_robot.jpg/640px-Archive13_-_robot.jpg"
   },
   {
     "id": "pipeline-dalaran-robotics-visualization",
@@ -798,7 +809,8 @@ export const PIPELINE_ARTICLES: Article[] = [
       "language-models",
       "tutorial"
     ],
-    "stamp": "Darklord"
+    "stamp": "Darklord",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Pleiades_large.jpg/640px-Pleiades_large.jpg"
   },
   {
     "id": "pipeline-company-offering-100-human-written-never-ai-medical-research-is-100-ai",
@@ -987,7 +999,8 @@ export const PIPELINE_ARTICLES: Article[] = [
       "ml",
       "research"
     ],
-    "stamp": "Darklord"
+    "stamp": "Darklord",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Neural_network.svg/640px-Neural_network.svg.png"
   },
   {
     "id": "pipeline-ai-in-medical-research",
@@ -1048,7 +1061,8 @@ export const PIPELINE_ARTICLES: Article[] = [
       "ai",
       "sharepoint"
     ],
-    "stamp": "Darklord"
+    "stamp": "Darklord",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Padlock.svg/640px-Padlock.svg.png"
   },
   {
     "id": "pipeline-ai-assisted-sharepoint-exploit-unauthenticated-rce",
