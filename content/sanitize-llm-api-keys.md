@@ -6,7 +6,7 @@ slug: sanitize-llm-api-keys
 date: 2026-08-12
 author: Manikanta
 tags: ["ai", "ml", "security", "tutorial"]
-model: llama-3.3-70b-versatile
+model: -
 ---
 
 ## Why Your LLM Code Might Be Exposing Secrets
