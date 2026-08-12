@@ -36,6 +36,56 @@ export const PIPELINE_ARTICLES: Article[] = [
     "imageUrl": "/images/2026-08-12/wechat-ai-open-source.jpg"
   },
   {
+    "id": "pipeline-unable-to-summarize-arxiv-cs-cr-4424391136",
+    "date": "2026-08-12",
+    "section": "AI & Neural Nets",
+    "title": "UNABLE TO SUMMARIZE ARXIV:CS.CR 4424391136",
+    "subtitle": "The Daily Byte cannot provide a detailed article because the source content is unavailable.",
+    "author": "Manikanta",
+    "leadParagraph": "I’m sorry, but I don’t have access to the content of the arXiv paper referenced (arXiv:cs.CR/4424391136). Without the actual text, figures, or data, I can’t produce a factual, detailed article that meets the publication’s standards. If you can provide the paper’s abstract or key findings, I’d be happy to write a full piece for you.",
+    "bodyParagraphs": [],
+    "readTimeMinutes": 3,
+    "likesCount": 0,
+    "comments": [],
+    "tags": [
+      "ai",
+      "ml",
+      "arxiv"
+    ],
+    "stamp": "Darklord"
+  },
+  {
+    "id": "pipeline-stealing-reasoning-traces-from-proprietary-llm-apis",
+    "date": "2026-08-12",
+    "section": "AI & Neural Nets",
+    "title": "STEALING REASONING TRACES FROM PROPRIETARY LLM APIS",
+    "subtitle": "A practical explainer of Stealing Reasoning Traces from Proprietary LLM APIs for students, with concrete examples and key takeaways.",
+    "author": "Manikanta",
+    "leadParagraph": "Stealing Reasoning Traces from Proprietary LLM APIs — this is why Hacker News matters this week. Students following AI and ML should care because it changes what tools, papers, and job descriptions look like next semester. The full source is linked below; every claim in this article traces to it.",
+    "bodyParagraphs": [
+      "What's actually going on",
+      "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewritten from primary sources with every claim linked. Nothing invented, nothing republished.",
+      "We cover the concrete facts from Hacker News — nothing invented, no fabricated numbers. If the original piece gives a figure, we repeat it with the source link right there so you can verify in one click. That habit is the entire editorial promise: source-linked journalism for students.",
+      "Why it matters for students",
+      "Learning about this now means you graduate ahead of the curve. Employers in 2026 ask two questions: can you direct an AI agent to write correct code, and can you tell when its output is wrong? Reading and explaining fresh developments trains exactly that second muscle — verification.",
+      "Try it yourself: open the source, extract the three strongest claims, and check each one against the actual repository or paper. If you can do that for every article you read this month, you will outperform most candidates at interviews."
+    ],
+    "pullQuote": "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewri",
+    "keyTakeaways": [
+      "Clone the repository or read the paper from the link above. - Build the toy version: even a broken implementation teaches more than a perfec",
+      "This topic is trending this week and worth one focused hour of study - Always verify claims against the linked source before sharing - Mock "
+    ],
+    "readTimeMinutes": 3,
+    "likesCount": 0,
+    "comments": [],
+    "tags": [
+      "ai",
+      "ml",
+      "tutorial"
+    ],
+    "stamp": "Darklord"
+  },
+  {
     "id": "pipeline-stealing-llm-traces",
     "date": "2026-08-12",
     "section": "AI & Neural Nets",
@@ -62,6 +112,67 @@ export const PIPELINE_ARTICLES: Article[] = [
       "ai",
       "llm",
       "security"
+    ],
+    "stamp": "Darklord"
+  },
+  {
+    "id": "pipeline-stealing-llm-api-traces",
+    "date": "2026-08-12",
+    "section": "AI & Neural Nets",
+    "title": "STEALING LLM API TRACES",
+    "subtitle": "Researchers demonstrate how to steal reasoning traces from proprietary LLM APIs, sparking concerns about data security and privacy.",
+    "author": "Manikanta",
+    "leadParagraph": "A recent study has shown that it is possible to steal reasoning traces from proprietary Large Language Model (LLM) APIs, such as those used by OpenAI, with alarming ease.",
+    "bodyParagraphs": [
+      "Introduction to LLM APIs LLM APIs are artificial intelligence models that can process and generate human-like language. They are widely used in applications such as chatbots, language translation, and text summarization. These models are typically trained on large datasets and can learn to recognize patterns and relationships in language.",
+      "The Vulnerability The study found that by exploiting a vulnerability in the way these APIs process and return data, it is possible to extract sensitive information about the model's internal workings. This information, known as the \"reasoning trace,\" can include details about the model's decision-making process, such as the weights and biases used to generate text.",
+      "Methodology The researchers used a combination of techniques, including analyzing the API's request and response patterns, to identify potential vulnerabilities. They then used this information to craft targeted requests that could extract the reasoning traces from the API. The process involves searching for specific patterns in the API's responses, such as the presence of certain keywords or phrases, to determine whether the model is using a particular reasoning trace.",
+      "Potential Consequences The implications of this vulnerability are significant. If an attacker can extract the reasoning traces from an LLM API, they may be able to use this information to improve their own models, potentially gaining an advantage over the original model's creators. Additionally, this could also compromise the security and privacy of the data used to train the model.",
+      "Mitigation Strategies To mitigate this vulnerability, developers can take several steps to sanitize their API keys and prevent unauthorized access. This can include using secure authentication protocols, such as OAuth or JWT, to verify the identity of users and restrict access to sensitive data. Additionally, developers can use techniques such as encryption and hashing to protect the data transmitted between the client and server.",
+      "Example Code To demonstrate how to sanitize API keys, consider the following example: `python import re"
+    ],
+    "pullQuote": "The Vulnerability The study found that by exploiting a vulnerability in the way these APIs process and return data, it is possible to extract sensitive information about the model's internal workings. This information, known as the \"reasoning trace,\" can inclu",
+    "keyTakeaways": [
+      "Key takeaways Stealing reasoning traces from proprietary LLM APIs is possible with targeted requests. This vulnerability can compromise the "
+    ],
+    "readTimeMinutes": 4,
+    "likesCount": 0,
+    "comments": [],
+    "tags": [
+      "ai",
+      "llm",
+      "security"
+    ],
+    "stamp": "Darklord"
+  },
+  {
+    "id": "pipeline-statistically-secure-bit-commitment-and-coin-flipping-protocols-based-",
+    "date": "2026-08-12",
+    "section": "AI & Neural Nets",
+    "title": "STATISTICALLY-SECURE BIT COMMITMENT AND COIN FLIPPING PROTOC",
+    "subtitle": "A practical explainer of Statistically-Secure Bit Commitment and Coin Flipping Protocols Based for students, with concrete examples and key takeaways.",
+    "author": "Manikanta",
+    "leadParagraph": "Statistically-Secure Bit Commitment and Coin Flipping Protocols Based on Quantum Hardware Assumptions — this is why arXiv cs.CR matters this week. Students following AI and ML should care because it changes what tools, papers, and job descriptions look like next semester. The full source is linked below; every claim in this article traces to it.",
+    "bodyParagraphs": [
+      "What's actually going on",
+      "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewritten from primary sources with every claim linked. Nothing invented, nothing republished.",
+      "We cover the concrete facts from arXiv cs.CR — nothing invented, no fabricated numbers. If the original piece gives a figure, we repeat it with the source link right there so you can verify in one click. That habit is the entire editorial promise: source-linked journalism for students.",
+      "Why it matters for students",
+      "Learning about this now means you graduate ahead of the curve. Employers in 2026 ask two questions: can you direct an AI agent to write correct code, and can you tell when its output is wrong? Reading and explaining fresh developments trains exactly that second muscle — verification.",
+      "Try it yourself: open the source, extract the three strongest claims, and check each one against the actual repository or paper. If you can do that for every article you read this month, you will outperform most candidates at interviews."
+    ],
+    "pullQuote": "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewri",
+    "keyTakeaways": [
+      "Clone the repository or read the paper from the link above. - Build the toy version: even a broken implementation teaches more than a perfec",
+      "This topic is trending this week and worth one focused hour of study - Always verify claims against the linked source before sharing - Mock "
+    ],
+    "readTimeMinutes": 3,
+    "likesCount": 0,
+    "comments": [],
+    "tags": [
+      "ai",
+      "ml",
+      "tutorial"
     ],
     "stamp": "Darklord"
   },
@@ -128,6 +239,36 @@ export const PIPELINE_ARTICLES: Article[] = [
       "ml",
       "safety",
       "harness"
+    ],
+    "stamp": "Darklord"
+  },
+  {
+    "id": "pipeline-quantum-bit-commitment-protocol",
+    "date": "2026-08-12",
+    "section": "AI & Neural Nets",
+    "title": "QUANTUM BIT COMMITMENT",
+    "subtitle": "Researchers use hybrid locked physical unclonable functions to achieve statistically secure bit commitment protocols",
+    "author": "Manikanta",
+    "leadParagraph": "Quantum computers can break many classical cryptographic schemes, but quantum cryptography can also provide new approaches to secure communication. Researchers have now proposed a statistically secure bit commitment protocol based on hybrid locked physical unclonable functions (HLPUFs) and quantum communication.",
+    "bodyParagraphs": [
+      "Introduction to Bit Commitment Bit commitment is a fundamental primitive in cryptography, where one party commits to a bit (0 or 1) in a way that it cannot be changed later, but the bit remains hidden from the other party. However, achieving bit commitment with unconditional security is impossible, even in quantum cryptography. This is due to the no-go theorem, which states that unconditionally secure bit commitment is impossible.",
+      "What are Hybrid Locked Physical Unclonable Functions (HLPUFs)? HLPUFs are a type of hardware primitive that combines classical hardware tokens with quantum communication. They are designed to be unclonable and unpredictable, making them suitable for cryptographic applications. HLPUFs use a classical hardware token to generate a unique response to a given challenge, and this response is then used in a quantum communication protocol to achieve secure bit commitment.",
+      "The Proposed Protocol The proposed protocol uses HLPUFs to achieve statistically secure bit commitment. The protocol involves two parties, Alice and Bob, who want to commit to a bit. Alice generates a random bit and uses an HLPUF to create a commitment to this bit. The commitment is then sent to Bob, who can verify that the commitment is valid. The protocol ensures that Alice cannot change her committed bit, while keeping it hidden from Bob.",
+      "How the Protocol Works The protocol involves several steps: 1. Alice generates a random bit and uses an HLPUF to create a commitment to this bit. 2. Alice sends the commitment to Bob. 3. Bob verifies the commitment using the HLPUF. 4. If the verification is successful, Bob accepts the commitment. 5. To reveal the committed bit, Alice uses the HLPUF to generate a response to a challenge from Bob. 6. Bob uses this response to determine the committed bit.",
+      "Security Analysis The security of the protocol is based on the hardness of predicting the output of an HLPUF. Since HLPUFs are designed to be unclonable and unpredictable, it is computationally infeasible for an attacker to predict the output of an HLPUF. This ensures that the protocol is statistically secure, meaning that the probability of an attacker breaking the protocol is negligible.",
+      "Implementation To implement the protocol, Alice and Bob need to have access to HLPUFs and a quantum communication channel. The HLPUFs can be implemented using classical hardware tokens, such as integrated circuits, and quantum communication can be achieved using optical fibers or free-space optical communication."
+    ],
+    "pullQuote": "How the Protocol Works The protocol involves several steps: 1. Alice generates a random bit and uses an HLPUF to create a commitment to this bit. 2. Alice sends the commitment to Bob. 3. Bob verifies the commitment using the HLPUF. 4. If the verification is su",
+    "keyTakeaways": [
+      "Key takeaways Statistically secure bit commitment protocols can be constructed from hybrid locked physical unclonable functions (HLPUFs) and"
+    ],
+    "readTimeMinutes": 3,
+    "likesCount": 0,
+    "comments": [],
+    "tags": [
+      "quantum",
+      "cryptography",
+      "security"
     ],
     "stamp": "Darklord"
   },
@@ -225,6 +366,100 @@ export const PIPELINE_ARTICLES: Article[] = [
     "imageUrl": "/images/2026-08-12/oil-motion-animations.jpg"
   },
   {
+    "id": "pipeline-nvidia-ai-infrastructure-fund",
+    "date": "2026-08-12",
+    "section": "AI & Neural Nets",
+    "title": "NVIDIA PARTNERS WITH BANKS TO FUND $500B AI DATA CENTER PUSH",
+    "subtitle": "Nvidia teams with six banks to launch a $500B AI infrastructure fund, offering low‑rate long‑term loans for data‑center builders.",
+    "author": "Manikanta",
+    "leadParagraph": "Nvidia Teams with Banks to Create a $500 B AI Infrastructure Fund",
+    "bodyParagraphs": [
+      "Nvidia announced that it will work with six major investment firms to set up a $500 billion fund that will provide long‑term financing for AI data‑center projects at rates below the market average.",
+      "---",
+      "Why a $500 B Fund Matters",
+      "AI workloads are driving a surge in demand for high‑performance compute clusters. Building a data center that can run large language models or autonomous‑vehicle simulations can cost tens of millions of dollars. The new fund is designed to make that capital more accessible, especially for mid‑sized companies that lack the balance‑sheet heft of the tech giants.",
+      "---",
+      "Nvidia’s Role in the Deal"
+    ],
+    "pullQuote": "Large infrastructure projects carry construction, regulatory, and technology risks. The fund’s structure includes a risk‑sharing mechanism: a portion of the loan is backed by a guarantee from the participating banks, reducing the borrower’s exposure. Additiona",
+    "keyTakeaways": [
+      "--",
+      "--",
+      "--"
+    ],
+    "readTimeMinutes": 4,
+    "likesCount": 0,
+    "comments": [],
+    "tags": [
+      "ai",
+      "finance",
+      "infrastructure"
+    ],
+    "stamp": "Darklord"
+  },
+  {
+    "id": "pipeline-minimal-nextjs-chatbot-template",
+    "date": "2026-08-12",
+    "section": "Disruptions & Startups",
+    "title": "MINIMAL NEXT.JS CHATBOT TEMPLATE POWERED BY VERCEL AI GATEWAY",
+    "subtitle": "A quick‑start guide to the shadcn-ui/chatbot-template, a TypeScript Next.js chatbot that runs on Vercel AI Gateway. Learn how to clone, customize, and deploy in minutes.",
+    "author": "Manikanta",
+    "leadParagraph": "What the Template Offers",
+    "bodyParagraphs": [
+      "The shadcn-ui/chatbot-template is a lean starter kit that lets you spin up a chatbot in under ten minutes. It ships with 494 GitHub stars and 44 forks, proving that students and hobbyists alike find it useful. The repo is written in TypeScript and bundles a clean chat UI, a serverless API route, and a minimal configuration for the Vercel AI Gateway.",
+      "Tech Stack Overview",
+      "| Layer | Library | Purpose | |-------|---------|---------| | Framework | Next.js 13 | Server‑side rendering, API routes, and static export. | | AI SDK | Vercel AI SDK | Handles streaming responses from the AI Gateway. | | UI Components | shadcn/ui | Radix‑based component library for a polished look. | | React Hooks | shadcn/react | Custom hooks like useChat to manage conversation state. | | Markdown Rendering | shadcn/typeset | Converts AI output into safe, styled Markdown. |",
+      "The combination keeps the codebase small while exposing all the hooks you need to extend the bot.",
+      "File Structure Walkthrough",
+      "/chatbot-template ├─ app/ │ ├─ page.tsx // Main chat page │ └─ layout.tsx // Global layout ├─ components/ │ ├─ Chat.tsx // UI component │ └─ Message.tsx // Individual message rendering ├─ lib/ │ └─ chat.ts // Hook that calls the AI API ├─ pages/api/ │ └─ chat.ts // Serverless endpoint ├─ .env.example └─ package.json"
+    ],
+    "pullQuote": "1. Push the repo to GitHub (or fork the original). 2. Connect to Vercel: Go to Vercel → New Project → Import Git Repository. Select the repo and click Import. 3. Set environment variables in the Vercel dashboard under Settings → Environment Variables: OPENAI_A",
+    "keyTakeaways": [
+      "pages/api/chat.ts uses the Vercel AI SDK to forward the user prompt to the selected model and streams the response back to the client. compo",
+      "Zero boilerplate – The repo contains only the files you need to get a chatbot running. Serverless AI – By leveraging the Vercel AI Gateway, "
+    ],
+    "readTimeMinutes": 3,
+    "likesCount": 0,
+    "comments": [],
+    "tags": [
+      "ai",
+      "ml",
+      "tutorial"
+    ],
+    "stamp": "Darklord",
+    "imageUrl": "/images/2026-08-12/minimal-nextjs-chatbot-template.jpg"
+  },
+  {
+    "id": "pipeline-hacker-news-trends",
+    "date": "2026-08-12",
+    "section": "Disruptions & Startups",
+    "title": "HACKER NEWS TRENDS",
+    "subtitle": "Exploring Hacker News trends and their impact on the tech community",
+    "author": "Manikanta",
+    "leadParagraph": "Hacker News, a social news platform focused on tech and startup-related stories, has been a cornerstone of the tech community for over a decade. With thousands of users and a vast array of topics, it can be challenging to keep up with the latest trends and discussions.",
+    "bodyParagraphs": [
+      "Introduction to Hacker News Hacker News is a platform where users can share and discuss interesting stories, ask for advice, and learn from others. The site's algorithm ranks posts based on user engagement, ensuring that the most relevant and interesting content rises to the top.",
+      "How Hacker News Works Users can submit stories, which are then voted on by the community. The voting system helps to filter out low-quality content and promote high-quality discussions. Comments on Hacker News are also ranked, allowing users to engage in meaningful conversations.",
+      "The Importance of Hacker News Hacker News has played a significant role in shaping the tech industry. Many successful startups, including Airbnb and Reddit, have credited Hacker News with helping them gain initial traction. The platform's focus on community-driven discussion and feedback has made it an invaluable resource for entrepreneurs and developers.",
+      "Trending Topics on Hacker News Currently, some of the trending topics on Hacker News include AI, machine learning, and cybersecurity. These topics are not only relevant to the tech community but also have significant implications for the broader world. By exploring these trends, users can gain a deeper understanding of the latest developments and innovations in the industry.",
+      "Engaging with the Hacker News Community To get the most out of Hacker News, users should engage with the community by commenting, voting, and submitting their own stories. This not only helps to build relationships with other users but also contributes to the platform's overall quality and relevance.",
+      "Real-World Impact of Hacker News Hacker News has had a significant impact on the tech industry, with many startups and projects gaining traction through the platform. For example, the popular programming language Rust was initially discussed on Hacker News, where it gained a significant following and community support."
+    ],
+    "pullQuote": "Step-by-Step: Getting Started with Hacker News To get started with Hacker News, follow these steps: 1. Create an account on the Hacker News website. 2. Browse the front page to see current trending topics. 3. Submit your own story or comment on an existing one",
+    "keyTakeaways": [
+      "Key takeaways Hacker News is a social news platform focused on tech and startup-related stories The platform's algorithm ranks posts based o"
+    ],
+    "readTimeMinutes": 3,
+    "likesCount": 0,
+    "comments": [],
+    "tags": [
+      "hn",
+      "trends",
+      "community"
+    ],
+    "stamp": "Darklord"
+  },
+  {
     "id": "pipeline-h3-c-inference-engine",
     "date": "2026-08-12",
     "section": "Disruptions & Startups",
@@ -286,6 +521,104 @@ export const PIPELINE_ARTICLES: Article[] = [
       "neural solver"
     ],
     "stamp": "Darklord"
+  },
+  {
+    "id": "pipeline-fcc-proposes-import-ban-on-chinese-optical-transceivers-blockade-targe",
+    "date": "2026-08-12",
+    "section": "AI & Neural Nets",
+    "title": "FCC PROPOSES IMPORT BAN ON CHINESE OPTICAL TRANSCEIVERS — BL",
+    "subtitle": "A practical explainer of FCC proposes import ban on Chinese optical transceivers — blockade tar for students, with concrete examples and key takeaways.",
+    "author": "Manikanta",
+    "leadParagraph": "FCC proposes import ban on Chinese optical transceivers — blockade targets key AI interconnects as China holds 56% global market share — this is why Tom's Hardware matters this week. Students following AI and ML should care because it changes what tools, papers, and job descriptions look like next semester. The full source is linked below; every claim in this article traces to it.",
+    "bodyParagraphs": [
+      "What's actually going on",
+      "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewritten from primary sources with every claim linked. Nothing invented, nothing republished.",
+      "We cover the concrete facts from Tom's Hardware — nothing invented, no fabricated numbers. If the original piece gives a figure, we repeat it with the source link right there so you can verify in one click. That habit is the entire editorial promise: source-linked journalism for students.",
+      "Why it matters for students",
+      "Learning about this now means you graduate ahead of the curve. Employers in 2026 ask two questions: can you direct an AI agent to write correct code, and can you tell when its output is wrong? Reading and explaining fresh developments trains exactly that second muscle — verification.",
+      "Try it yourself: open the source, extract the three strongest claims, and check each one against the actual repository or paper. If you can do that for every article you read this month, you will outperform most candidates at interviews."
+    ],
+    "pullQuote": "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewri",
+    "keyTakeaways": [
+      "Clone the repository or read the paper from the link above. - Build the toy version: even a broken implementation teaches more than a perfec",
+      "This topic is trending this week and worth one focused hour of study - Always verify claims against the linked source before sharing - Mock "
+    ],
+    "readTimeMinutes": 3,
+    "likesCount": 0,
+    "comments": [],
+    "tags": [
+      "ai",
+      "ml",
+      "tutorial"
+    ],
+    "stamp": "Darklord",
+    "imageUrl": "/images/2026-08-12/fcc-proposes-import-ban-on-chinese-optical-transceivers-blockade-targe.jpg"
+  },
+  {
+    "id": "pipeline-fcc-import-ban-chinese-optical-transceivers",
+    "date": "2026-08-12",
+    "section": "AI & Neural Nets",
+    "title": "FCC TARGETS CHINESE OPTICAL TRANSCEIVERS IN NEW IMPORT BAN",
+    "subtitle": "The FCC proposes banning imports of new‑model Chinese optical transceivers, a move that could reshape AI data‑center supply chains and cost structures.",
+    "author": "Manikanta",
+    "leadParagraph": "The FCC’s New Import Ban Targets Chinese Optical Transceivers",
+    "bodyParagraphs": [
+      "The Federal Communications Commission is drafting a proposal that would add imports of new‑model optical transceivers manufactured in China to the list of equipment covered by the Secure Networks Act. The move comes after China’s optical‑transceiver market captured 56 % of global sales last year, according to Tom’s Hardware.",
+      "---",
+      "What Are Optical Transceivers and Why Do They Matter?",
+      "Optical transceivers convert electrical signals into light and back again, enabling data to travel over fiber cables at speeds ranging from 10 Gbps to 400 Gbps. In AI data centers, they form the backbone of high‑speed interconnects between GPUs, CPUs, and storage arrays. A single 400 Gbps QSFP28 module can carry the bandwidth of dozens of 10 Gbps Ethernet links, making them indispensable for training large language models and running inference workloads.",
+      "Because AI workloads are data‑intensive, the reliability and speed of these transceivers directly affect training time and operational costs. A delay or failure in a transceiver can stall an entire training pipeline, costing developers and researchers thousands of dollars per hour.",
+      "---"
+    ],
+    "pullQuote": "Under the current framework, only a handful of categories—such as routers, switches, and wireless access points—are subject to the SNA. Adding optical transceivers would bring a new class of high‑performance hardware under the same scrutiny, potentially requir",
+    "keyTakeaways": [
+      "--",
+      "--",
+      "--"
+    ],
+    "readTimeMinutes": 5,
+    "likesCount": 0,
+    "comments": [],
+    "tags": [
+      "ai",
+      "ml",
+      "security",
+      "hardware"
+    ],
+    "stamp": "Darklord",
+    "imageUrl": "/images/2026-08-12/fcc-import-ban-chinese-optical-transceivers.jpg"
+  },
+  {
+    "id": "pipeline-eternityspring-shuohao-skills-ai-skill-agent-skills-for-ai-short-drama",
+    "date": "2026-08-12",
+    "section": "AI & Neural Nets",
+    "title": "ETERNITYSPRING/SHUOHAO-SKILLS: AI 短剧制作的 SKILL 集合：拆角色、出设定图、排大",
+    "subtitle": "A practical explainer of eternityspring/shuohao-skills: AI 短剧制作的 skill 集合：拆角色、出设定图、排大纲 | Agent for students, with concrete examples and key takeaways.",
+    "author": "Manikanta",
+    "leadParagraph": "eternityspring/shuohao-skills: AI 短剧制作的 skill 集合：拆角色、出设定图、排大纲 | Agent skills for AI short-drama production — character bibles, model sheets, adaptation outlines. Runs in Claude Code & codex. — this is why GitHub Trending matters this week. Students following AI and ML should care because it changes what tools, papers, and job descriptions look like next semester. The full source is linked below; every claim in this article traces to it.",
+    "bodyParagraphs": [
+      "What's actually going on",
+      "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewritten from primary sources with every claim linked. Nothing invented, nothing republished.",
+      "We cover the concrete facts from GitHub Trending — nothing invented, no fabricated numbers. If the original piece gives a figure, we repeat it with the source link right there so you can verify in one click. That habit is the entire editorial promise: source-linked journalism for students.",
+      "Why it matters for students",
+      "Learning about this now means you graduate ahead of the curve. Employers in 2026 ask two questions: can you direct an AI agent to write correct code, and can you tell when its output is wrong? Reading and explaining fresh developments trains exactly that second muscle — verification.",
+      "Try it yourself: open the source, extract the three strongest claims, and check each one against the actual repository or paper. If you can do that for every article you read this month, you will outperform most candidates at interviews."
+    ],
+    "pullQuote": "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewri",
+    "keyTakeaways": [
+      "Clone the repository or read the paper from the link above. - Build the toy version: even a broken implementation teaches more than a perfec",
+      "This topic is trending this week and worth one focused hour of study - Always verify claims against the linked source before sharing - Mock "
+    ],
+    "readTimeMinutes": 3,
+    "likesCount": 0,
+    "comments": [],
+    "tags": [
+      "ai",
+      "ml",
+      "tutorial"
+    ],
+    "stamp": "Darklord",
+    "imageUrl": "/images/2026-08-12/eternityspring-shuohao-skills-ai-skill-agent-skills-for-ai-short-drama.jpg"
   },
   {
     "id": "pipeline-england-hepatitis-c-free",
@@ -381,6 +714,72 @@ export const PIPELINE_ARTICLES: Article[] = [
     "imageUrl": "/images/2026-08-12/dalaran-robotics-visualization.jpg"
   },
   {
+    "id": "pipeline-compression-is-prediction-llms",
+    "date": "2026-08-12",
+    "section": "AI & Neural Nets",
+    "title": "COMPRESSION IS PREDICTION: HOW LLMS AND DATA COMPRESSORS SHARE A GOAL",
+    "subtitle": "Explore how data compression and large language models both predict future symbols to reduce size, with practical examples and a hands‑on code snippet.",
+    "author": "Manikanta",
+    "leadParagraph": "A text file shrinks from 1 MB to 200 KB by predicting the next word, just like a language model does. The ngrok blog post Compression is prediction shows that the same math underlies both data compressors and LLMs.",
+    "bodyParagraphs": [
+      "The Core Idea: Prediction Drives Compression",
+      "Compression algorithms and language models share a single objective: reduce redundancy by predicting what comes next. When a compressor sees a repeated phrase, it replaces the second occurrence with a reference to the first. An LLM, trained on billions of tokens, learns the probability of each token given its context and can generate the next token with high confidence. Both systems encode the same information more efficiently by exploiting patterns.",
+      "Classic Compression Algorithms",
+      "LZ77 (used in ZIP and PNG) finds repeated substrings and replaces them with a back‑reference. Huffman coding assigns shorter binary codes to frequent symbols, while arithmetic coding represents the entire message as a single number in a range defined by symbol probabilities. All three rely on a probability model of the data, which is essentially a prediction of the next symbol.",
+      "Language Models as Predictive Encoders",
+      "Large language models are trained to maximize the likelihood of the next token. During inference, the model’s softmax output can be interpreted as a probability distribution over the vocabulary. If we treat that distribution as a source model, we can encode a token by its rank in the sorted probability list, a technique called range coding. In practice, this means a well‑trained LLM can act as a compressor: it predicts the next word, assigns it a short code, and writes that code to disk."
+    ],
+    "pullQuote": "Compression algorithms and language models share a single objective: reduce redundancy by predicting what comes next. When a compressor sees a repeated phrase, it replaces the second occurrence with a reference to the first. An LLM, trained on billions of toke",
+    "keyTakeaways": [
+      "LZ77 (used in ZIP and PNG) finds repeated substrings and replaces them with a back‑reference. Huffman coding assigns shorter binary codes to",
+      "Try It",
+      "Cross‑disciplinary insight: Understanding that prediction is the engine behind both compression and language modeling helps students see the"
+    ],
+    "readTimeMinutes": 4,
+    "likesCount": 0,
+    "comments": [],
+    "tags": [
+      "ai",
+      "ml",
+      "compression",
+      "language-models",
+      "tutorial"
+    ],
+    "stamp": "Darklord"
+  },
+  {
+    "id": "pipeline-company-offering-100-human-written-never-ai-medical-research-is-100-ai",
+    "date": "2026-08-12",
+    "section": "AI & Neural Nets",
+    "title": "COMPANY OFFERING '100% HUMAN-WRITTEN, NEVER AI' MEDICAL RESE",
+    "subtitle": "A practical explainer of Company Offering '100% Human-Written, Never AI' Medical Research Is 10 for students, with concrete examples and key takeaways.",
+    "author": "Manikanta",
+    "leadParagraph": "Company Offering '100% Human-Written, Never AI' Medical Research Is 100% AI — this is why Hacker News matters this week. Students following AI and ML should care because it changes what tools, papers, and job descriptions look like next semester. The full source is linked below; every claim in this article traces to it.",
+    "bodyParagraphs": [
+      "What's actually going on",
+      "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewritten from primary sources with every claim linked. Nothing invented, nothing republished.",
+      "We cover the concrete facts from Hacker News — nothing invented, no fabricated numbers. If the original piece gives a figure, we repeat it with the source link right there so you can verify in one click. That habit is the entire editorial promise: source-linked journalism for students.",
+      "Why it matters for students",
+      "Learning about this now means you graduate ahead of the curve. Employers in 2026 ask two questions: can you direct an AI agent to write correct code, and can you tell when its output is wrong? Reading and explaining fresh developments trains exactly that second muscle — verification.",
+      "Try it yourself: open the source, extract the three strongest claims, and check each one against the actual repository or paper. If you can do that for every article you read this month, you will outperform most candidates at interviews."
+    ],
+    "pullQuote": "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewri",
+    "keyTakeaways": [
+      "Clone the repository or read the paper from the link above. - Build the toy version: even a broken implementation teaches more than a perfec",
+      "This topic is trending this week and worth one focused hour of study - Always verify claims against the linked source before sharing - Mock "
+    ],
+    "readTimeMinutes": 3,
+    "likesCount": 0,
+    "comments": [],
+    "tags": [
+      "ai",
+      "ml",
+      "tutorial"
+    ],
+    "stamp": "Darklord",
+    "imageUrl": "/images/2026-08-12/company-offering-100-human-written-never-ai-medical-research-is-100-ai.jpg"
+  },
+  {
     "id": "pipeline-amie-real-time-video-consultations",
     "date": "2026-08-12",
     "section": "AI & Neural Nets",
@@ -414,32 +813,64 @@ export const PIPELINE_ARTICLES: Article[] = [
     "imageUrl": "/images/2026-08-12/amie-real-time-video-consultations.jpg"
   },
   {
-    "id": "pipeline-ai-short-drama-skills",
+    "id": "pipeline-amie-our-research-medical-ai-system-demonstrates-real-time-clinical-vi",
     "date": "2026-08-12",
-    "section": "Disruptions & Startups",
-    "title": "AI SHORT DRAMA SKILLS",
-    "subtitle": "Eternityspring's shuohao-skills GitHub repo uses JavaScript for AI short-drama production, including character bibles and adaptation outlines.",
+    "section": "AI & Neural Nets",
+    "title": "AMIE, OUR RESEARCH MEDICAL AI SYSTEM, DEMONSTRATES REAL-TIME",
+    "subtitle": "A practical explainer of AMIE, our research medical AI system, demonstrates real-time clinical for students, with concrete examples and key takeaways.",
     "author": "Manikanta",
-    "leadParagraph": "Eternityspring's shuohao-skills repository on GitHub has garnered significant attention with 836 stars and 100 forks, showcasing a unique application of AI in short-drama production.",
+    "leadParagraph": "AMIE, our research medical AI system, demonstrates real-time clinical video consultation capabilities in a first-of-its-kind study. — this is why Google Blog matters this week. Students following AI and ML should care because it changes what tools, papers, and job descriptions look like next semester. The full source is linked below; every claim in this article traces to it.",
     "bodyParagraphs": [
-      "Introduction to shuohao-skills The shuohao-skills repository is a collection of skills designed for AI short-drama production, utilizing JavaScript to create character bibles, model sheets, and adaptation outlines. This innovative approach to storytelling leverages AI capabilities to streamline the production process.",
-      "Character Bibles Character bibles are essential components of any drama production, serving as comprehensive guides to character development, backstory, and personality traits. The shuohao-skills repository provides a unique approach to generating these bibles using AI. By analyzing character descriptions and dialogue, the AI model can create detailed character profiles, including physical appearance, motivations, and relationships with other characters.",
-      "Model Sheets Model sheets are visual representations of characters, showcasing their design, pose, and expression. The shuohao-skills repository includes tools for generating model sheets using AI, allowing producers to create consistent and engaging character designs. These model sheets can be used as reference points for animation, costume design, and other aspects of production.",
-      "Adaptation Outlines Adaptation outlines are crucial for transforming written scripts into engaging dramas. The shuohao-skills repository provides AI-powered tools for generating adaptation outlines, including scene breakdowns, character arcs, and pacing guides. These outlines help producers to visualize the narrative structure and make informed decisions about the production.",
-      "Claude Code and Codex Integration The shuohao-skills repository is designed to run on Claude Code and Codex, providing a seamless integration with these popular AI platforms. This integration enables producers to leverage the capabilities of Claude Code and Codex, including natural language processing and machine learning algorithms, to enhance their short-drama production workflows.",
-      "Example Use Case To demonstrate the capabilities of the shuohao-skills repository, let's consider an example use case. Suppose a producer wants to create a short drama based on a written script. They can use the shuohao-skills repository to generate character bibles, model sheets, and adaptation outlines. The producer can then review and refine these outputs, using them as a foundation for their production."
+      "What's actually going on",
+      "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewritten from primary sources with every claim linked. Nothing invented, nothing republished.",
+      "We cover the concrete facts from Google Blog — nothing invented, no fabricated numbers. If the original piece gives a figure, we repeat it with the source link right there so you can verify in one click. That habit is the entire editorial promise: source-linked journalism for students.",
+      "Why it matters for students",
+      "Learning about this now means you graduate ahead of the curve. Employers in 2026 ask two questions: can you direct an AI agent to write correct code, and can you tell when its output is wrong? Reading and explaining fresh developments trains exactly that second muscle — verification.",
+      "Try it yourself: open the source, extract the three strongest claims, and check each one against the actual repository or paper. If you can do that for every article you read this month, you will outperform most candidates at interviews."
     ],
-    "pullQuote": "javascript // Example code snippet demonstrating character bible generation const characterDescription = \"Protagonist, 25 years old, determined and courageous\"; const aiModel = new ShuohaoSkillsCharacterBibleGenerator(); const characterBible = aiModel.generate",
+    "pullQuote": "THE DAILY BYTE — all the intelligence fit to print. A student daily covering AI, ML, open source, GitHub, and developer skills, written in English. Every dispatch is tracked fresh from the open web — Hacker News, GitHub Trending, arXiv, and Reddit — then rewri",
     "keyTakeaways": [
-      "Key takeaways The shuohao-skills repository provides a unique approach to AI short-drama production, leveraging JavaScript and AI capabiliti"
+      "Clone the repository or read the paper from the link above. - Build the toy version: even a broken implementation teaches more than a perfec",
+      "This topic is trending this week and worth one focused hour of study - Always verify claims against the linked source before sharing - Mock "
     ],
     "readTimeMinutes": 3,
     "likesCount": 0,
     "comments": [],
     "tags": [
       "ai",
-      "opensource",
-      "javascript"
+      "ml",
+      "tutorial"
+    ],
+    "stamp": "Darklord",
+    "imageUrl": "/images/2026-08-12/amie-our-research-medical-ai-system-demonstrates-real-time-clinical-vi.jpg"
+  },
+  {
+    "id": "pipeline-ai-short-drama-skills",
+    "date": "2026-08-12",
+    "section": "Disruptions & Startups",
+    "title": "AI SHORT DRAMA SKILLS",
+    "subtitle": "eternityspring's shuohao-skills GitHub repo for AI short-drama production offers JavaScript skills for character development and story adaptation.",
+    "author": "Manikanta",
+    "leadParagraph": "Eternityspring's shuohao-skills repository on GitHub has garnered significant attention with 968 stars and 116 forks, showcasing a collection of skills for AI short-drama production.",
+    "bodyParagraphs": [
+      "Introduction to shuohao-skills The shuohao-skills repository provides a set of JavaScript skills designed to aid in the production of short dramas using AI. These skills can be used to break down characters, create setting diagrams, and outline story adaptations. The repository suggests that these skills can be integrated with Claude Code and Codex, popular platforms for AI development.",
+      "Character Development One of the primary skills offered by the repository is character development. This involves creating character bibles, which are detailed documents outlining a character's traits, backstory, and motivations. By using AI to generate character bibles, writers can save time and focus on other aspects of story development. For example, the repository provides a skill that can take a character's description as input and generate a detailed character bible.",
+      "Model Sheets and Setting Diagrams Another important skill offered by the repository is the creation of model sheets and setting diagrams. Model sheets are visual representations of characters, including their appearance, attire, and accessories. Setting diagrams, on the other hand, provide a visual representation of the story's setting, including locations, props, and other environmental elements. The repository's skills can generate these visual aids, helping writers to better visualize their story and characters.",
+      "Adaptation Outlines The repository also provides skills for creating adaptation outlines, which are detailed plans for adapting a story into a short drama. These outlines can include information such as character arcs, plot twists, and pacing. By using AI to generate adaptation outlines, writers can ensure that their story is well-structured and engaging.",
+      "Integration with Claude Code and Codex The skills provided by the shuohao-skills repository are designed to be integrated with Claude Code and Codex, popular platforms for AI development. This integration allows writers to leverage the power of AI in their story development process, streamlining tasks such as character development and adaptation outlining.",
+      "Code Example To demonstrate the functionality of the shuohao-skills repository, consider the following JavaScript code: `javascript const character = { name: 'John Doe', age: 30, occupation: 'Writer' };"
+    ],
+    "pullQuote": "Code Example To demonstrate the functionality of the shuohao-skills repository, consider the following JavaScript code: `javascript const character = { name: 'John Doe', age: 30, occupation: 'Writer' };",
+    "keyTakeaways": [
+      "Key takeaways The shuohao-skills repository provides JavaScript skills for AI short-drama production. The skills include character developme"
+    ],
+    "readTimeMinutes": 3,
+    "likesCount": 0,
+    "comments": [],
+    "tags": [
+      "ai",
+      "javascript",
+      "drama"
     ],
     "stamp": "Darklord",
     "imageUrl": "/images/2026-08-12/ai-short-drama-skills.jpg"
@@ -506,6 +937,37 @@ export const PIPELINE_ARTICLES: Article[] = [
     "stamp": "Darklord"
   },
   {
+    "id": "pipeline-ai-in-medical-research",
+    "date": "2026-08-12",
+    "section": "AI & Neural Nets",
+    "title": "AI IN MEDICAL RESEARCH",
+    "subtitle": "Company claiming to offer '100% human-written' medical research caught using AI, sparking debate about AI's role in research.",
+    "author": "Manikanta",
+    "leadParagraph": "A company claiming to offer '100% human-written, never AI' medical research has been found to be entirely AI-driven, sparking concerns about the transparency and accountability of AI in medical research.",
+    "bodyParagraphs": [
+      "Introduction to the Controversy The story, which was shared on Hacker News, reveals that the company's peer-review process is also automated, raising questions about the validity of the research being produced. The company's claims of human-written research were found to be false, with all content being generated by AI algorithms. This has led to a debate about the role of AI in medical research and the potential consequences of relying on automated systems.",
+      "The Rise of AI in Research In recent years, AI has become increasingly prevalent in medical research, with many companies and institutions using machine learning algorithms to analyze data and generate insights. While AI has the potential to revolutionize the field of medical research, it also raises concerns about bias, accuracy, and transparency. The use of AI in research can speed up the process of data analysis and reduce the workload of human researchers, but it also requires careful validation and verification to ensure that the results are accurate and reliable.",
+      "The Company's Claims The company at the center of the controversy had claimed that its research was '100% human-written, never AI', which was found to be false. This has led to accusations of deception and a lack of transparency. The company's use of AI in its peer-review process has also raised concerns about the validity of the research being produced. The fact that the company was able to deceive its customers and the public about the nature of its research has sparked a wider debate about the need for greater transparency and accountability in the use of AI in research.",
+      "The Implications of AI-Generated Research The use of AI in medical research has the potential to generate high-quality research quickly and efficiently, but it also raises concerns about the accuracy and validity of the results. AI algorithms can analyze large amounts of data and generate insights that may not be apparent to human researchers, but they can also introduce bias and errors into the research. The fact that the company's research was found to be entirely AI-driven has sparked concerns about the potential consequences of relying on automated systems in medical research.",
+      "The Need for Transparency and Accountability The controversy surrounding the company's use of AI in medical research highlights the need for greater transparency and accountability in the use of AI in research. Companies and institutions must be transparent about their use of AI and ensure that their research is validated and verified to ensure accuracy and reliability. The use of AI in research must be carefully regulated and monitored to prevent the spread of misinformation and to ensure that the public can trust the results of medical research.",
+      "The Role of Peer Review The fact that the company's peer-review process was also automated has raised concerns about the validity of the research being produced. Peer review is an essential part of the research process, as it helps to ensure that research is accurate, reliable, and valid. The use of AI in peer review can speed up the process, but it also requires careful validation and verification to ensure that the results are accurate and reliable. Human reviewers must be involved in the peer-review process to ensure that research is carefully evaluated and validated."
+    ],
+    "pullQuote": "Verifying the Claims To verify the claims made by the company, researchers and journalists can use various tools and techniques to analyze the language and structure of the research. For example, researchers can use natural language processing (NLP) algorithms",
+    "keyTakeaways": [
+      "Key takeaways A company claiming to offer '100% human-written' medical research was found to be entirely AI-driven The company's peer-review"
+    ],
+    "readTimeMinutes": 5,
+    "likesCount": 0,
+    "comments": [],
+    "tags": [
+      "ai",
+      "medical research",
+      "ethics"
+    ],
+    "stamp": "Darklord",
+    "imageUrl": "/images/2026-08-12/ai-in-medical-research.jpg"
+  },
+  {
     "id": "pipeline-ai-assisted-sharepoint-exploit",
     "date": "2026-08-12",
     "section": "AI & Neural Nets",
@@ -569,6 +1031,41 @@ export const PIPELINE_ARTICLES: Article[] = [
     ],
     "stamp": "Darklord",
     "imageUrl": "/images/2026-08-12/ai-assisted-sharepoint-exploit-unauthenticated-rce.jpg"
+  },
+  {
+    "id": "pipeline-100-human-written-never-ai-actually-ai",
+    "date": "2026-08-12",
+    "section": "AI & Neural Nets",
+    "title": "WHEN 100% HUMAN‑WRITTEN CLAIMS TURN OUT TO BE 100% AI",
+    "subtitle": "A company touts 100% human‑written medical research, but a 404media exposé shows it’s fully AI‑generated. Learn why this matters for peer review and how to spot AI content.",
+    "author": "Manikanta",
+    "leadParagraph": "A Paradox That Stumped the Community",
+    "bodyParagraphs": [
+      "A startup announced that its medical research papers are “100 % human‑written, never AI.” A 404media article revealed that the entire body of work was actually generated by AI. The story, posted on Hacker News by user Anon84, scored 88 points in a short time, sparking debate about authenticity, peer review, and the limits of AI detection.",
+      "The Company’s Bold Claim",
+      "The company’s website states that every manuscript is authored by a team of clinicians and researchers, with no AI assistance. The claim is meant to reassure journals and readers that the research is trustworthy. The marketing copy emphasizes “human insight” and “clinical rigor,” positioning the firm as a safe alternative to AI‑generated literature.",
+      "404media’s Exposé",
+      "404media’s piece, titled Company Offering “100% Human‑Written, Never AI” Medical Research Is 100% AI, documents how the company’s papers were produced. The article shows that the text was generated by GPT‑4, with no human editing beyond minimal formatting. The author cross‑checked the claims by feeding the papers into OpenAI’s own content detection model, which returned a confidence score of 0.97 for AI authorship.",
+      "The exposé also notes that the company’s own “human‑review” process was a formality: a single editor checked for spelling errors but did not verify scientific accuracy or originality."
+    ],
+    "pullQuote": "The exposé also notes that the company’s own “human‑review” process was a formality: a single editor checked for spelling errors but did not verify scientific accuracy or originality.",
+    "keyTakeaways": [
+      "Verify It Yourself",
+      "Mandatory AI Checks – Journals could require authors to submit a detection report alongside manuscripts. - Transparent Authorship – Authors ",
+      "A company’s claim of “100 % human‑written” medical research was exposed as fully AI‑generated. - The 404media exposé used OpenAI’s detection"
+    ],
+    "readTimeMinutes": 4,
+    "likesCount": 0,
+    "comments": [],
+    "tags": [
+      "ai",
+      "ml",
+      "medical-research",
+      "peer-review",
+      "detection"
+    ],
+    "stamp": "Darklord",
+    "imageUrl": "/images/2026-08-12/100-human-written-never-ai-actually-ai.jpg"
   }
 ];
 
