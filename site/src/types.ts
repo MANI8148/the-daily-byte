@@ -56,7 +56,7 @@ export interface GazetteIssue {
 
 export type ReadingMode = 'newspaper' | 'magazine' | 'archive';
 
-// Newspaper section categories — the five header subsections
+// Newspaper section categories — the six topic lanes (match worker DEFAULT_LANES)
 export interface Category {
   key: string;
   label: string;
@@ -64,11 +64,12 @@ export interface Category {
 }
 
 export const SECTIONS: Category[] = [
-  { key: 'ai', label: 'AI & ML', terms: ['ai', 'ml', 'neural', 'model', 'agent', 'llm', 'gpt', 'machine learn', 'deep learn', 'openai', 'gemini'] },
-  { key: 'tech', label: 'Tech', terms: ['tech', 'hardware', 'infrastructure', 'compute', 'data center', 'chip', 'robot', 'orbital', 'neural weights'] },
-  { key: 'opensource', label: 'Open Source', terms: ['open source', 'open-source', 'oss', 'free software', 'license'] },
-  { key: 'github', label: 'GitHub', terms: ['github', 'repo', 'repository', 'trending', 'pull request'] },
-  { key: 'devskills', label: 'Dev Skills', terms: ['skill', 'developer', 'career', 'student', 'learn', 'tutorial', 'guide', 'how to'] },
+  { key: 'ai', label: 'AI & ML', terms: ['ai', 'ml', 'neural', 'model', 'agent', 'llm', 'gpt', 'machine learn', 'deep learn', 'openai', 'gemini', 'finance / ai', 'health tech'] },
+  { key: 'security', label: 'Security', terms: ['security', 'cyber', 'crypto', 'quantum', 'secure network'] },
+  { key: 'opensource', label: 'Open Source', terms: ['open source', 'open-source', 'oss', 'free software', 'license', 'github', 'repo', 'repository', 'trending', 'pull request'] },
+  { key: 'devtools', label: 'Dev Tools', terms: ['lobsters', 'devto', 'dev ', 'skill', 'developer', 'career', 'student', 'learn', 'tutorial', 'guide', 'how to', 'pl', 'se'] },
+  { key: 'hardware', label: 'Hardware / Consumer Tech', terms: ['tech', 'hardware', 'infrastructure', 'compute', 'data center', 'chip', 'robot', 'orbital', 'verge', 'arstechnica', 'tomshardware', 'quantum'] },
+  { key: 'bigtech', label: 'Big Tech', terms: ['google', 'blog.google', 'rss', 'microsoft', 'apple', 'meta', 'amazon', 'alphabet'] },
 ];
 
 export const categoryMatches = (cat: Category, section: string): boolean =>

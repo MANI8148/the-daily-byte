@@ -15,20 +15,22 @@ const CONTENT_DIR = join(here, "..", "..", "content");
 const OUT_DIR = join(here, "..", "src", "data");
 const OUT_FILE = join(OUT_DIR, "generated-content.ts");
 
-const SECTIONS = ["AI & ML", "Tech", "Open Source", "GitHub", "Dev Skills"];
+const SECTIONS = ["AI & ML", "Security", "Open Source", "Dev Tools", "Hardware / Consumer Tech", "Big Tech"];
 
 function mapSection(kicker = "") {
   const k = kicker.toUpperCase();
-  // AI / ML family
-  if (k.includes("AI") || k.includes("ML") || k.includes("LLM") || k.includes("MODEL") || k.includes("NEURAL") || k.includes("GEMINI") || k.includes("OPENAI") || k.includes("GPT")) return "AI & ML";
-  // Security / crypto / quantum -> Tech (UI has no dedicated security bucket)
-  if (k.includes("SECUR") || k.includes("CYBER") || k.includes("CRYPTO") || k.includes("QUANTUM") || k.includes("HARDWARE") || k.includes("CHIP") || k.includes("ROBOT") || k.includes("HEALTH TECH") || k.includes("FINANCE")) return "Tech";
-  // Open source
+  // Security lane
+  if (k.includes("SECUR") || k.includes("CYBER") || k.includes("CRYPTO") || k.includes("QUANTUM")) return "Security";
+  // Open Source lane
   if (k.includes("OPEN SOURCE") || k.includes("OSS")) return "Open Source";
-  // GitHub
-  if (k.includes("GITHUB") || k.includes("REPO")) return "GitHub";
-  // Dev skills
-  if (k.includes("SKILL") || k.includes("GUIDE") || k.includes("HOW") || k.includes("CAREER") || k.includes("TUTORIAL") || k.includes("LEARN")) return "Dev Skills";
+  // Dev Tools lane
+  if (k.includes("LOBSTERS") || k.includes("DEVTO") || k.includes("DEV SKILLS") || k.includes("SKILL") || k.includes("GUIDE") || k.includes("HOW TO") || k.includes("CAREER") || k.includes("TUTORIAL") || k.includes("LEARN")) return "Dev Tools";
+  // Hardware / Consumer Tech lane
+  if (k.includes("HARDWARE") || k.includes("CHIP") || k.includes("ROBOT") || k.includes("VERGE") || k.includes("ARSTECHNICA") || k.includes("TOMSHARDWARE") || k.includes("TECH") || k.includes("ORBITAL") || k.includes("INFRASTRUCTURE") || k.includes("DATA CENTER") || k.includes("COMPUTE") || k.includes("HEALTH TECH")) return "Hardware / Consumer Tech";
+  // Big Tech lane
+  if (k.includes("GOOGLE") || k.includes("MICROSOFT") || k.includes("APPLE") || k.includes("META") || k.includes("AMAZON") || k.includes("ALPHABET") || k.includes("BLOG.GOOGLE") || k.includes("RSS")) return "Big Tech";
+  // AI / ML lane (default for ai/ml/llm/model/neural/gemini/openai/gpt/finance-ai)
+  if (k.includes("AI") || k.includes("ML") || k.includes("LLM") || k.includes("MODEL") || k.includes("NEURAL") || k.includes("GEMINI") || k.includes("OPENAI") || k.includes("GPT") || k.includes("FINANCE")) return "AI & ML";
   return "AI & ML";
 }
 

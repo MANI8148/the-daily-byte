@@ -179,7 +179,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-sanitize-llm-api-keys",
     "date": "2026-08-12",
-    "section": "Tech",
+    "section": "Security",
     "title": "SANITIZING LLM API KEYS: A PRACTICAL GUIDE",
     "subtitle": "Learn how to spot and remove API keys from code that calls proprietary LLMs, protecting your secrets and keeping repos clean.",
     "author": "Manikanta",
@@ -245,7 +245,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-quantum-bit-commitment-protocol",
     "date": "2026-08-12",
-    "section": "Tech",
+    "section": "Security",
     "title": "QUANTUM BIT COMMITMENT",
     "subtitle": "Researchers use hybrid locked physical unclonable functions to achieve statistically secure bit commitment protocols",
     "author": "Manikanta",
@@ -495,7 +495,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-genco-ai-for-grid-analysis",
     "date": "2026-08-12",
-    "section": "AI & ML",
+    "section": "Open Source",
     "title": "GENCO - AI FOR GRID ANALYSIS",
     "subtitle": "Researchers introduce GENCO, a unified neural solver for steady-state transmission grid analysis, handling power flow and optimal power flow.",
     "author": "Manikanta",
@@ -557,7 +557,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-fcc-import-ban-chinese-optical-transceivers",
     "date": "2026-08-12",
-    "section": "AI & ML",
+    "section": "Security",
     "title": "FCC TARGETS CHINESE OPTICAL TRANSCEIVERS IN NEW IMPORT BAN",
     "subtitle": "The FCC proposes banning imports of new‑model Chinese optical transceivers, a move that could reshape AI data‑center supply chains and cost structures.",
     "author": "Manikanta",
@@ -623,7 +623,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-england-hepatitis-c-free",
     "date": "2026-08-12",
-    "section": "Tech",
+    "section": "Hardware / Consumer Tech",
     "title": "ENGLAND HEPATITIS C FREE",
     "subtitle": "England on track to eliminate hepatitis C, a viral liver infection, thanks to advanced treatments and screening.",
     "author": "Manikanta",
@@ -970,7 +970,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-ai-assisted-sharepoint-exploit",
     "date": "2026-08-12",
-    "section": "Tech",
+    "section": "Security",
     "title": "AI-ASSISTED SHAREPOINT EXPLOIT",
     "subtitle": "Researchers reveal AI-assisted exploit chain for unauthenticated RCE in Microsoft SharePoint servers, tracked as CVE-2026-55040 with a CVSS score of 9.1.",
     "author": "Manikanta",
@@ -1000,7 +1000,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-ai-assisted-sharepoint-exploit-unauthenticated-rce",
     "date": "2026-08-12",
-    "section": "AI & ML",
+    "section": "Security",
     "title": "AI‑ASSISTED SHAREPOINT EXPLOIT ENABLES UNAUTHENTICATED RCE",
     "subtitle": "Researchers uncovered a high‑severity SharePoint vulnerability that lets attackers run code without authentication, using an AI agent to craft the exploit chain.",
     "author": "Manikanta",
