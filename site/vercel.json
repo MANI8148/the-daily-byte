@@ -1,6 +1,4 @@
 {
-  "framework": "vite",
-  "rootDirectory": "site",
   "buildCommand": "npm run build:static",
   "outputDirectory": "dist",
   "rewrites": [
