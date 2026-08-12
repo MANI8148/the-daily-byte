@@ -111,6 +111,18 @@ LANE_TOPICS = {
     ],
 }
 
+# Maps each DEFAULT_LANES entry (by position) to its section label. The writer uses
+# this label as the article's `kicker` section; the scorer uses it for lane-aware fit.
+# Order MUST match DEFAULT_LANES.
+LANE_SECTION = [
+    "AI / ML",
+    "Security",
+    "Open Source",
+    "Dev Tools",
+    "Hardware / Consumer Tech",
+    "Big Tech",
+]
+
 
 def _parse_list(raw: str, default: list) -> list:
     if not raw:
@@ -130,6 +142,17 @@ class Config:
     # Topic lanes (one draft per lane per run) — JSON list-of-lists in env
     lanes: list = field(default_factory=lambda: _parse_list(_env("LANES", ""), DEFAULT_LANES))
     lanes_per_run: int = field(default_factory=lambda: int(_env("LANES_PER_RUN", "3") or 3))
+
+    @property
+    def lane_section(self) -> list[str]:
+        """Section label for each lane (parallel to `lanes`). Uses the curated
+        LANE_SECTION table when lanes are the defaults; otherwise derives a label
+        from the first source key in each lane (best-effort)."""
+        lanes = self.lanes
+        if lanes == DEFAULT_LANES and len(LANE_SECTION) == len(lanes):
+            return LANE_SECTION
+        # Derived fallback: name the lane by its first source key (e.g. 'hn' -> 'HN').
+        return [str(lane[0]).split(":")[0].upper() if lane else "Tech" for lane in lanes]
 
     # opencode CLI fallback (own account quota; separate from the HTTP providers)
     opencode_bin: str = field(default_factory=lambda: _env("OPENCODE_BIN", "opencode"))

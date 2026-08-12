@@ -158,16 +158,21 @@ def run_once(
         seen_urls: set[str] = set()
         per = max(count, 1)  # articles per chosen lane (default 1)
         briefs = []
-        for lane_sources in chosen:
+        for lane_idx, lane_sources in enumerate(chosen):
+            lane_label = cfg.lane_section[lane_idx] if lane_idx < len(cfg.lane_section) else "Tech"
             lane_items: list[dict] = []
             for sname in lane_sources:
                 try:
-                    lane_items.extend(fetch.fetch(sname, cfg, recent_titles=recent_titles))
+                    fetched = fetch.fetch(sname, cfg, recent_titles=recent_titles)
+                    for it in fetched:
+                        it["lane"] = lane_label  # tag for lane-aware scoring
+                    lane_items.extend(fetched)
                 except Exception as e:
                     print(f"  [fetch:{sname}] failed: {e}")
             fresh = [it for it in lane_items if not db.seen(it["url"]) and it["url"] not in seen_urls]
             if not fresh:
                 continue
+            # Rank WITHIN this lane so one lane can't crowd out another.
             picks = score.pick(fresh, per)
             for p in picks:
                 seen_urls.add(p["url"])
