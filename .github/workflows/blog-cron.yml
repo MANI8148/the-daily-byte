@@ -53,7 +53,7 @@ jobs:
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       SITE_URL: ${{ secrets.SITE_URL }}
       GH_TOKEN: ${{ secrets.GH_PAT }}
-      AUTO_PUBLISH: "false"
+      AUTO_PUBLISH: "true"
     steps:
       - uses: actions/checkout@v4
         with:
