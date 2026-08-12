@@ -69,4 +69,10 @@ jobs:
           git config user.email "bot@the-daily-byte.local"
           git add -A content site/public/images
           git diff --cached --quiet || git commit -m "cron: $(date -u +%Y-%m-%dT%H:%M:%SZ) dispatch"
+          # Use the fine-grained PAT for push when present; else fall back to GITHUB_TOKEN (write perms above)
+          if [ -n "$GH_PAT" ]; then
+            git remote set-url origin "https://x-access-token:${GH_PAT}@github.com/MANI8148/the-daily-byte.git"
+          fi
           git push
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
