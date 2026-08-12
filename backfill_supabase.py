@@ -6,7 +6,7 @@ skips slugs already present. Read-only on the repo; writes only to Supabase.
 """
 import os, re, json, glob, urllib.request, urllib.error, sys
 
-ROOT = "/Users/manikantapotla/Desktop/Bloggy"
+ROOT = os.path.dirname(os.path.abspath(__file__))
 KEY = os.environ.get("SUPABASE_ANON_KEY", "sb_publishable_RkJeBePa6MUJlZBOYLt1ag_C_K9vZLX")
 BASE = "https://atbyvsaukqrasvqulldj.supabase.co/rest/v1"
 

@@ -5,7 +5,7 @@ description: "Learn how to spot and remove API keys from code that calls proprie
 slug: sanitize-llm-api-keys
 date: 2026-08-12
 image_url: https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Padlock.svg/640px-Padlock.svg.png
-author: Manikanta
+author: The Daily Byte
 tags: ["ai", "ml", "security", "tutorial"]
 model: -
 ---

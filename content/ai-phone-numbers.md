@@ -4,7 +4,7 @@ kicker: OPEN SOURCE
 description: "MCP server for AI agents needing a phone number, with 200+ country coverage and one API call verification"
 slug: ai-phone-numbers
 date: 2026-08-12
-author: Manikanta
+author: The Daily Byte
 tags: ["ai", "open-source", "tutorial"]
 model: llama-3.3-70b-versatile
 image_url: "/images/2026-08-12/ai-phone-numbers.jpg"

@@ -184,7 +184,7 @@ class Config:
     site_name: str = field(default_factory=lambda: _env("SITE_NAME", "The Daily Byte"))
     site_tagline: str = field(default_factory=lambda: _env("SITE_TAGLINE", "Student Tech Edition"))
     site_url: str = field(default_factory=lambda: _env("SITE_URL", "https://bloggy.example.com"))
-    author_name: str = field(default_factory=lambda: _env("AUTHOR_NAME", "Manikanta"))
+    author_name: str = field(default_factory=lambda: _env("AUTHOR_NAME", "The Daily Byte"))
 
     # Publishing keys (optional; adapters skip silently when absent)
     devto_api_key: str = field(default_factory=lambda: _env("DEVTO_API_KEY"))

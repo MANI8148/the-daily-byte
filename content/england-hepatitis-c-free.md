@@ -4,7 +4,7 @@ kicker: HEALTH TECH
 description: "England on track to eliminate hepatitis C, a viral liver infection, thanks to advanced treatments and screening."
 slug: england-hepatitis-c-free
 date: 2026-08-12
-author: Manikanta
+author: The Daily Byte
 tags: ["health tech", "hepatitis c"]
 model: llama-3.3-70b-versatile
 image_url: "/images/2026-08-12/england-hepatitis-c-free.jpg"

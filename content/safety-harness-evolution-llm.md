@@ -5,7 +5,7 @@ description: "Discover how the SHE framework lets LLM agents adapt their safety 
 slug: safety-harness-evolution-llm
 date: 2026-08-12
 image_url: https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Shield_icon.svg/640px-Shield_icon.svg.png
-author: Manikanta
+author: The Daily Byte
 tags: ["ai", "ml", "safety", "harness"]
 model: llama-3.3-70b-versatile
 ---

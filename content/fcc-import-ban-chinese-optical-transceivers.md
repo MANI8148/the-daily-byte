@@ -4,7 +4,7 @@ kicker: AI / SECURE NETWORKS
 description: "The FCC proposes banning imports of new‑model Chinese optical transceivers, a move that could reshape AI data‑center supply chains and cost structures."
 slug: fcc-import-ban-chinese-optical-transceivers
 date: 2026-08-12
-author: Manikanta
+author: The Daily Byte
 tags: ["ai", "ml", "security", "hardware"]
 model: -
 image_url: "/images/2026-08-12/fcc-import-ban-chinese-optical-transceivers.jpg"

@@ -4,7 +4,7 @@ kicker: BLOG.GOOGLE
 description: "Google's latest Workspace update brings Gemini into Docs, Sheets, and Meet by default — a look at what changed, the student angle, and why it matters for the open-web toolchain."
 slug: google-gemini-workspace-rollout
 date: 2026-08-12
-author: Manikanta
+author: The Daily Byte
 tags: [big-tech, google, gemini, workspace, ai]
 url: https://blog.google
 source: Google Blog

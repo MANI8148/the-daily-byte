@@ -4,7 +4,7 @@ kicker: OPEN SOURCE
 description: "Create smooth interactive web animations with oil-motion, a Python repo trending on GitHub with 1459 stars and 115 forks."
 slug: oil-motion-animations
 date: 2026-08-12
-author: Manikanta
+author: The Daily Byte
 tags: ["animation", "python", "tutorial"]
 model: llama-3.3-70b-versatile
 image_url: "/images/2026-08-12/oil-motion-animations.jpg"

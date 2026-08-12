@@ -5,7 +5,7 @@ description: "Researchers demonstrate how to steal reasoning traces from proprie
 slug: stealing-llm-api-traces
 date: 2026-08-12
 image_url: https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Hacker_in_the_dark.jpg/640px-Hacker_in_the_dark.jpg
-author: Manikanta
+author: The Daily Byte
 tags: ["ai", "llm", "security"]
 model: llama-3.3-70b-versatile
 ---

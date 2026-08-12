@@ -4,7 +4,7 @@ kicker: OPEN SOURCE
 description: "eternityspring's shuohao-skills GitHub repo for AI short-drama production offers JavaScript skills for character development and story adaptation."
 slug: ai-short-drama-skills
 date: 2026-08-12
-author: Manikanta
+author: The Daily Byte
 tags: ["ai", "javascript", "drama"]
 model: llama-3.3-70b-versatile
 image_url: "/images/2026-08-12/ai-short-drama-skills.jpg"

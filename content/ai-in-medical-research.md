@@ -4,7 +4,7 @@ kicker: AI
 description: "Company claiming to offer '100% human-written' medical research caught using AI, sparking debate about AI's role in research."
 slug: ai-in-medical-research
 date: 2026-08-12
-author: Manikanta
+author: The Daily Byte
 tags: ["ai", "medical research", "ethics"]
 model: llama-3.3-70b-versatile
 image_url: "/images/2026-08-12/ai-in-medical-research.jpg"

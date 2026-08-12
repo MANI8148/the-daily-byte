@@ -4,7 +4,7 @@ kicker: OPEN SOURCE
 description: "A quick‑start guide to the shadcn-ui/chatbot-template, a TypeScript Next.js chatbot that runs on Vercel AI Gateway. Learn how to clone, customize, and deploy in minutes."
 slug: minimal-nextjs-chatbot-template
 date: 2026-08-12
-author: Manikanta
+author: The Daily Byte
 tags: ["ai", "ml", "tutorial"]
 model: -
 image_url: "/images/2026-08-12/minimal-nextjs-chatbot-template.jpg"

@@ -5,7 +5,7 @@ description: "Explore how data compression and large language models both predic
 slug: compression-is-prediction-llms
 date: 2026-08-12
 image_url: https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Pleiades_large.jpg/640px-Pleiades_large.jpg
-author: Manikanta
+author: The Daily Byte
 tags: ["ai", "ml", "compression", "language-models", "tutorial"]
 model: -
 ---

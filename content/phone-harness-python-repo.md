@@ -4,7 +4,7 @@ kicker: OPEN SOURCE
 description: Control your phone with a Python agent using the phone-harness repo
 slug: phone-harness-python-repo
 date: 2026-08-12
-author: Manikanta
+author: The Daily Byte
 tags: ["open source", "python", "automation"]
 model: llama-3.3-70b-versatile
 image_url: "/images/2026-08-12/phone-harness-python-repo.jpg"

@@ -4,7 +4,7 @@ kicker: AI / ML
 description: "Google Research’s AMIE system demonstrates expert‑level AI in real‑time video consultations, spotting coughs, gait issues and more."
 slug: amie-real-time-video-consultations
 date: 2026-08-12
-author: Manikanta
+author: The Daily Byte
 tags: ["ai", "ml", "medical"]
 model: llama-3.3-70b-versatile
 image_url: "/images/2026-08-12/amie-real-time-video-consultations.jpg"

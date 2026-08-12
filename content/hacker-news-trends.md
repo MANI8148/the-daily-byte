@@ -5,7 +5,7 @@ description: Exploring Hacker News trends and their impact on the tech community
 slug: hacker-news-trends
 date: 2026-08-12
 image_url: https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Terminal_window_in_Ubuntu_22.04.png/640px-Terminal_window_in_Ubuntu_22.04.png
-author: Manikanta
+author: The Daily Byte
 tags: ["hn", "trends", "community"]
 model: llama-3.3-70b-versatile
 ---

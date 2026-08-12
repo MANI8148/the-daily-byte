@@ -4,7 +4,7 @@ kicker: OPEN SOURCE
 description: Build your own mini Pi from scratch using 600 lines of TypeScript and create a personalized pi-agent with ease
 slug: pi-from-scratch
 date: 2026-08-12
-author: Manikanta
+author: The Daily Byte
 tags: ["typescript", "pi", "tutorial"]
 model: llama-3.3-70b-versatile
 image_url: "/images/2026-08-12/pi-from-scratch.jpg"

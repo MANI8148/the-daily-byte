@@ -4,7 +4,7 @@ kicker: DEVTO
 description: "A look at the minimal static-site-generator ecosystem trending on Lobsters and dev.to — why students are ditching heavy frameworks for single-binary tools, with concrete tradeoffs and a starter path."
 slug: tiny-static-site-generators-lobsters
 date: 2026-08-12
-author: Manikanta
+author: The Daily Byte
 tags: [dev-tools, static-site, ssg, lobsters, devto]
 url: https://lobsters.fr
 source: Lobsters

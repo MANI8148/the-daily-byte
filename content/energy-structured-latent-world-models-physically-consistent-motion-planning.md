@@ -5,7 +5,7 @@ description: "Discover how energy‑structured latent world models with neural t
 slug: energy-structured-latent-world-models-physically-consistent-motion-planning
 date: 2026-08-12
 image_url: https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Archive13_-_robot.jpg/640px-Archive13_-_robot.jpg
-author: Manikanta
+author: The Daily Byte
 tags: ["ai", "ml", "tutorial"]
 model: llama-3.3-70b-versatile
 ---

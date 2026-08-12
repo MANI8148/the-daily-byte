@@ -4,7 +4,7 @@ kicker: OPEN SOURCE
 description: "Explore Dalaran, a robotics-first visualization and data infrastructure for multimodal time-series, now on GitHub with 600 stars and 52 forks."
 slug: dalaran-robotics-visualization
 date: 2026-08-12
-author: Manikanta
+author: The Daily Byte
 tags: ["robotics", "visualization", "rust"]
 model: llama-3.3-70b-versatile
 image_url: "/images/2026-08-12/dalaran-robotics-visualization.jpg"

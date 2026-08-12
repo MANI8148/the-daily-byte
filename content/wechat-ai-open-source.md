@@ -4,7 +4,7 @@ kicker: OPEN SOURCE
 description: "Explore SMNETSTUDIO's WeChat-AI, a TypeScript project on GitHub with 1398 stars and 1034 forks, for building AI-powered WeChat apps."
 slug: wechat-ai-open-source
 date: 2026-08-12
-author: Manikanta
+author: The Daily Byte
 tags: ["ai", "open-source", "typescript"]
 model: llama-3.3-70b-versatile
 image_url: "/images/2026-08-12/wechat-ai-open-source.jpg"

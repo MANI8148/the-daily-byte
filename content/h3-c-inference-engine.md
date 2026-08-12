@@ -4,7 +4,7 @@ kicker: OPEN SOURCE
 description: "Explore antirez's h3.c, a MiniMax H3 inference engine for Mac computers, with 1165 stars on GitHub."
 slug: h3-c-inference-engine
 date: 2026-08-12
-author: Manikanta
+author: The Daily Byte
 tags: ["c", "inference", "mac"]
 model: llama-3.3-70b-versatile
 image_url: "/images/2026-08-12/h3-c-inference-engine.jpg"

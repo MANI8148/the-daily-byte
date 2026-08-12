@@ -4,7 +4,7 @@ kicker: AI / MISC
 description: "A company touts 100% human‑written medical research, but a 404media exposé shows it’s fully AI‑generated. Learn why this matters for peer review and how to spot AI content."
 slug: 100-human-written-never-ai-actually-ai
 date: 2026-08-12
-author: Manikanta
+author: The Daily Byte
 tags: ["ai", "ml", "medical-research", "peer-review", "detection"]
 model: llama-3.3-70b-versatile
 image_url: "/images/2026-08-12/100-human-written-never-ai-actually-ai.jpg"

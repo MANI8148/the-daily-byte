@@ -10,7 +10,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "Open Source",
     "title": "WECHAT-AI OPEN SOURCE",
     "subtitle": "Explore SMNETSTUDIO's WeChat-AI, a TypeScript project on GitHub with 1398 stars and 1034 forks, for building AI-powered WeChat apps.",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "WeChat-AI, a new open-source project from SMNETSTUDIO, has gained significant attention on GitHub with 1398 stars and 1034 forks. This TypeScript project aims to provide a robust framework for building AI-powered WeChat applications.",
     "bodyParagraphs": [
       "Introduction to WeChat-AI WeChat-AI is designed to simplify the development of intelligent WeChat apps by providing a set of pre-built components and APIs. The project utilizes TypeScript, a popular programming language, to ensure better code maintainability and scalability. By leveraging WeChat-AI, developers can focus on building innovative features and services without worrying about the underlying complexities.",
@@ -41,7 +41,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "Dev Tools",
     "title": "WHY LOBSTERS DEVS LOVE TINY STATIC SITE GENERATORS",
     "subtitle": "A look at the minimal static-site-generator ecosystem trending on Lobsters and dev.to — why students are ditching heavy frameworks for single-binary tools, with concrete tradeoffs ",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "Why Lobsters Devs Love Tiny Static Site Generators — this week the Lobsters and dev.to communities surfaced a recurring theme: developers are replacing multi-megabyte framework builds with single-binary static site generators. For students, the appeal is obvious — one binary, no node_modules, instant builds.",
     "bodyParagraphs": [
       "What's actually going on",
@@ -77,7 +77,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "AI & ML",
     "title": "STEALING LLM API TRACES",
     "subtitle": "Researchers demonstrate how to steal reasoning traces from proprietary LLM APIs, sparking concerns about data security and privacy.",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "A recent study has shown that it is possible to steal reasoning traces from proprietary Large Language Model (LLM) APIs, such as those used by OpenAI, with alarming ease.",
     "bodyParagraphs": [
       "Introduction to LLM APIs LLM APIs are artificial intelligence models that can process and generate human-like language. They are widely used in applications such as chatbots, language translation, and text summarization. These models are typically trained on large datasets and can learn to recognize patterns and relationships in language.",
@@ -108,7 +108,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "Security",
     "title": "SANITIZING LLM API KEYS: A PRACTICAL GUIDE",
     "subtitle": "Learn how to spot and remove API keys from code that calls proprietary LLMs, protecting your secrets and keeping repos clean.",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "Why Your LLM Code Might Be Exposing Secrets",
     "bodyParagraphs": [
       "When developers share snippets that call proprietary language‑model APIs—OpenAI, Anthropic, Cohere, or the newer GPT‑5.6 Luna—they often embed authentication tokens directly in the source. A recent Hacker News discussion highlighted how a seemingly innocuous repository could leak reasoning traces and API keys, allowing anyone to replicate the model’s behavior or even abuse the service. The post, titled “Stealing Reasoning Traces from Proprietary LLM APIs,” urges teams to sanitize code before publishing.",
@@ -142,7 +142,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "AI & ML",
     "title": "SHE: EVOLVING SAFETY HARNESSES FOR LLM AGENTS",
     "subtitle": "Discover how the SHE framework lets LLM agents adapt their safety harnesses over time, improving context, memory, tool use, and runtime control.",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "Large language model (LLM) agents are no longer static programs; they learn, adapt, and sometimes act in ways that surprise their creators. The new paper SHE: Trajectory-driven Safety Harness Evolution for LLM Agents tackles the problem of keeping these agents safe as they evolve. It argues that the safety harness—the wrapper that manages context, memory, tools, permissions, and runtime control—must itself be dynamic, not a fixed deployment artifact.",
     "bodyParagraphs": [
       "What Is a Safety Harness?",
@@ -176,7 +176,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "Security",
     "title": "QUANTUM BIT COMMITMENT",
     "subtitle": "Researchers use hybrid locked physical unclonable functions to achieve statistically secure bit commitment protocols",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "Quantum computers can break many classical cryptographic schemes, but quantum cryptography can also provide new approaches to secure communication. Researchers have now proposed a statistically secure bit commitment protocol based on hybrid locked physical unclonable functions (HLPUFs) and quantum communication.",
     "bodyParagraphs": [
       "Introduction to Bit Commitment Bit commitment is a fundamental primitive in cryptography, where one party commits to a bit (0 or 1) in a way that it cannot be changed later, but the bit remains hidden from the other party. However, achieving bit commitment with unconditional security is impossible, even in quantum cryptography. This is due to the no-go theorem, which states that unconditionally secure bit commitment is impossible.",
@@ -207,7 +207,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "Open Source",
     "title": "PI FROM SCRATCH",
     "subtitle": "Build your own mini Pi from scratch using 600 lines of TypeScript and create a personalized pi-agent with ease",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "A GitHub user named SaladDay has created a mini Pi from scratch using only 600 lines of TypeScript, allowing users to easily build and customize their own pi-agent from the ground up.",
     "bodyParagraphs": [
       "Introduction to Pi from Scratch The pi-from-scratch repository, which has garnered 505 stars and 33 forks on GitHub, provides a super mini version of Pi that can be used as a starting point for creating a personalized pi-agent. The repository is written entirely in TypeScript, making it accessible to developers familiar with the language.",
@@ -238,7 +238,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "Open Source",
     "title": "PHONE HARNESS",
     "subtitle": "Control your phone with a Python agent using the phone-harness repo",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "Introduction to Phone Harness ShawnPana's phone-harness repository on GitHub allows users to control their phones using a Python agent. With 1483 stars and 128 forks, this open-source project has gained significant attention in the developer community.",
     "bodyParagraphs": [
       "What is Phone Harness? Phone Harness is a Python library that enables users to automate tasks on their phones. It provides an API for interacting with the phone's interface, allowing users to write scripts that can perform various actions, such as sending texts, making calls, and accessing apps.",
@@ -269,7 +269,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "Open Source",
     "title": "OIL-MOTION ANIMATIONS",
     "subtitle": "Create smooth interactive web animations with oil-motion, a Python repo trending on GitHub with 1459 stars and 115 forks.",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "Oil-motion, a Python repository with 1459 stars and 115 forks on GitHub, allows developers to create smooth, responsive interactive web animations. This open-source library is designed to simplify the process of creating complex animations, making it easier for developers to add engaging visual effects to their web applications.",
     "bodyParagraphs": [
       "What is Oil-Motion? Oil-motion is a Python library that provides a simple and intuitive way to create interactive web animations. It uses a declarative syntax, allowing developers to define the desired animation behavior without worrying about the underlying implementation details. This approach makes it easier to create complex animations, as developers can focus on the visual aspects of the animation rather than the technical details.",
@@ -300,7 +300,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "AI & ML",
     "title": "NVIDIA PARTNERS WITH BANKS TO FUND $500B AI DATA CENTER PUSH",
     "subtitle": "Nvidia teams with six banks to launch a $500B AI infrastructure fund, offering low‑rate long‑term loans for data‑center builders.",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "Nvidia Teams with Banks to Create a $500 B AI Infrastructure Fund",
     "bodyParagraphs": [
       "Nvidia announced that it will work with six major investment firms to set up a $500 billion fund that will provide long‑term financing for AI data‑center projects at rates below the market average.",
@@ -333,7 +333,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "Open Source",
     "title": "MINIMAL NEXT.JS CHATBOT TEMPLATE POWERED BY VERCEL AI GATEWAY",
     "subtitle": "A quick‑start guide to the shadcn-ui/chatbot-template, a TypeScript Next.js chatbot that runs on Vercel AI Gateway. Learn how to clone, customize, and deploy in minutes.",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "What the Template Offers",
     "bodyParagraphs": [
       "The shadcn-ui/chatbot-template is a lean starter kit that lets you spin up a chatbot in under ten minutes. It ships with 494 GitHub stars and 44 forks, proving that students and hobbyists alike find it useful. The repo is written in TypeScript and bundles a clean chat UI, a serverless API route, and a minimal configuration for the Vercel AI Gateway.",
@@ -365,7 +365,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "Open Source",
     "title": "HACKER NEWS TRENDS",
     "subtitle": "Exploring Hacker News trends and their impact on the tech community",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "Hacker News, a social news platform focused on tech and startup-related stories, has been a cornerstone of the tech community for over a decade. With thousands of users and a vast array of topics, it can be challenging to keep up with the latest trends and discussions.",
     "bodyParagraphs": [
       "Introduction to Hacker News Hacker News is a platform where users can share and discuss interesting stories, ask for advice, and learn from others. The site's algorithm ranks posts based on user engagement, ensuring that the most relevant and interesting content rises to the top.",
@@ -396,7 +396,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "Open Source",
     "title": "H3.C INFERENCE ENGINE",
     "subtitle": "Explore antirez's h3.c, a MiniMax H3 inference engine for Mac computers, with 1165 stars on GitHub.",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "Antirez's h3.c repository on GitHub has garnered significant attention with 1165 stars and 54 forks, offering a MiniMax H3 inference engine specifically designed for Mac computers.",
     "bodyParagraphs": [
       "Introduction to h3.c The h3.c repository provides a C implementation of the MiniMax algorithm for H3 inference. H3 is a hexagonal geospatial indexing system developed by Uber. The system allows for efficient and flexible querying of large datasets. The MiniMax algorithm is a recursive algorithm used for decision making in games like chess, but it can also be applied to other fields such as geospatial indexing.",
@@ -429,7 +429,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "Big Tech",
     "title": "GOOGLE PUSHES GEMINI DEEPER INTO WORKSPACE",
     "subtitle": "Google's latest Workspace update brings Gemini into Docs, Sheets, and Meet by default — a look at what changed, the student angle, and why it matters for the open-web toolchain.",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "Google Pushes Gemini Deeper Into Workspace — this week Google turned Gemini on by default across Docs, Sheets, and Meet. For students, that means AI assistance is now a baseline expectation in the tools they already use daily.",
     "bodyParagraphs": [
       "What's actually going on",
@@ -465,7 +465,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "Open Source",
     "title": "GENCO - AI FOR GRID ANALYSIS",
     "subtitle": "Researchers introduce GENCO, a unified neural solver for steady-state transmission grid analysis, handling power flow and optimal power flow.",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "Introduction to GENCO Researchers have introduced GENCO, a unified neural solver for steady-state transmission grid analysis, in a paper published on arXiv. GENCO, which stands for GEometric Neural Corrective Optimizer, is designed to handle power flow (PF) and optimal power flow (OPF) problems in power system analysis. This development has the potential to transform engineering domains, where strict physical consistency must be enforced.",
     "bodyParagraphs": [
       "Background: Power System Analysis Power system analysis is a critical component of grid operations, involving the calculation of power flows and voltages across the grid. Traditional methods for solving these problems rely on numerical techniques, which can be computationally intensive and may not always provide accurate results. The introduction of GENCO offers a promising alternative, leveraging the power of neural networks to improve the efficiency and accuracy of power system analysis.",
@@ -496,7 +496,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "Security",
     "title": "FCC TARGETS CHINESE OPTICAL TRANSCEIVERS IN NEW IMPORT BAN",
     "subtitle": "The FCC proposes banning imports of new‑model Chinese optical transceivers, a move that could reshape AI data‑center supply chains and cost structures.",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "The FCC’s New Import Ban Targets Chinese Optical Transceivers",
     "bodyParagraphs": [
       "The Federal Communications Commission is drafting a proposal that would add imports of new‑model optical transceivers manufactured in China to the list of equipment covered by the Secure Networks Act. The move comes after China’s optical‑transceiver market captured 56 % of global sales last year, according to Tom’s Hardware.",
@@ -530,7 +530,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "Hardware / Consumer Tech",
     "title": "ENGLAND HEPATITIS C FREE",
     "subtitle": "England on track to eliminate hepatitis C, a viral liver infection, thanks to advanced treatments and screening.",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "Introduction England is set to become one of the first countries to eliminate hepatitis C, a viral liver infection that can cause serious health problems. ## What is Hepatitis C? Hepatitis C is a liver infection caused by the hepatitis C virus (HCV). It can cause liver inflammation, sometimes leading to severe liver damage. The virus is usually spread through blood-to-blood contact, such as sharing needles or receiving a blood transfusion from an infected person.",
     "bodyParagraphs": [
       "Current Treatment Options In recent years, new treatments for hepatitis C have become available, offering high cure rates for those infected. These treatments typically involve oral medications taken for 8 to 12 weeks, with cure rates of over 90%. The high effectiveness of these treatments has contributed significantly to England's progress in eliminating the disease.",
@@ -560,7 +560,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "AI & ML",
     "title": "ENERGY‑STRUCTURED LATENT WORLD MODELS: PHYSICALLY CONSISTENT MOTION PL",
     "subtitle": "Discover how energy‑structured latent world models with neural time fields bring physics‑consistent motion planning to open‑world robotics, and learn to implement the core ideas in",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "Intro",
     "bodyParagraphs": [
       "A robot that can plan a path through a crowded hallway and then execute it without crashing is a long‑standing dream of embodied AI. The new paper Energy‑Structured Latent World Models with Neural Time Fields for Physically Consistent Open‑World Motion Planning (arXiv:2608.09876v1) tackles this by marrying two recent advances: latent world models and neural time fields. The result is a motion‑planning framework that respects the physics of the real world, even when the robot encounters unseen obstacles.",
@@ -593,7 +593,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "Open Source",
     "title": "DALARAN - ROBOTICS VISUALIZATION",
     "subtitle": "Explore Dalaran, a robotics-first visualization and data infrastructure for multimodal time-series, now on GitHub with 600 stars and 52 forks.",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "Dalaran is a robotics-first visualization and data infrastructure for multimodal time-series data, now available on GitHub under the Apache-2.0 license. ## Introduction to Dalaran Dalaran is a Rust-based project that has garnered significant attention on GitHub, with over 600 stars and 52 forks. As a hard fork of Rerun, Dalaran aims to provide a robust and efficient solution for visualizing and managing multimodal time-series data in robotics applications.",
     "bodyParagraphs": [
       "Key Features of Dalaran Dalaran boasts several key features that make it an attractive solution for robotics developers. It is ROS 2 native, which means it is fully compatible with the latest version of the Robot Operating System. Additionally, Dalaran can read existing .rrd recordings, making it easy to integrate with existing datasets.",
@@ -624,7 +624,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "AI & ML",
     "title": "COMPRESSION IS PREDICTION: HOW LLMS AND DATA COMPRESSORS SHARE A GOAL",
     "subtitle": "Explore how data compression and large language models both predict future symbols to reduce size, with practical examples and a hands‑on code snippet.",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "A text file shrinks from 1 MB to 200 KB by predicting the next word, just like a language model does. The ngrok blog post Compression is prediction shows that the same math underlies both data compressors and LLMs.",
     "bodyParagraphs": [
       "The Core Idea: Prediction Drives Compression",
@@ -659,7 +659,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "AI & ML",
     "title": "AMIE BREAKS GROUND: REAL‑TIME AI VIDEO CONSULTATIONS",
     "subtitle": "Google Research’s AMIE system demonstrates expert‑level AI in real‑time video consultations, spotting coughs, gait issues and more.",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "AMIE Breaks Ground: Real‑Time AI Video Consultations",
     "bodyParagraphs": [
       "Google Research and DeepMind have shown that a research‑grade medical AI can analyze a patient’s video in real time, spotting coughs, gait abnormalities and other visual cues that doctors normally pick up on instinct. The demo, the first of its kind, proves that AI can match expert‑level clinical observation during a live video call.",
@@ -692,7 +692,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "Open Source",
     "title": "AI SHORT DRAMA SKILLS",
     "subtitle": "eternityspring's shuohao-skills GitHub repo for AI short-drama production offers JavaScript skills for character development and story adaptation.",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "Eternityspring's shuohao-skills repository on GitHub has garnered significant attention with 968 stars and 116 forks, showcasing a collection of skills for AI short-drama production.",
     "bodyParagraphs": [
       "Introduction to shuohao-skills The shuohao-skills repository provides a set of JavaScript skills designed to aid in the production of short dramas using AI. These skills can be used to break down characters, create setting diagrams, and outline story adaptations. The repository suggests that these skills can be integrated with Claude Code and Codex, popular platforms for AI development.",
@@ -723,7 +723,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "Open Source",
     "title": "AI PHONE NUMBERS",
     "subtitle": "MCP server for AI agents needing a phone number, with 200+ country coverage and one API call verification",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "MCP server for AI agents that need a phone number now has a solution, with a JavaScript repository offering private numbers in over 200 countries. ## What is MCP Server The MCP server is a solution for AI agents that require a phone number to receive SMS verification codes. This can be useful in various scenarios, such as automated account creation or SMS-based two-factor authentication. The repository, sv-number/mcp-server, provides a simple API for ordering a private number, reading the SMS verification code, and handing it back to the AI agent.",
     "bodyParagraphs": [
       "Country Coverage One of the key features of the MCP server is its extensive country coverage. With support for over 200 countries, this repository offers the widest coverage in its category. This means that AI agents can be designed to work with phone numbers from almost any country, making it a versatile solution for global applications.",
@@ -754,7 +754,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "AI & ML",
     "title": "AI MODEL DEBUGGING",
     "subtitle": "Researchers develop a new method for understanding and controlling multimodal large language models, making it easier to identify and audit internal features.",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "Multimodal large language models (MLLMs) can understand and generate text and images, but their internal workings remain unclear, making it hard to identify, audit, or control their features.",
     "bodyParagraphs": [
       "Introduction to MLLMs MLLMs are a type of AI model that can process multiple forms of input, such as text and images. They have shown impressive performance in various tasks, including image captioning, visual question answering, and text-to-image synthesis. However, their complexity and lack of transparency make it difficult to understand how they work and what features they use to make predictions.",
@@ -785,7 +785,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "AI & ML",
     "title": "AI IN MEDICAL RESEARCH",
     "subtitle": "Company claiming to offer '100% human-written' medical research caught using AI, sparking debate about AI's role in research.",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "A company claiming to offer '100% human-written, never AI' medical research has been found to be entirely AI-driven, sparking concerns about the transparency and accountability of AI in medical research.",
     "bodyParagraphs": [
       "Introduction to the Controversy The story, which was shared on Hacker News, reveals that the company's peer-review process is also automated, raising questions about the validity of the research being produced. The company's claims of human-written research were found to be false, with all content being generated by AI algorithms. This has led to a debate about the role of AI in medical research and the potential consequences of relying on automated systems.",
@@ -816,7 +816,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "Security",
     "title": "AI‑ASSISTED SHAREPOINT EXPLOIT ENABLES UNAUTHENTICATED RCE",
     "subtitle": "Researchers uncovered a high‑severity SharePoint vulnerability that lets attackers run code without authentication, using an AI agent to craft the exploit chain.",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "Researchers Disclose AI‑Assisted SharePoint Exploit Chain Reaching Unauthenticated RCE",
     "bodyParagraphs": [
       "A new Microsoft SharePoint flaw, CVE‑2026‑55040, lets attackers execute arbitrary code on a server without any credentials. The discovery was accelerated by an AI agent that helped researchers build the exploit chain. The vulnerability carries a CVSS score of 9.1 and affects SharePoint Server Subscription Edition, SharePoint Server 2019, and SharePoint Server 2016.",
@@ -851,7 +851,7 @@ export const PIPELINE_ARTICLES: Article[] = [
     "section": "AI & ML",
     "title": "WHEN 100% HUMAN‑WRITTEN CLAIMS TURN OUT TO BE 100% AI",
     "subtitle": "A company touts 100% human‑written medical research, but a 404media exposé shows it’s fully AI‑generated. Learn why this matters for peer review and how to spot AI content.",
-    "author": "Manikanta",
+    "author": "The Daily Byte",
     "leadParagraph": "A Paradox That Stumped the Community",
     "bodyParagraphs": [
       "A startup announced that its medical research papers are “100 % human‑written, never AI.” A 404media article revealed that the entire body of work was actually generated by AI. The story, posted on Hacker News by user Anon84, scored 88 points in a short time, sparking debate about authenticity, peer review, and the limits of AI detection.",

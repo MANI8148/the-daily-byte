@@ -5,7 +5,7 @@ description: "Nvidia teams with six banks to launch a $500B AI infrastructure fu
 slug: nvidia-ai-infrastructure-fund
 date: 2026-08-12
 image_url: https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Nvidia_DGX_H100.png/640px-Nvidia_DGX_H100.png
-author: Manikanta
+author: The Daily Byte
 tags: ["ai", "finance", "infrastructure"]
 model: -
 ---
