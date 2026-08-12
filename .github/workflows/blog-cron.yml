@@ -5,13 +5,13 @@ name: bloggy-daily
 
 on:
   schedule:
-    - cron: "0 * * * *"   # every hour on the hour — 3 articles per run (tunable below)
+    - cron: "17 */2 * * *"   # every 2 hours — 5 topic posts per run (free-tier safe: ~12 runs/day)
   workflow_dispatch:
     inputs:
       count:
-        description: "Posts per lane this run (overrides LANES_PER_RUN)"
+        description: "Posts per lane this run (overrides LANES_PER_RUN; default 1 = 5 posts/hr across 5 lanes)"
         required: false
-        default: "2"
+        default: "1"
 
 concurrency:
   group: bloggy-run
