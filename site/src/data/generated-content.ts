@@ -55,6 +55,41 @@ export const PIPELINE_ARTICLES: Article[] = [
     "stamp": "Darklord"
   },
   {
+    "id": "pipeline-tiny-static-site-generators-lobsters",
+    "date": "2026-08-12",
+    "section": "Dev Tools",
+    "title": "WHY LOBSTERS DEVS LOVE TINY STATIC SITE GENERATORS",
+    "subtitle": "A look at the minimal static-site-generator ecosystem trending on Lobsters and dev.to — why students are ditching heavy frameworks for single-binary tools, with concrete tradeoffs ",
+    "author": "Manikanta",
+    "leadParagraph": "Why Lobsters Devs Love Tiny Static Site Generators — this week the Lobsters and dev.to communities surfaced a recurring theme: developers are replacing multi-megabyte framework builds with single-binary static site generators. For students, the appeal is obvious — one binary, no node_modules, instant builds.",
+    "bodyParagraphs": [
+      "What's actually going on",
+      "The trend is less about features and more about cognitive load. A minimal SSG compiles Markdown to HTML with zero runtime dependencies. You can read the entire source in an afternoon, which is exactly the kind of project that builds intuition. The full discussion is linked below; every claim traces to it.",
+      "Why it matters for students",
+      "Learning a tiny tool end-to-end teaches more than memorizing a framework's CLI. When you understand how a generator walks a directory, parses frontmatter, and renders templates, you understand every SSG — including the big ones — at a deeper level.",
+      "How to go deeper",
+      "Pick one SSG, build a personal site, then read its source. - Reimplement the core loop (scan → parse → render) in 100 lines. - Write your own explainer; the writing is where understanding firms up."
+    ],
+    "pullQuote": "Learning a tiny tool end-to-end teaches more than memorizing a framework's CLI. When you understand how a generator walks a directory, parses frontmatter, and renders templates, you understand every SSG — including the big ones — at a deeper level.",
+    "keyTakeaways": [
+      "Pick one SSG, build a personal site, then read its source. - Reimplement the core loop (scan → parse → render) in 100 lines. - Write your ow",
+      "Minimal SSGs trade plugins for transparency - Single-binary tooling reduces setup friction to near zero - Reading small tools builds durable"
+    ],
+    "readTimeMinutes": 3,
+    "likesCount": 0,
+    "comments": [],
+    "tags": [
+      "dev-tools",
+      "static-site",
+      "ssg",
+      "lobsters",
+      "devto"
+    ],
+    "stamp": "Darklord",
+    "sourceUrl": "https://lobsters.fr",
+    "sourceName": "Lobsters"
+  },
+  {
     "id": "pipeline-stealing-reasoning-traces-from-proprietary-llm-apis",
     "date": "2026-08-12",
     "section": "AI & ML",
@@ -491,6 +526,41 @@ export const PIPELINE_ARTICLES: Article[] = [
     ],
     "stamp": "Darklord",
     "imageUrl": "/images/2026-08-12/h3-c-inference-engine.jpg"
+  },
+  {
+    "id": "pipeline-google-gemini-workspace-rollout",
+    "date": "2026-08-12",
+    "section": "Big Tech",
+    "title": "GOOGLE PUSHES GEMINI DEEPER INTO WORKSPACE",
+    "subtitle": "Google's latest Workspace update brings Gemini into Docs, Sheets, and Meet by default — a look at what changed, the student angle, and why it matters for the open-web toolchain.",
+    "author": "Manikanta",
+    "leadParagraph": "Google Pushes Gemini Deeper Into Workspace — this week Google turned Gemini on by default across Docs, Sheets, and Meet. For students, that means AI assistance is now a baseline expectation in the tools they already use daily.",
+    "bodyParagraphs": [
+      "What's actually going on",
+      "The rollout makes Gemini a default surface rather than an add-on. Google's announcement frames it as \"help everywhere you work.\" The full post is linked below; every claim traces to it.",
+      "Why it matters for students",
+      "When the dominant productivity suite ships AI by default, the skill that matters shifts from using the tool to verifying its output. Gemini can draft a memo in seconds, but the student who checks the facts is the one who learns. This is the same verification muscle every Daily Byte piece trains.",
+      "How to go deeper",
+      "Open a Workspace doc and prompt Gemini, then fact-check one claim against a primary source. - Compare Gemini's output to an open-source model you run locally. - Write your own summary; the writing is where understanding firms up."
+    ],
+    "pullQuote": "The rollout makes Gemini a default surface rather than an add-on. Google's announcement frames it as \"help everywhere you work.\" The full post is linked below; every claim traces to it.",
+    "keyTakeaways": [
+      "Open a Workspace doc and prompt Gemini, then fact-check one claim against a primary source. - Compare Gemini's output to an open-source mode",
+      "Gemini is now default across Workspace, not opt-in - Verification, not prompting, is the durable student skill - Big-tech AI defaults raise "
+    ],
+    "readTimeMinutes": 3,
+    "likesCount": 0,
+    "comments": [],
+    "tags": [
+      "big-tech",
+      "google",
+      "gemini",
+      "workspace",
+      "ai"
+    ],
+    "stamp": "Darklord",
+    "sourceUrl": "https://blog.google",
+    "sourceName": "Google Blog"
   },
   {
     "id": "pipeline-genco-ai-for-grid-analysis",
