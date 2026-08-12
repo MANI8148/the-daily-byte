@@ -67,6 +67,7 @@ export const PIPELINE_ARTICLES: Article[] = [
       "devto"
     ],
     "stamp": "Darklord",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Lobster001.jpg/640px-Lobster001.jpg",
     "sourceUrl": "https://lobsters.fr",
     "sourceName": "Lobsters"
   },
@@ -540,6 +541,7 @@ export const PIPELINE_ARTICLES: Article[] = [
       "ai"
     ],
     "stamp": "Darklord",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_Logo.svg/640px-Google_%22G%22_Logo.svg.png",
     "sourceUrl": "https://blog.google",
     "sourceName": "Google Blog"
   },

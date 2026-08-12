@@ -8,6 +8,7 @@ author: Manikanta
 tags: [dev-tools, static-site, ssg, lobsters, devto]
 url: https://lobsters.fr
 source: Lobsters
+image_url: https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Lobster001.jpg/640px-Lobster001.jpg
 status: draft
 ---
 

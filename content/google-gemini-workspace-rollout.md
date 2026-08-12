@@ -8,6 +8,7 @@ author: Manikanta
 tags: [big-tech, google, gemini, workspace, ai]
 url: https://blog.google
 source: Google Blog
+image_url: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_Logo.svg/640px-Google_%22G%22_Logo.svg.png
 status: draft
 ---
 
