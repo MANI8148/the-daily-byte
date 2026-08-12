@@ -63,6 +63,12 @@ def _draft_one(cfg: Config, db, brief: dict, mock_llm: bool, auto_publish: bool 
     }
     rec = db.insert_post(post)
     post_id = rec.get("id") if isinstance(rec, dict) else None
+    # Record the source URL as seen so it is never re-drafted (file ledger in dry-run,
+    # Supabase seen_links when configured). This is the durable dedup guarantee.
+    try:
+        db.mark_seen(brief.get("url", ""))
+    except Exception as e:
+        print(f"  [dedup] mark_seen failed: {e}")
     image_url = images.run(cfg, fm, brief, model)
     site_path = publish.save_site_copy(cfg, fm, body, model, image_url=image_url)
     art["post_id"] = post_id

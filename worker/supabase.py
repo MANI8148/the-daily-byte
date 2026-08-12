@@ -1,18 +1,33 @@
-"""Thin Supabase REST client (stdlib only). Missing config -> dry-run mode.
+"""Thin Supabase REST client (stdlib only). Missing config -> local file-ledger mode.
 
-Dry-run mode prints what WOULD be stored, so the whole pipeline runs on any
-machine with zero cloud setup. With SUPABASE_URL + SUPABASE_SERVICE_KEY set it
-talks to the Postgres REST API (PostgREST).
+The only critical job Supabase does is the dedup ledger (seen_links). When
+SUPABASE_URL + SUPABASE_SERVICE_KEY are absent we fall back to a committed
+JSON file (seen_links.json) so dedup persists across runs with zero cloud setup.
+This keeps the project free-forever with no extra services.
 """
 from __future__ import annotations
 
 import json
+import os
 import urllib.error
 import urllib.request
 
 from .net import post_json
 
 _TIMEOUT = 30
+_LEDGER = os.path.join(os.path.dirname(os.path.dirname(__file__)), "seen_links.json")
+
+
+def _load_ledger() -> dict:
+    try:
+        return json.load(open(_LEDGER))
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {"seen": []}
+
+
+def _save_ledger(data: dict) -> None:
+    with open(_LEDGER, "w") as f:
+        json.dump(data, f, indent=2)
 
 
 class Supabase:
@@ -73,9 +88,19 @@ class Supabase:
     def seen(self, url: str) -> bool:
         """True if url was already ingested (unique index on seen_links.url)."""
         if self.dry:
-            return False
+            data = _load_ledger()
+            return url in data.get("seen", [])
         res = self._call("POST", "/rest/v1/seen_links", {"url": url, "first_seen_at": "now()"})
         return bool(isinstance(res, dict) and res.get("_conflict"))
+
+    def mark_seen(self, url: str) -> None:
+        """Persist a URL as seen (file ledger in dry-run; no-op on remote success path)."""
+        if self.dry:
+            data = _load_ledger()
+            seen = data.setdefault("seen", [])
+            if url not in seen:
+                seen.append(url)
+                _save_ledger(data)
 
     def recent_posts(self, limit: int = 20) -> list:
         if self.dry:
