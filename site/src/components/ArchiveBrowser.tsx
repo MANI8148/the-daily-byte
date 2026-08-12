@@ -211,25 +211,36 @@ export const ArchiveBrowser: React.FC<ArchiveBrowserProps> = ({
                       {allArts.filter((a) => a.date === issue.dateStr).length} dispatches filed · {issue.displayDate}
                     </div>
                   </div>
-                  {/* Right half: archives — 2 per row, fitted boxes */}
+                  {/* Right half: archives — normal blog cards in boxes labeled BYTE n / VOL n, 2 per row */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {allArts
                       .filter((a) => a.date === issue.dateStr)
-                      .map((a) => (
-                        <button
+                      .map((a, idx) => (
+                        <div
                           key={a.id}
-                          onClick={(e) => { e.stopPropagation(); onSelectArticle(a); }}
-                          className="text-left group flex flex-col gap-2 p-4 border-2 border-[#1A1A1A] bg-[#F9F7F2] hover:bg-[#1A1A1A] hover:text-[#F9F7F2] transition-colors"
+                          className="flex flex-col border-2 border-[#1A1A1A] bg-[#F9F7F2] group"
                         >
-                          {a.imageUrl && a.imageUrl.startsWith('/images/') && (
-                            <img src={a.imageUrl} onError={imgError} alt={a.title} className="w-full h-32 object-cover border-2 border-[#1A1A1A] vintage-sepia" />
-                          )}
-                          <span className="font-serif text-base font-bold leading-snug line-clamp-3">{a.title}</span>
-                          <div className="flex justify-between items-center text-[9px] font-sans uppercase tracking-wider">
-                            <span className="text-[#b91c1c]">{a.section}</span>
-                            <span className="opacity-70">{a.date}</span>
+                          <div className="flex justify-between items-center px-3 py-1.5 bg-[#1A1A1A] text-[#F9F7F2] text-[9px] font-sans font-bold uppercase tracking-widest">
+                            <span>BYTE {idx + 1} / VOL {issue.issueNumber}</span>
+                            <span className="opacity-70">{a.section}</span>
                           </div>
-                        </button>
+                          <button
+                            onClick={(e) => { e.stopPropagation(); onSelectArticle(a); }}
+                            className="text-left flex flex-col gap-2 p-4 hover:bg-[#EEEBE1] transition-colors"
+                          >
+                            {a.imageUrl && a.imageUrl.startsWith('/images/') && (
+                              <img src={a.imageUrl} onError={imgError} alt={a.title} className="w-full h-36 object-cover border-2 border-[#1A1A1A] vintage-sepia" />
+                            )}
+                            <span className="font-serif text-base sm:text-lg font-bold leading-snug line-clamp-3">{a.title}</span>
+                            {a.leadParagraph && (
+                              <p className="font-serif text-xs opacity-80 leading-relaxed line-clamp-2">{a.leadParagraph}</p>
+                            )}
+                            <div className="flex justify-between items-center text-[9px] font-sans uppercase tracking-wider">
+                              <span className="text-[#b91c1c]">{a.section}</span>
+                              <span className="opacity-70">{a.date}</span>
+                            </div>
+                          </button>
+                        </div>
                       ))}
                   </div>
                 </div>
