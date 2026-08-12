@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GazetteIssue } from '../types';
+import { GazetteIssue, SECTIONS, categoryMatches } from '../types';
 import { Calendar, Search, Clock, ArrowRight, History, Newspaper } from 'lucide-react';
 import { imgError } from '../lib/img';
 
@@ -18,16 +18,15 @@ export const ArchiveBrowser: React.FC<ArchiveBrowserProps> = ({
   const [yearFilter, setYearFilter] = useState<string>('all');
   const [sectionFilter, setSectionFilter] = useState<string>('all');
 
-  const SECTIONS = ['AI & ML', 'TECH', 'OPEN SOURCE', 'GITHUB', 'DEV SKILLS'] as const;
-
   const issueList = (Object.values(issues) as GazetteIssue[]).sort((a, b) => b.dateStr.localeCompare(a.dateStr));
   const years = [...new Set(issueList.map((i) => i.dateStr.slice(0, 4)))].sort().reverse();
 
   const filteredIssues = issueList.filter((issue) => {
     if (yearFilter !== 'all' && !issue.dateStr.startsWith(yearFilter)) return false;
     if (sectionFilter !== 'all') {
+      const activeCat = SECTIONS.find((s) => s.key === sectionFilter) ?? null;
       const arts = [issue.leadHeroArticle, ...issue.featuredArticles];
-      if (!arts.some((a) => a.section === sectionFilter)) return false;
+      if (activeCat && !arts.some((a) => a && categoryMatches(activeCat, a.section))) return false;
     }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
@@ -113,7 +112,7 @@ export const ArchiveBrowser: React.FC<ArchiveBrowserProps> = ({
               >
                 <option value="all">All sections</option>
                 {SECTIONS.map((s) => (
-                  <option key={s} value={s}>{s}</option>
+                  <option key={s.key} value={s.key}>{s.label}</option>
                 ))}
               </select>
             </label>

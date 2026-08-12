@@ -7,7 +7,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-wechat-ai-open-source",
     "date": "2026-08-12",
-    "section": "Disruptions & Startups",
+    "section": "Open Source",
     "title": "WECHAT-AI OPEN SOURCE",
     "subtitle": "Explore SMNETSTUDIO's WeChat-AI, a TypeScript project on GitHub with 1398 stars and 1034 forks, for building AI-powered WeChat apps.",
     "author": "Manikanta",
@@ -38,7 +38,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-unable-to-summarize-arxiv-cs-cr-4424391136",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "AI & ML",
     "title": "UNABLE TO SUMMARIZE ARXIV:CS.CR 4424391136",
     "subtitle": "The Daily Byte cannot provide a detailed article because the source content is unavailable.",
     "author": "Manikanta",
@@ -57,7 +57,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-stealing-reasoning-traces-from-proprietary-llm-apis",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "AI & ML",
     "title": "STEALING REASONING TRACES FROM PROPRIETARY LLM APIS",
     "subtitle": "A practical explainer of Stealing Reasoning Traces from Proprietary LLM APIs for students, with concrete examples and key takeaways.",
     "author": "Manikanta",
@@ -88,7 +88,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-stealing-llm-traces",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "AI & ML",
     "title": "STEALING LLM TRACES",
     "subtitle": "Researchers discover a method to extract reasoning traces from proprietary LLM APIs, raising concerns about model security and intellectual property.",
     "author": "Manikanta",
@@ -118,7 +118,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-stealing-llm-api-traces",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "AI & ML",
     "title": "STEALING LLM API TRACES",
     "subtitle": "Researchers demonstrate how to steal reasoning traces from proprietary LLM APIs, sparking concerns about data security and privacy.",
     "author": "Manikanta",
@@ -148,7 +148,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-statistically-secure-bit-commitment-and-coin-flipping-protocols-based-",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "AI & ML",
     "title": "STATISTICALLY-SECURE BIT COMMITMENT AND COIN FLIPPING PROTOC",
     "subtitle": "A practical explainer of Statistically-Secure Bit Commitment and Coin Flipping Protocols Based for students, with concrete examples and key takeaways.",
     "author": "Manikanta",
@@ -179,7 +179,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-sanitize-llm-api-keys",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "Tech",
     "title": "SANITIZING LLM API KEYS: A PRACTICAL GUIDE",
     "subtitle": "Learn how to spot and remove API keys from code that calls proprietary LLMs, protecting your secrets and keeping repos clean.",
     "author": "Manikanta",
@@ -212,7 +212,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-safety-harness-evolution-llm",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "AI & ML",
     "title": "SHE: EVOLVING SAFETY HARNESSES FOR LLM AGENTS",
     "subtitle": "Discover how the SHE framework lets LLM agents adapt their safety harnesses over time, improving context, memory, tool use, and runtime control.",
     "author": "Manikanta",
@@ -245,7 +245,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-quantum-bit-commitment-protocol",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "Tech",
     "title": "QUANTUM BIT COMMITMENT",
     "subtitle": "Researchers use hybrid locked physical unclonable functions to achieve statistically secure bit commitment protocols",
     "author": "Manikanta",
@@ -275,7 +275,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-pi-from-scratch",
     "date": "2026-08-12",
-    "section": "Disruptions & Startups",
+    "section": "Open Source",
     "title": "PI FROM SCRATCH",
     "subtitle": "Build your own mini Pi from scratch using 600 lines of TypeScript and create a personalized pi-agent with ease",
     "author": "Manikanta",
@@ -306,7 +306,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-phone-harness-python-repo",
     "date": "2026-08-12",
-    "section": "Disruptions & Startups",
+    "section": "Open Source",
     "title": "PHONE HARNESS",
     "subtitle": "Control your phone with a Python agent using the phone-harness repo",
     "author": "Manikanta",
@@ -337,7 +337,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-oil-motion-animations",
     "date": "2026-08-12",
-    "section": "Disruptions & Startups",
+    "section": "Open Source",
     "title": "OIL-MOTION ANIMATIONS",
     "subtitle": "Create smooth interactive web animations with oil-motion, a Python repo trending on GitHub with 1459 stars and 115 forks.",
     "author": "Manikanta",
@@ -368,7 +368,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-nvidia-ai-infrastructure-fund",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "AI & ML",
     "title": "NVIDIA PARTNERS WITH BANKS TO FUND $500B AI DATA CENTER PUSH",
     "subtitle": "Nvidia teams with six banks to launch a $500B AI infrastructure fund, offering low‑rate long‑term loans for data‑center builders.",
     "author": "Manikanta",
@@ -400,7 +400,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-minimal-nextjs-chatbot-template",
     "date": "2026-08-12",
-    "section": "Disruptions & Startups",
+    "section": "Open Source",
     "title": "MINIMAL NEXT.JS CHATBOT TEMPLATE POWERED BY VERCEL AI GATEWAY",
     "subtitle": "A quick‑start guide to the shadcn-ui/chatbot-template, a TypeScript Next.js chatbot that runs on Vercel AI Gateway. Learn how to clone, customize, and deploy in minutes.",
     "author": "Manikanta",
@@ -432,7 +432,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-hacker-news-trends",
     "date": "2026-08-12",
-    "section": "Disruptions & Startups",
+    "section": "Open Source",
     "title": "HACKER NEWS TRENDS",
     "subtitle": "Exploring Hacker News trends and their impact on the tech community",
     "author": "Manikanta",
@@ -462,7 +462,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-h3-c-inference-engine",
     "date": "2026-08-12",
-    "section": "Disruptions & Startups",
+    "section": "Open Source",
     "title": "H3.C INFERENCE ENGINE",
     "subtitle": "Explore antirez's h3.c, a MiniMax H3 inference engine for Mac computers, with 1165 stars on GitHub.",
     "author": "Manikanta",
@@ -495,7 +495,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-genco-ai-for-grid-analysis",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "AI & ML",
     "title": "GENCO - AI FOR GRID ANALYSIS",
     "subtitle": "Researchers introduce GENCO, a unified neural solver for steady-state transmission grid analysis, handling power flow and optimal power flow.",
     "author": "Manikanta",
@@ -525,7 +525,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-fcc-proposes-import-ban-on-chinese-optical-transceivers-blockade-targe",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "AI & ML",
     "title": "FCC PROPOSES IMPORT BAN ON CHINESE OPTICAL TRANSCEIVERS — BL",
     "subtitle": "A practical explainer of FCC proposes import ban on Chinese optical transceivers — blockade tar for students, with concrete examples and key takeaways.",
     "author": "Manikanta",
@@ -557,7 +557,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-fcc-import-ban-chinese-optical-transceivers",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "AI & ML",
     "title": "FCC TARGETS CHINESE OPTICAL TRANSCEIVERS IN NEW IMPORT BAN",
     "subtitle": "The FCC proposes banning imports of new‑model Chinese optical transceivers, a move that could reshape AI data‑center supply chains and cost structures.",
     "author": "Manikanta",
@@ -591,7 +591,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-eternityspring-shuohao-skills-ai-skill-agent-skills-for-ai-short-drama",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "AI & ML",
     "title": "ETERNITYSPRING/SHUOHAO-SKILLS: AI 短剧制作的 SKILL 集合：拆角色、出设定图、排大",
     "subtitle": "A practical explainer of eternityspring/shuohao-skills: AI 短剧制作的 skill 集合：拆角色、出设定图、排大纲 | Agent for students, with concrete examples and key takeaways.",
     "author": "Manikanta",
@@ -623,7 +623,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-england-hepatitis-c-free",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "Tech",
     "title": "ENGLAND HEPATITIS C FREE",
     "subtitle": "England on track to eliminate hepatitis C, a viral liver infection, thanks to advanced treatments and screening.",
     "author": "Manikanta",
@@ -653,7 +653,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-energy-structured-latent-world-models-physically-consistent-motion-planning",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "AI & ML",
     "title": "ENERGY‑STRUCTURED LATENT WORLD MODELS: PHYSICALLY CONSISTENT MOTION PL",
     "subtitle": "Discover how energy‑structured latent world models with neural time fields bring physics‑consistent motion planning to open‑world robotics, and learn to implement the core ideas in",
     "author": "Manikanta",
@@ -685,7 +685,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-dalaran-robotics-visualization",
     "date": "2026-08-12",
-    "section": "Disruptions & Startups",
+    "section": "Open Source",
     "title": "DALARAN - ROBOTICS VISUALIZATION",
     "subtitle": "Explore Dalaran, a robotics-first visualization and data infrastructure for multimodal time-series, now on GitHub with 600 stars and 52 forks.",
     "author": "Manikanta",
@@ -716,7 +716,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-compression-is-prediction-llms",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "AI & ML",
     "title": "COMPRESSION IS PREDICTION: HOW LLMS AND DATA COMPRESSORS SHARE A GOAL",
     "subtitle": "Explore how data compression and large language models both predict future symbols to reduce size, with practical examples and a hands‑on code snippet.",
     "author": "Manikanta",
@@ -750,7 +750,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-company-offering-100-human-written-never-ai-medical-research-is-100-ai",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "AI & ML",
     "title": "COMPANY OFFERING '100% HUMAN-WRITTEN, NEVER AI' MEDICAL RESE",
     "subtitle": "A practical explainer of Company Offering '100% Human-Written, Never AI' Medical Research Is 10 for students, with concrete examples and key takeaways.",
     "author": "Manikanta",
@@ -782,7 +782,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-amie-real-time-video-consultations",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "AI & ML",
     "title": "AMIE BREAKS GROUND: REAL‑TIME AI VIDEO CONSULTATIONS",
     "subtitle": "Google Research’s AMIE system demonstrates expert‑level AI in real‑time video consultations, spotting coughs, gait issues and more.",
     "author": "Manikanta",
@@ -815,7 +815,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-amie-our-research-medical-ai-system-demonstrates-real-time-clinical-vi",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "AI & ML",
     "title": "AMIE, OUR RESEARCH MEDICAL AI SYSTEM, DEMONSTRATES REAL-TIME",
     "subtitle": "A practical explainer of AMIE, our research medical AI system, demonstrates real-time clinical for students, with concrete examples and key takeaways.",
     "author": "Manikanta",
@@ -847,7 +847,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-ai-short-drama-skills",
     "date": "2026-08-12",
-    "section": "Disruptions & Startups",
+    "section": "Open Source",
     "title": "AI SHORT DRAMA SKILLS",
     "subtitle": "eternityspring's shuohao-skills GitHub repo for AI short-drama production offers JavaScript skills for character development and story adaptation.",
     "author": "Manikanta",
@@ -878,7 +878,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-ai-phone-numbers",
     "date": "2026-08-12",
-    "section": "Disruptions & Startups",
+    "section": "Open Source",
     "title": "AI PHONE NUMBERS",
     "subtitle": "MCP server for AI agents needing a phone number, with 200+ country coverage and one API call verification",
     "author": "Manikanta",
@@ -909,7 +909,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-ai-model-debugging",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "AI & ML",
     "title": "AI MODEL DEBUGGING",
     "subtitle": "Researchers develop a new method for understanding and controlling multimodal large language models, making it easier to identify and audit internal features.",
     "author": "Manikanta",
@@ -939,7 +939,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-ai-in-medical-research",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "AI & ML",
     "title": "AI IN MEDICAL RESEARCH",
     "subtitle": "Company claiming to offer '100% human-written' medical research caught using AI, sparking debate about AI's role in research.",
     "author": "Manikanta",
@@ -970,7 +970,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-ai-assisted-sharepoint-exploit",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "Tech",
     "title": "AI-ASSISTED SHAREPOINT EXPLOIT",
     "subtitle": "Researchers reveal AI-assisted exploit chain for unauthenticated RCE in Microsoft SharePoint servers, tracked as CVE-2026-55040 with a CVSS score of 9.1.",
     "author": "Manikanta",
@@ -1000,7 +1000,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-ai-assisted-sharepoint-exploit-unauthenticated-rce",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "AI & ML",
     "title": "AI‑ASSISTED SHAREPOINT EXPLOIT ENABLES UNAUTHENTICATED RCE",
     "subtitle": "Researchers uncovered a high‑severity SharePoint vulnerability that lets attackers run code without authentication, using an AI agent to craft the exploit chain.",
     "author": "Manikanta",
@@ -1035,7 +1035,7 @@ export const PIPELINE_ARTICLES: Article[] = [
   {
     "id": "pipeline-100-human-written-never-ai-actually-ai",
     "date": "2026-08-12",
-    "section": "AI & Neural Nets",
+    "section": "AI & ML",
     "title": "WHEN 100% HUMAN‑WRITTEN CLAIMS TURN OUT TO BE 100% AI",
     "subtitle": "A company touts 100% human‑written medical research, but a 404media exposé shows it’s fully AI‑generated. Learn why this matters for peer review and how to spot AI content.",
     "author": "Manikanta",

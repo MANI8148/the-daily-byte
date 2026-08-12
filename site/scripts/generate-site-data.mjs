@@ -15,15 +15,21 @@ const CONTENT_DIR = join(here, "..", "..", "content");
 const OUT_DIR = join(here, "..", "src", "data");
 const OUT_FILE = join(OUT_DIR, "generated-content.ts");
 
-const SECTIONS = ["AI & Neural Nets", "Cybernetics & Robotics", "Silicon & Quantum", "Editorial & Ethics", "Disruptions & Startups"];
+const SECTIONS = ["AI & ML", "Tech", "Open Source", "GitHub", "Dev Skills"];
 
 function mapSection(kicker = "") {
   const k = kicker.toUpperCase();
-  if (k.includes("AI")) return "AI & Neural Nets";
-  if (k.includes("ML") || k.includes("MODEL") || k.includes("LLM")) return "AI & Neural Nets";
-  if (k.includes("GITHUB") || k.includes("OPEN SOURCE") || k.includes("OSS") || k.includes("REPO") || k.includes("STARTUP")) return "Disruptions & Startups";
-  if (k.includes("SKILL") || k.includes("GUIDE") || k.includes("HOW") || k.includes("CAREER")) return "Editorial & Ethics";
-  return "AI & Neural Nets";
+  // AI / ML family
+  if (k.includes("AI") || k.includes("ML") || k.includes("LLM") || k.includes("MODEL") || k.includes("NEURAL") || k.includes("GEMINI") || k.includes("OPENAI") || k.includes("GPT")) return "AI & ML";
+  // Security / crypto / quantum -> Tech (UI has no dedicated security bucket)
+  if (k.includes("SECUR") || k.includes("CYBER") || k.includes("CRYPTO") || k.includes("QUANTUM") || k.includes("HARDWARE") || k.includes("CHIP") || k.includes("ROBOT") || k.includes("HEALTH TECH") || k.includes("FINANCE")) return "Tech";
+  // Open source
+  if (k.includes("OPEN SOURCE") || k.includes("OSS")) return "Open Source";
+  // GitHub
+  if (k.includes("GITHUB") || k.includes("REPO")) return "GitHub";
+  // Dev skills
+  if (k.includes("SKILL") || k.includes("GUIDE") || k.includes("HOW") || k.includes("CAREER") || k.includes("TUTORIAL") || k.includes("LEARN")) return "Dev Skills";
+  return "AI & ML";
 }
 
 function parseFrontmatter(raw) {
