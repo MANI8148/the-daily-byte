@@ -196,41 +196,27 @@ export const ArchiveBrowser: React.FC<ArchiveBrowserProps> = ({
                   />
                 )}
 
-                {/* Archive body: left half = The Daily Byte identity, right half = archives 2-per-row */}
-                <div className="mb-4 border-t border-[#1A1A1A]/20 pt-4 grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
-                  {/* Left half: The Daily Byte */}
-                  <div className="flex flex-col gap-3 p-6 bg-[#1A1A1A] text-[#F9F7F2] border-2 border-[#1A1A1A]">
-                    <span className="font-cinzel text-3xl font-black tracking-wide leading-none">THE DAILY BYTE</span>
-                    <span className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-[#b91c1c]">Vol. {issue.volumeNumber || 'CLXXV'} &nbsp;·&nbsp; No. {issue.issueNumber}</span>
-                    <p className="font-serif text-xs italic opacity-80 leading-relaxed mt-1">
-                      All the Intelligence Fit to Print — a student daily covering AI, ML, open source,
-                      GitHub, and developer skills. Every dispatch tracked fresh from the open web and
-                      rewritten from primary sources.
-                    </p>
-                    <div className="mt-2 pt-3 border-t border-[#F9F7F2]/20 text-[10px] font-mono-tech uppercase tracking-wider opacity-70">
-                      {allArts.filter((a) => a.date === issue.dateStr).length} dispatches filed · {issue.displayDate}
-                    </div>
-                  </div>
-                  {/* Right half: archives — normal blog cards in boxes labeled BYTE n / VOL n, 2 per row */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {allArts
-                      .filter((a) => a.date === issue.dateStr)
-                      .map((a, idx) => (
-                        <div
-                          key={a.id}
-                          className="flex flex-col border-2 border-[#1A1A1A] bg-[#F9F7F2] group"
+                {/* Archive body: full-width blog boxes, left to right */}
+                <div className="mb-4 border-t border-[#1A1A1A]/20 pt-4 flex flex-col gap-4">
+                  {allArts
+                    .filter((a) => a.date === issue.dateStr)
+                    .map((a, idx) => (
+                      <div
+                        key={a.id}
+                        className="flex flex-col border-2 border-[#1A1A1A] bg-[#F9F7F2] group"
+                      >
+                        <div className="flex justify-between items-center px-3 py-1.5 bg-[#1A1A1A] text-[#F9F7F2] text-[9px] font-sans font-bold uppercase tracking-widest">
+                          <span>BYTE {idx + 1} / VOL {issue.issueNumber}</span>
+                          <span className="opacity-70">{a.section}</span>
+                        </div>
+                        <button
+                          onClick={(e) => { e.stopPropagation(); onSelectArticle(a); }}
+                          className="text-left flex flex-col sm:flex-row gap-4 p-4 hover:bg-[#EEEBE1] transition-colors items-start"
                         >
-                          <div className="flex justify-between items-center px-3 py-1.5 bg-[#1A1A1A] text-[#F9F7F2] text-[9px] font-sans font-bold uppercase tracking-widest">
-                            <span>BYTE {idx + 1} / VOL {issue.issueNumber}</span>
-                            <span className="opacity-70">{a.section}</span>
-                          </div>
-                          <button
-                            onClick={(e) => { e.stopPropagation(); onSelectArticle(a); }}
-                            className="text-left flex flex-col gap-2 p-4 hover:bg-[#EEEBE1] transition-colors"
-                          >
-                            {a.imageUrl && a.imageUrl.startsWith('/images/') && (
-                              <img src={a.imageUrl} onError={imgError} alt={a.title} className="w-full h-36 object-cover border-2 border-[#1A1A1A] vintage-sepia" />
-                            )}
+                          {a.imageUrl && a.imageUrl.startsWith('/images/') && (
+                            <img src={a.imageUrl} onError={imgError} alt={a.title} className="w-full sm:w-48 shrink-0 h-40 sm:h-32 object-cover border-2 border-[#1A1A1A] vintage-sepia" />
+                          )}
+                          <div className="flex-1 min-w-0 flex flex-col gap-2">
                             <span className="font-serif text-base sm:text-lg font-bold leading-snug line-clamp-3">{a.title}</span>
                             {a.leadParagraph && (
                               <p className="font-serif text-xs opacity-80 leading-relaxed line-clamp-2">{a.leadParagraph}</p>
@@ -239,10 +225,10 @@ export const ArchiveBrowser: React.FC<ArchiveBrowserProps> = ({
                               <span className="text-[#b91c1c]">{a.section}</span>
                               <span className="opacity-70">{a.date}</span>
                             </div>
-                          </button>
-                        </div>
-                      ))}
-                  </div>
+                          </div>
+                        </button>
+                      </div>
+                    ))}
                 </div>
               </div>
 
