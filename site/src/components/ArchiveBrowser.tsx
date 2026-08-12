@@ -196,8 +196,9 @@ export const ArchiveBrowser: React.FC<ArchiveBrowserProps> = ({
                   />
                 )}
 
-                {/* Every article in this edition — 2-per-row cards with image + date + section. */}
-                <div className="mb-4 border-t border-[#1A1A1A]/20 pt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {/* Every article in this edition — stacked list, image-left / text-right,
+                    full-width text when no image (no empty image gap). */}
+                <div className="mb-4 border-t border-[#1A1A1A]/20 pt-3 flex flex-col gap-3">
                   {allArts
                     .filter((a) => a.date === issue.dateStr)
                     .map((a) => (
@@ -207,22 +208,27 @@ export const ArchiveBrowser: React.FC<ArchiveBrowserProps> = ({
                           e.stopPropagation();
                           onSelectArticle(a);
                         }}
-                        className="text-left group flex flex-col gap-2 p-2 border-2 border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#F9F7F2] transition-colors"
+                        className="text-left group flex gap-4 p-3 border-2 border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#F9F7F2] transition-colors items-start"
                       >
                         {a.imageUrl && (
                           <img
                             src={a.imageUrl}
                             onError={imgError}
                             alt={a.title}
-                            className="w-full h-28 object-cover border border-[#1A1A1A]/30 vintage-sepia"
+                            className="w-28 sm:w-36 shrink-0 h-28 sm:h-36 object-cover border-2 border-[#1A1A1A] vintage-sepia"
                           />
                         )}
-                        <span className="font-serif text-sm font-bold leading-snug line-clamp-2">
-                          {a.title}
-                        </span>
-                        <div className="flex justify-between items-center text-[9px] font-sans uppercase tracking-wider">
-                          <span className="text-[#b91c1c]">{a.section}</span>
-                          <span className="opacity-70">{a.date}</span>
+                        <div className="flex-1 min-w-0 flex flex-col gap-1.5">
+                          <span className="font-serif text-base sm:text-lg font-bold leading-snug line-clamp-2">
+                            {a.title}
+                          </span>
+                          <div className="flex justify-between items-center text-[9px] font-sans uppercase tracking-wider">
+                            <span className="text-[#b91c1c]">{a.section}</span>
+                            <span className="opacity-70">{a.date}</span>
+                          </div>
+                          {a.leadParagraph && (
+                            <p className="font-serif text-xs opacity-80 line-clamp-2">{a.leadParagraph}</p>
+                          )}
                         </div>
                       </button>
                     ))}
