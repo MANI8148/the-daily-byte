@@ -281,7 +281,7 @@ def fetch(name: str, cfg, recent_titles: list[str] | None = None, enrich: int = 
         # single slowest source (~15s). A per-source timeout kills any hung
         # source so one slow endpoint can't inflate total runtime.
         items = []
-        SOURCE_TIMEOUT = float(os.environ.get("FETCH_SOURCE_TIMEOUT", "60"))
+        SOURCE_TIMEOUT = float(os.environ.get("FETCH_SOURCE_TIMEOUT", "15"))
         with cf.ThreadPoolExecutor(max_workers=min(8, len(SOURCES))) as ex:
             futs = {ex.submit(_guarded, SOURCES[k], cfg): k for k in SOURCES}
             for fut in cf.as_completed(futs):

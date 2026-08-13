@@ -92,7 +92,7 @@ jobs:
       # Hard OS-level cap (timeout) guarantees the step can never exceed ~2.5 min even
       # if a source/LLM call hangs past Python's internal timeouts on a cloud runner.
       - name: Run one pipeline pass (draft + checks; publishes only if AUTO_PUBLISH=true)
-        run: timeout 150 python -m worker.app run-once --source all --count "${{ github.event.inputs.count || '2' }}"
+        run: timeout 90 python -m worker.app run-once --source all --count "${{ github.event.inputs.count || '2' }}"
       # Commit whatever drafts/images the cron produced (no-op if nothing changed)
       - name: Commit cron results
         run: |
