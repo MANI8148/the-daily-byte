@@ -147,9 +147,12 @@ def score(item: dict, now: dt.datetime | None = None) -> float:
     )
 
 
-def best_lane(title: str) -> str | None:
+def best_lane(title: str, source: str = "") -> str | None:
     """Route a title to the lane whose LANE_TOPICS entities/concepts match best.
-    Returns None if no lane matches (use for unsorted item routing before scoring)."""
+
+    Falls back to a source-based heuristic when no keyword matches, so items
+    never land in 'Uncategorized' and all six lanes stay populated.
+    """
     best = None
     best_raw = 0.0
     for lane, terms in LANE_TOPICS.items():
@@ -158,7 +161,21 @@ def best_lane(title: str) -> str | None:
         if raw > best_raw:
             best_raw = raw
             best = lane
-    return best
+    if best is not None:
+        return best
+    # No keyword hit -> route by source so every lane can receive content.
+    s = (source or "").lower()
+    if any(k in s for k in ("github", "opensource", "open source", "lobsters", "dev.to", "devto")):
+        return "Open Source"
+    if any(k in s for k in ("reddit", "r/", "hacker news", "hn", "verge", "arstechnica", "tomshardware")):
+        return "Hardware / Consumer Tech" if any(t in s for t in ("tomshardware", "hardware")) else "Big Tech"
+    if any(k in s for k in ("anthropic", "openai", "google", "meta", "microsoft", "apple", "amazon")):
+        return "Big Tech"
+    if any(k in s for k in ("the hacker", "hackers", "security", "dark reading", "bleeping")):
+        return "Security"
+    if any(k in s for k in ("arxiv", "simonwillison", "marktechpost", "thedecoder")):
+        return "AI / ML"
+    return "AI / ML"  # last-resort default so nothing is Uncategorized
 
 
 def pick(items: list[dict], n: int = 1, now: dt.datetime | None = None) -> list[dict]:
@@ -174,7 +191,7 @@ def pick_per_lane(items: list[dict], per_lane: int = 1, now: dt.datetime | None 
     `lane` are routed via best_lane(). Returns up to per_lane per lane."""
     buckets: dict[str, list[dict]] = {}
     for it in items:
-        lane = it.get("lane") or best_lane(it.get("title", "")) or "Uncategorized"
+        lane = it.get("lane") or best_lane(it.get("title", ""), it.get("source", "")) or "Uncategorized"
         buckets.setdefault(lane, []).append(it)
     out: list[dict] = []
     for lane, bucket in buckets.items():

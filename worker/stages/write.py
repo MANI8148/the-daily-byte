@@ -274,7 +274,11 @@ def generate(cfg, brief: dict, mock: bool = False) -> tuple[str, str] | None:
             # LLM-produced title/description containing ':' / '#' / unicode
             # never breaks parser-safety in content/, the site build, or dev.to.
             fm["title"] = str(fm.get("title", ""))[:70]
-            fm["description"] = str(fm.get("description", ""))[:200]
+            # Cap description to the SEO window (<=165) so a slightly-long LLM
+            # description (e.g. 181 chars) can't hard-fail the format gate and
+            # reject an otherwise-valid article.
+            _desc = str(fm.get("description", ""))
+            fm["description"] = _desc[:160]
             fm["slug"] = str(fm.get("slug") or slugify(fm["title"]))
             # Source provenance comes from the brief, never the LLM — this is what
             # powers the READ THE ORIGINAL button on the site.

@@ -11,8 +11,10 @@ the pipeline — a failing source returns [].
 from __future__ import annotations
 
 import datetime as dt
+import os
 import urllib.parse
 import xml.etree.ElementTree as ET
+import concurrent.futures as cf
 
 import feedparser
 import rapidfuzz.fuzz
@@ -274,9 +276,22 @@ def fetch(name: str, cfg, recent_titles: list[str] | None = None, enrich: int = 
         return SOURCES[n](cfg)
 
     if name == "all":
+        # Parallelize source fetching: serial was summing ~30-360s worst-case
+        # (18 sources x up-to-20s timeout each). Thread pool collapses it to the
+        # single slowest source (~15s). A per-source timeout kills any hung
+        # source so one slow endpoint can't inflate total runtime.
         items = []
-        for key in SOURCES:
-            items.extend(_guarded(SOURCES[key], cfg))
+        SOURCE_TIMEOUT = float(os.environ.get("FETCH_SOURCE_TIMEOUT", "60"))
+        with cf.ThreadPoolExecutor(max_workers=min(8, len(SOURCES))) as ex:
+            futs = {ex.submit(_guarded, SOURCES[k], cfg): k for k in SOURCES}
+            for fut in cf.as_completed(futs):
+                src = futs[fut]
+                try:
+                    items.extend(fut.result(timeout=SOURCE_TIMEOUT))
+                except cf.TimeoutError:
+                    print(f"  [fetch] source '{src}' exceeded {SOURCE_TIMEOUT}s; skipped")
+                except Exception as e:
+                    print(f"  [fetch] source '{src}' error: {e}")
     else:
         try:
             items = resolve(name)

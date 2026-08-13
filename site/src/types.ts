@@ -67,5 +67,11 @@ export const SECTIONS: Category[] = [
   { key: 'bigtech', label: 'Big Tech', terms: ['google', 'blog.google', 'rss', 'microsoft', 'apple', 'meta', 'amazon', 'alphabet'] },
 ];
 
-export const categoryMatches = (cat: Category, section: string): boolean =>
-  cat.terms.some((t) => section.toLowerCase().includes(t));
+export const categoryMatches = (cat: Category, section: string): boolean => {
+  const s = section.toLowerCase();
+  const label = cat.label.toLowerCase();
+  // Match if any term appears in the section, OR the section carries the lane
+  // label itself (e.g. section "Big Tech" must satisfy the bigtech lane even
+  // though it doesn't literally contain "google").
+  return cat.terms.some((t) => s.includes(t)) || s.includes(label) || label.includes(s);
+};
