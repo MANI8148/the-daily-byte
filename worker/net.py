@@ -9,6 +9,7 @@ python.org macOS Python builds often ship without a CA bundle
 from __future__ import annotations
 
 import json
+import socket
 import ssl
 import urllib.error
 import urllib.request
@@ -16,8 +17,15 @@ from pathlib import Path
 
 UA = {"User-Agent": "Mozilla/5.0 (bloggy-worker/1.0; +https://github.com/yourname/bloggy)"}
 
+# HARD global socket timeout. urllib's `timeout=` only bounds the *read* phase, NOT
+# DNS + TCP connect + TLS handshake. On a cloud runner a blackholed host (e.g. a
+# blocked RSS endpoint) can hang the connect indefinitely, eating the whole CI
+# window. This caps every socket op at 12s regardless of phase, so a dead source
+# fails fast instead of silently blocking the run.
+socket.setdefaulttimeout(12)
 
-def _urlopen(url: str, timeout: int = 30):
+
+def _urlopen(url: str, timeout: int = 12):
     req = urllib.request.Request(url, headers=UA)
     try:
         return urllib.request.urlopen(req, timeout=timeout)
@@ -32,12 +40,12 @@ def _urlopen(url: str, timeout: int = 30):
             return urllib.request.urlopen(req, context=ssl._create_unverified_context(), timeout=timeout)
 
 
-def get_json(url: str, timeout: int = 30) -> dict | list:
+def get_json(url: str, timeout: int = 12) -> dict | list:
     with _urlopen(url, timeout) as r:
         return json.loads(r.read().decode())
 
 
-def get_text(url: str, timeout: int = 30) -> str:
+def get_text(url: str, timeout: int = 12) -> str:
     with _urlopen(url, timeout) as r:
         return r.read().decode(errors="replace")
 
