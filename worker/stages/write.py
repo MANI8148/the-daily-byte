@@ -8,6 +8,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import signal
 import time
 import urllib.error
 
@@ -182,7 +183,22 @@ def chat_via_opencode(cfg, messages: list[dict]) -> str | None:
     if cfg.opencode_model:
         cmd += ["--model", cfg.opencode_model]
     try:
-        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=45)
+        # start_new_session=True puts opencode in its own process group so we can
+        # kill the ENTIRE tree on timeout. A bare subprocess.run(timeout=) only
+        # SIGTERMs the parent; opencode's children keep the pipe open and the call
+        # hangs past the timeout (this was eating the whole CI window).
+        proc = subprocess.run(
+            cmd, capture_output=True, text=True, timeout=45, start_new_session=True
+        )
+    except subprocess.TimeoutExpired as e:
+        # subprocess.TimeoutExpired carries .pid at runtime; guard for strict typings.
+        _pid = getattr(e, "pid", None)
+        try:
+            if _pid is not None:
+                os.killpg(os.getpgid(_pid), signal.SIGKILL)
+        except Exception:
+            pass
+        raise RuntimeError("opencode CLI timed out (45s)")
     except FileNotFoundError:
         raise RuntimeError("opencode binary not found on PATH (set OPENCODE_BIN or install opencode)")
     if proc.returncode != 0:
