@@ -77,11 +77,26 @@ def chat_via_opencode(cfg, messages: list[dict]) -> str | None:
 def _chat(cfg: Config, messages: list[dict], max_tokens: int = 2000, model: str | None = None) -> str:
     """OpenAI-compatible chat call with a fallback chain.
 
-    Primary endpoint (cfg.llm_base_url) is tried first; on rate-limit (429),
-    auth (401/403), server errors (5xx) or network failures, each configured
-    fallback (cfg.llm_fallbacks) is tried in order — "use any key if we hit limits".
+    Order: (1) local Ollama if configured (free, no key, no network — fastest +
+    never rate-limited), (2) primary HTTP endpoint + fallbacks, (3) opencode CLI.
+    Ollama-first means a runner with Ollama installed drafts instantly instead of
+    waiting on dead/rate-limited cloud keys.
     """
     model = model or cfg.llm_model
+    last_err: Exception | None = None
+
+    # (1) Local Ollama tier — free, no key, no outbound network.
+    if cfg.ollama_model:
+        try:
+            out = chat_via_ollama(cfg, messages)
+            if out:
+                print(f"  [llm] used local Ollama ({cfg.ollama_model})")
+                return out
+        except Exception as e:
+            last_err = e
+            print(f"  [llm] ollama failed: {type(e).__name__}: {str(e)[:120]}; trying next tier")
+
+    # (2) Cloud HTTP endpoints (primary + fallbacks)
     endpoints: list[dict] = [
         {"base_url": cfg.llm_base_url.rstrip("/"), "api_key": cfg.llm_api_key, "model": model},
         *[
@@ -90,7 +105,6 @@ def _chat(cfg: Config, messages: list[dict], max_tokens: int = 2000, model: str 
         ],
     ]
 
-    last_err: Exception | None = None
     for i, ep in enumerate(endpoints):
         if not ep["api_key"]:
             continue
@@ -149,16 +163,6 @@ def _chat(cfg: Config, messages: list[dict], max_tokens: int = 2000, model: str 
             last_err = e
             print(f"  [llm] {ep['base_url']} unreachable ({e.reason}); trying next endpoint")
             continue
-    # Local Ollama tier — free, no key, no outbound network (runner has it installed).
-    if cfg.ollama_model:
-        try:
-            out = chat_via_ollama(cfg, messages)
-            if out:
-                print(f"  [llm] used local Ollama ({cfg.ollama_model})")
-                return out
-        except Exception as e:
-            last_err = e
-            print(f"  [llm] ollama failed: {type(e).__name__}: {str(e)[:120]}; trying next tier")
     # Last tier: opencode CLI — a separate quota pool (the account's own credits),
     # so Groq/OpenRouter free caps never dead-end the paper.
     try:
