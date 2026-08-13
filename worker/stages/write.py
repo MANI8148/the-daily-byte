@@ -56,7 +56,7 @@ def chat_via_opencode(cfg, messages: list[dict]) -> str | None:
     env = dict(os.environ)
     if os.environ.get("OPENCODE_API_KEY"):
         env.setdefault("OPENCODE_API_KEY", os.environ["OPENCODE_API_KEY"])
-    proc = subprocess.run(cmd, capture_output=True, text=True, timeout=240, env=env)
+    proc = subprocess.run(cmd, capture_output=True, text=True, timeout=45, env=env)
     if proc.returncode != 0:
         raise RuntimeError(f"opencode exited {proc.returncode}: {proc.stderr.strip()[:150]}")
     parts = []
@@ -98,7 +98,7 @@ def _chat(cfg: Config, messages: list[dict], max_tokens: int = 2000, model: str 
                 f"{ep['base_url']}/chat/completions",
                 {"model": ep["model"], "messages": messages, "max_tokens": max_tokens},
                 headers={"Authorization": f"Bearer {ep['api_key']}"},
-                timeout=180,
+                timeout=45,
             )
             if i > 0:
                 print(f"  [llm] rate-limit/down on primary — used fallback #{i} ({ep['base_url']})")
@@ -121,7 +121,7 @@ def _chat(cfg: Config, messages: list[dict], max_tokens: int = 2000, model: str 
                         f"{ep['base_url']}/chat/completions",
                         {"model": ep["model"], "messages": messages, "max_tokens": max_tokens},
                         headers={"Authorization": f"Bearer {ep['api_key']}"},
-                        timeout=180,
+                        timeout=45,
                     )
                     content = None
                     if isinstance(data, dict):
@@ -131,10 +131,14 @@ def _chat(cfg: Config, messages: list[dict], max_tokens: int = 2000, model: str 
                         if i > 0:
                             print(f"  [llm] rate-limit/down on primary — used fallback #{i} ({ep['base_url']})")
                         return content
-                    raise RuntimeError("empty content via curl rescue")
+                    # curl rescue also 403/empty -> auth is genuinely dead for this key.
+                    # Don't retry-pointlessly; surface it and move to the next tier fast.
+                    print(f"  [llm] {ep['base_url']} -> 403 even via curl rescue; auth dead for this key")
+                    last_err = RuntimeError(f"403 auth dead: {ep['base_url']}")
+                    continue
                 except Exception as e2:
                     last_err = e2
-                    print(f"  [llm] {ep['base_url']} -> 403 (urllib) and curl rescue failed ({type(e2).__name__}); trying next endpoint")
+                    print(f"  [llm] {ep['base_url']} -> 403 (urllib) and curl rescue failed ({type(e2).__name__}); auth dead, skipping")
                     continue
             if e.code in (429, 401, 500, 502, 503, 504):
                 print(f"  [llm] {ep['base_url']} -> HTTP {e.code}; trying next endpoint")
@@ -178,7 +182,7 @@ def chat_via_opencode(cfg, messages: list[dict]) -> str | None:
     if cfg.opencode_model:
         cmd += ["--model", cfg.opencode_model]
     try:
-        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=240)
+        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=45)
     except FileNotFoundError:
         raise RuntimeError("opencode binary not found on PATH (set OPENCODE_BIN or install opencode)")
     if proc.returncode != 0:
