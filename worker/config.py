@@ -158,6 +158,11 @@ class Config:
     opencode_bin: str = field(default_factory=lambda: _env("OPENCODE_BIN", "opencode"))
     opencode_model: str = field(default_factory=lambda: _env("OPENCODE_MODEL", ""))  # "" = CLI default
 
+    # Local Ollama fallback — runs inside the runner (or on the desktop). Free, no
+    # API key, no network. Tried after the HTTP providers; before opencode CLI.
+    ollama_base: str = field(default_factory=lambda: _env("OLLAMA_BASE_URL", "http://localhost:11434"))
+    ollama_model: str = field(default_factory=lambda: _env("OLLAMA_MODEL", "qwen2.5:0.5b"))
+
     # LLM (any OpenAI-compatible /chat/completions endpoint)
     llm_base_url: str = field(default_factory=lambda: _env("OPENAI_BASE_URL", "https://api.openai.com/v1"))
     llm_api_key: str = field(default_factory=lambda: _env("OPENAI_API_KEY"))

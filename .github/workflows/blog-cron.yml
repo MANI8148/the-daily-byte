@@ -66,6 +66,18 @@ jobs:
         run: pip install -r worker/requirements.txt
       - name: Install opencode CLI (4th LLM fallback tier)
         run: npm i -g opencode-ai || curl -fsSL https://opencode.ai/install | bash
+      - name: Install + start Ollama (local free draft tier, no API key)
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          # start the daemon in the background and wait until it answers
+          nohup ollama serve > /tmp/ollama.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -fsS http://localhost:11434/api/tags >/dev/null 2>&1; then break; fi
+            sleep 2
+          done
+          echo "== pulling model ($([ -z "$OLLAMA_MODEL" ] && echo qwen2.5:0.5b || echo "$OLLAMA_MODEL")) =="
+          ollama pull "${OLLAMA_MODEL:-qwen2.5:0.5b}"
+          ollama list
       # DEBUG: confirm LLM fallback tiers are wired (root cause of "only Groq" hangs)
       - name: Verify LLM fallback tiers loaded
         run: |

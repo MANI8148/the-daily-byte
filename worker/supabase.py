@@ -9,6 +9,8 @@ from __future__ import annotations
 
 import json
 import os
+import threading
+import concurrent.futures as cf
 import urllib.error
 import urllib.request
 
@@ -93,19 +95,38 @@ class Supabase:
             print(f"  [supabase] set_status skipped ({type(e).__name__})")
 
     def seen(self, url: str) -> bool:
-        """True if url was already ingested. Checks the remote ledger when configured,
-        and always consults the local file ledger as a durable fallback."""
-        # local file ledger is the durable source of truth
+        """True if url was already ingested.
+
+        The LOCAL file ledger (seen_links.json) is the durable source of truth and is
+        consulted synchronously + instantly. The remote check is best-effort ONLY and
+        runs in a daemon thread with a hard 3s join — a blackholed Supabase host can
+        hang the TLS handshake indefinitely, and that must NEVER block the per-candidate
+        dedup loop (it used to eat the entire CI window). Unreachable remote -> trust local.
+        """
         data = _load_ledger()
         local_seen = url in data.get("seen", [])
         if self.dry:
             return local_seen
-        # also check remote (best-effort; ignore network errors -> trust local)
+        try:
+            ex = cf.ThreadPoolExecutor(max_workers=1)
+            try:
+                fut = ex.submit(self._remote_seen, url)
+                return bool(fut.result(timeout=3)) or local_seen
+            except (cf.TimeoutError, Exception):
+                return local_seen
+            finally:
+                # wait=False + cancel_futures: abandon the (possibly hung TLS) worker
+                # thread instead of blocking the dedup loop on shutdown().
+                ex.shutdown(wait=False, cancel_futures=True)
+        except (cf.TimeoutError, Exception):
+            return local_seen
+
+    def _remote_seen(self, url: str) -> bool:
         try:
             res = self._call("POST", "/rest/v1/seen_links", {"url": url, "first_seen_at": "now()"})
-            return bool(isinstance(res, dict) and res.get("_conflict")) or local_seen
+            return bool(isinstance(res, dict) and res.get("_conflict"))
         except Exception:
-            return local_seen
+            return False
 
     def mark_seen(self, url: str) -> None:
         """Persist a URL as seen in BOTH the file ledger (always) and remote (best-effort)."""
@@ -115,11 +136,18 @@ class Supabase:
             seen.append(url)
             _save_ledger(data)
         if not self.dry:
-            try:
-                self._call("POST", "/rest/v1/seen_links", {"url": url, "first_seen_at": "now()"})
-            except Exception as e:
-                # anon key / RLS may block writes; file ledger already has it
-                print(f"  [dedup] remote mark_seen skipped ({type(e).__name__}); file ledger updated")
+            # best-effort + non-blocking: a hung TLS handshake must not stall the run
+            thr = threading.Thread(target=self._remote_mark, args=(url,), daemon=True)
+            thr.start()
+            thr.join(timeout=3)
+
+    def _remote_mark(self, url: str) -> None:
+        # best-effort remote write; anon key / RLS / unreachable host are all non-fatal
+        # because the local file ledger already has it.
+        try:
+            self._call("POST", "/rest/v1/seen_links", {"url": url, "first_seen_at": "now()"})
+        except Exception as e:
+            print(f"  [dedup] remote mark_seen skipped ({type(e).__name__}); file ledger updated")
 
     def recent_posts(self, limit: int = 20) -> list:
         if self.dry:

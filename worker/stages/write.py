@@ -149,6 +149,16 @@ def _chat(cfg: Config, messages: list[dict], max_tokens: int = 2000, model: str 
             last_err = e
             print(f"  [llm] {ep['base_url']} unreachable ({e.reason}); trying next endpoint")
             continue
+    # Local Ollama tier — free, no key, no outbound network (runner has it installed).
+    if cfg.ollama_model:
+        try:
+            out = chat_via_ollama(cfg, messages)
+            if out:
+                print(f"  [llm] used local Ollama ({cfg.ollama_model})")
+                return out
+        except Exception as e:
+            last_err = e
+            print(f"  [llm] ollama failed: {type(e).__name__}: {str(e)[:120]}; trying next tier")
     # Last tier: opencode CLI — a separate quota pool (the account's own credits),
     # so Groq/OpenRouter free caps never dead-end the paper.
     try:
@@ -214,6 +224,49 @@ def chat_via_opencode(cfg, messages: list[dict]) -> str | None:
             if txt:
                 parts.append(txt)
     return "\n".join(parts).strip() or None
+
+
+def chat_via_ollama(cfg, messages: list[dict]) -> str | None:
+    """Local Ollama fallback — free, no API key, no outbound network.
+
+    Talks to a running `ollama serve` at cfg.ollama_base (default
+    http://localhost:11434) using the OpenAI-compatible /api/chat endpoint.
+    Used as a tier in the LLM chain so a runner with Ollama installed (the
+    blog-cron.yml workflow installs + pulls it) can draft fully offline.
+    """
+    import subprocess as _sp
+
+    sys_msg = messages[0]["content"] if len(messages) > 1 else ""
+    user_msg = messages[-1]["content"]
+    payload = {
+        "model": cfg.ollama_model,
+        "messages": [
+            {"role": "system", "content": sys_msg},
+            {"role": "user", "content": user_msg},
+        ],
+        "stream": False,
+    }
+    url = f"{cfg.ollama_base.rstrip('/')}/api/chat"
+    try:
+        # Try the Python net helper first (handles TLS/timeout uniformly).
+        data = post_json(url, payload, timeout=120)
+    except Exception as e:
+        # Fall back to curl (ollama ships its own; matches the opencode install pattern).
+        try:
+            proc = _sp.run(
+                ["curl", "-sS", "--max-time", "120", "-X", "POST", url,
+                 "-H", "Content-Type: application/json", "-d", json.dumps(payload)],
+                capture_output=True, text=True, timeout=130,
+            )
+            if proc.returncode != 0:
+                raise RuntimeError(f"ollama curl failed: {proc.stderr.strip()[:150]}")
+            data = json.loads(proc.stdout or "{}")
+        except Exception as e2:
+            raise RuntimeError(f"ollama unreachable ({type(e2).__name__}): {str(e2)[:120]}") from e2
+    msg = (data.get("message") or {}).get("content") if isinstance(data, dict) else None
+    if msg and msg.strip():
+        return msg.strip()
+    raise RuntimeError("ollama returned empty content")
 
 
 def _yaml_quote(s: str) -> str:
