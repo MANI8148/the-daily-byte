@@ -16,7 +16,9 @@ import urllib.request
 
 from .net import post_json
 
-_TIMEOUT = 30
+# Fail fast: the CI step budget is minutes, not tens of minutes. Matches the
+# global socket cap in worker/net.py so a blackholed host can't eat the run.
+_TIMEOUT = 12
 _LEDGER = os.path.join(os.path.dirname(os.path.dirname(__file__)), "seen_links.json")
 
 
@@ -156,7 +158,7 @@ class Supabase:
             return self._get(f"/rest/v1/posts?select=title,content_md&order=created_at.desc&limit={limit}")
         except Exception as e:
             # a misconfigured/unreachable Supabase must NOT block the run; file ledger handles dedup
-            print(f"  [supabase] recent_posts skipped ({type(e).__name__}); using file-ledger dedup")
+            print(f"  [supabase] recent_posts skipped ({type(e).__name__}); using file-ledger dedup", flush=True)
             return []
 
     def get_post(self, post_id: str) -> dict | None:

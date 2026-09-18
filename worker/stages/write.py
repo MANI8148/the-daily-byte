@@ -43,60 +43,21 @@ def slugify(title: str) -> str:
     return s[:70] or "post"
 
 
-def chat_via_opencode(cfg, messages: list[dict]) -> str | None:
-    """4th LLM tier: run the prompt through the opencode CLI (own account quota —
-    a separate pool from Groq/OpenRouter free caps). `opencode` on PATH, or
-    OPENCODE_BIN. CI passes OPENCODE_API_KEY; local runs use `opencode auth` login."""
-    import subprocess
-
-    system = messages[0]["content"] if len(messages) > 1 else ""
-    last = messages[-1]["content"]
-    cmd = [cfg.opencode_bin, "run", f"{system}\n\n{last}".strip(), "--format", "json"]
-    if cfg.opencode_model:
-        cmd += ["--model", cfg.opencode_model]
-    env = dict(os.environ)
-    if os.environ.get("OPENCODE_API_KEY"):
-        env.setdefault("OPENCODE_API_KEY", os.environ["OPENCODE_API_KEY"])
-    proc = subprocess.run(cmd, capture_output=True, text=True, timeout=45, env=env)
-    if proc.returncode != 0:
-        raise RuntimeError(f"opencode exited {proc.returncode}: {proc.stderr.strip()[:150]}")
-    parts = []
-    for line in proc.stdout.splitlines():
-        try:
-            obj = json.loads(line)
-        except ValueError:
-            continue
-        if obj.get("type") == "text":
-            txt = obj.get("part", {}).get("text", "")
-            if txt:
-                parts.append(txt)
-    out = "\n".join(parts).strip()
-    return out or None
-
-
-def _chat(cfg: Config, messages: list[dict], max_tokens: int = 2000, model: str | None = None) -> str:
+def _chat(cfg: Config, messages: list[dict], max_tokens: int = 2000, model: str | None = None,
+          need_title: bool = False) -> str:
     """OpenAI-compatible chat call with a fallback chain.
 
-    Order: (1) local Ollama if configured (free, no key, no network — fastest +
-    never rate-limited), (2) primary HTTP endpoint + fallbacks, (3) opencode CLI.
-    Ollama-first means a runner with Ollama installed drafts instantly instead of
-    waiting on dead/rate-limited cloud keys.
+    Order: (1) primary HTTP endpoint + fallbacks, (2) local Ollama if
+    configured (free, no key, no network), (3) opencode CLI. Cloud-first
+    because the cloud models follow the article format reliably; a tiny local
+    model (qwen2.5:0.5b) returns confident garbage without frontmatter, which
+    used to poison the whole run (chain "succeeded" on garbage, validation
+    failed, cloud tiers never tried). When `need_title` is set (article
+    drafting), an Ollama reply without a `title:` line is treated as a tier
+    failure so the chain falls through instead.
     """
     model = model or cfg.llm_model
     last_err: Exception | None = None
-
-    # (1) Local Ollama tier — free, no key, no outbound network.
-    if cfg.ollama_model:
-        try:
-            out = chat_via_ollama(cfg, messages)
-            if out:
-                print(f"  [llm] used local Ollama ({cfg.ollama_model})")
-                return out
-        except Exception as e:
-            last_err = e
-            print(f"  [llm] ollama failed: {type(e).__name__}: {str(e)[:120]}; trying next tier")
-
-    # (2) Cloud HTTP endpoints (primary + fallbacks)
     endpoints: list[dict] = [
         {"base_url": cfg.llm_base_url.rstrip("/"), "api_key": cfg.llm_api_key, "model": model},
         *[
@@ -116,7 +77,7 @@ def _chat(cfg: Config, messages: list[dict], max_tokens: int = 2000, model: str 
                 timeout=45,
             )
             if i > 0:
-                print(f"  [llm] rate-limit/down on primary — used fallback #{i} ({ep['base_url']})")
+                print(f"  [llm] rate-limit/down on primary — used fallback #{i} ({ep['base_url']})", flush=True)
             content = None
             if isinstance(data, dict):
                 msg = (data.get("choices") or [{}])[0].get("message") or {}
@@ -124,7 +85,7 @@ def _chat(cfg: Config, messages: list[dict], max_tokens: int = 2000, model: str 
             if content and content.strip():
                 return content
             last_err = RuntimeError(f"empty content from {ep['base_url']}")
-            print(f"  [llm] {ep['base_url']} returned empty content; trying next endpoint")
+            print(f"  [llm] {ep['base_url']} returned empty content; trying next endpoint", flush=True)
             continue
         except urllib.error.HTTPError as e:
             last_err = e
@@ -144,42 +105,64 @@ def _chat(cfg: Config, messages: list[dict], max_tokens: int = 2000, model: str 
                         content = msg.get("content")
                     if content and content.strip():
                         if i > 0:
-                            print(f"  [llm] rate-limit/down on primary — used fallback #{i} ({ep['base_url']})")
+                            print(f"  [llm] rate-limit/down on primary — used fallback #{i} ({ep['base_url']})", flush=True)
                         return content
                     # curl rescue also 403/empty -> auth is genuinely dead for this key.
                     # Don't retry-pointlessly; surface it and move to the next tier fast.
-                    print(f"  [llm] {ep['base_url']} -> 403 even via curl rescue; auth dead for this key")
+                    print(f"  [llm] {ep['base_url']} -> 403 even via curl rescue; auth dead for this key", flush=True)
                     last_err = RuntimeError(f"403 auth dead: {ep['base_url']}")
                     continue
                 except Exception as e2:
                     last_err = e2
-                    print(f"  [llm] {ep['base_url']} -> 403 (urllib) and curl rescue failed ({type(e2).__name__}); auth dead, skipping")
+                    print(f"  [llm] {ep['base_url']} -> 403 (urllib) and curl rescue failed ({type(e2).__name__}); auth dead, skipping", flush=True)
                     continue
-            if e.code in (429, 401, 500, 502, 503, 504):
-                print(f"  [llm] {ep['base_url']} -> HTTP {e.code}; trying next endpoint")
+            if e.code in (400, 404, 422, 429, 401, 500, 502, 503, 504):
+                # 404/400/422 = bad model name or bad request for THIS provider —
+                # a per-endpoint problem, not a chain-wide abort. (Prev bug: a
+                # single dead fallback model ID raised out of the whole chain,
+                # so later tiers like opencode CLI were never tried.)
+                print(f"  [llm] {ep['base_url']} -> HTTP {e.code}; trying next endpoint", flush=True)
                 continue
             raise
         except urllib.error.URLError as e:
             last_err = e
-            print(f"  [llm] {ep['base_url']} unreachable ({e.reason}); trying next endpoint")
+            print(f"  [llm] {ep['base_url']} unreachable ({e.reason}); trying next endpoint", flush=True)
             continue
+    # (2) Local Ollama tier — free, no key, no outbound network. Tried AFTER
+    # cloud so a working cloud key always wins on quality. A tiny local model
+    # often returns text without article frontmatter; with need_title that is a
+    # tier failure (fall through) instead of a chain "success" that later fails
+    # validation and dead-ends the run.
+    if cfg.ollama_model:
+        try:
+            out = chat_via_ollama(cfg, messages)
+            if out:
+                if need_title and "title:" not in out.lower():
+                    last_err = RuntimeError("ollama returned text without article frontmatter")
+                    print("  [llm] ollama reply has no frontmatter; trying next tier", flush=True)
+                else:
+                    print(f"  [llm] used local Ollama ({cfg.ollama_model})", flush=True)
+                    return out
+        except Exception as e:
+            last_err = e
+            print(f"  [llm] ollama failed: {type(e).__name__}: {str(e)[:120]}; trying next tier", flush=True)
     # Last tier: opencode CLI — a separate quota pool (the account's own credits),
     # so Groq/OpenRouter free caps never dead-end the paper.
     try:
         out = chat_via_opencode(cfg, messages)
         if out:
-            print(f"  [llm] used opencode CLI fallback ({cfg.opencode_model or 'default model'})")
+            print(f"  [llm] used opencode CLI fallback ({cfg.opencode_model or 'default model'})", flush=True)
             return out
     except Exception as e:
         last_err = e
-        print(f"  [llm] opencode CLI failed: {type(e).__name__}: {str(e)[:120]}")
+        print(f"  [llm] opencode CLI failed: {type(e).__name__}: {str(e)[:120]}", flush=True)
     # Diagnose the common dead-credential case so the failure is actionable.
     if last_err is not None and getattr(last_err, "code", None) == 403:
         raise RuntimeError(
             "All LLM endpoints returned 403 — check that OPENAI_API_KEY / LLM_FALLBACKS "
             "keys are valid and not expired (a 403 means rejected credentials, not rate-limit)"
         ) from last_err
-    raise RuntimeError(f"All {len(endpoints)} LLM endpoints + opencode CLI failed") from last_err
+    raise RuntimeError(f"All {len(endpoints)} LLM endpoints + ollama + opencode CLI failed") from last_err
 
 
 def chat_via_opencode(cfg, messages: list[dict]) -> str | None:
@@ -237,9 +220,16 @@ def chat_via_ollama(cfg, messages: list[dict]) -> str | None:
     http://localhost:11434) using the OpenAI-compatible /api/chat endpoint.
     Used as a tier in the LLM chain so a runner with Ollama installed (the
     blog-cron.yml workflow installs + pulls it) can draft fully offline.
+
+    Timeout is env-tunable (OLLAMA_TIMEOUT, default 60s) so the tier fits the
+    CI step budget — the old 120s per call could single-handedly blow a 90s cap.
     """
     import subprocess as _sp
 
+    try:
+        _timeout = int(os.environ.get("OLLAMA_TIMEOUT", "60"))
+    except ValueError:
+        _timeout = 60
     sys_msg = messages[0]["content"] if len(messages) > 1 else ""
     user_msg = messages[-1]["content"]
     payload = {
@@ -253,14 +243,14 @@ def chat_via_ollama(cfg, messages: list[dict]) -> str | None:
     url = f"{cfg.ollama_base.rstrip('/')}/api/chat"
     try:
         # Try the Python net helper first (handles TLS/timeout uniformly).
-        data = post_json(url, payload, timeout=120)
+        data = post_json(url, payload, timeout=_timeout)
     except Exception as e:
         # Fall back to curl (ollama ships its own; matches the opencode install pattern).
         try:
             proc = _sp.run(
-                ["curl", "-sS", "--max-time", "120", "-X", "POST", url,
+                ["curl", "-sS", "--max-time", str(_timeout), "-X", "POST", url,
                  "-H", "Content-Type: application/json", "-d", json.dumps(payload)],
-                capture_output=True, text=True, timeout=130,
+                capture_output=True, text=True, timeout=_timeout + 10,
             )
             if proc.returncode != 0:
                 raise RuntimeError(f"ollama curl failed: {proc.stderr.strip()[:150]}")
@@ -336,7 +326,7 @@ def generate(cfg, brief: dict, mock: bool = False) -> tuple[str, str] | None:
 
     for attempt in range(cfg.max_llm_retries + 1):
         try:
-            raw = _chat(cfg, [{"role": "system", "content": system}, {"role": "user", "content": user}], max_tokens=2200)
+            raw = _chat(cfg, [{"role": "system", "content": system}, {"role": "user", "content": user}], max_tokens=2200, need_title=True)
             m = re.search(r"```markdown\s*\n(.*?)\n```", raw, re.S)
             doc = m.group(1) if m else raw.strip()
             fm, body = parse_frontmatter(doc)
@@ -368,6 +358,6 @@ def generate(cfg, brief: dict, mock: bool = False) -> tuple[str, str] | None:
             return doc, cfg.llm_model
         except Exception as e:
             if attempt >= cfg.max_llm_retries:
-                print(f"  [write] LLM failed after retries: {e}")
+                print(f"  [write] LLM failed after retries: {e}", flush=True)
                 return None
             time.sleep(2 * (attempt + 1))

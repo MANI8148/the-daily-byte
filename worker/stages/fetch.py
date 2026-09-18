@@ -41,10 +41,11 @@ def _dupe(title: str, recent_titles: list[str], cutoff: int = 86) -> bool:
     return best >= cutoff
 
 
-def _enrich(brief: dict, timeout: int = 25) -> dict:
+def _enrich(brief: dict, timeout: int = 10) -> dict:
     """Pull the article's main text with trafilatura and upgrade the summary.
 
-    Only called for candidates whose brief is thin — keeps polite, token-free."""
+    Only called for candidates whose brief is thin — keeps polite, token-free.
+    Timeout is env-tunable (FETCH_ENRICH_TIMEOUT) so CI can fail fast."""
     try:
         html = _get_text(brief["url"], timeout=timeout)
         text = trafilatura.extract(html, include_comments=False, include_tables=False)
@@ -250,17 +251,21 @@ def _guarded(fn, cfg) -> list[dict]:
     try:
         return fn(cfg)
     except Exception as e:
-        print(f"  [fetch] source skipped: {e}")
+        print(f"  [fetch] source skipped: {e}", flush=True)
         return []
 
 
-def fetch(name: str, cfg, recent_titles: list[str] | None = None, enrich: int = 6) -> list[dict]:
+def fetch(name: str, cfg, recent_titles: list[str] | None = None, enrich: int = 3) -> list[dict]:
     """Fetch + dedup (fuzzy) + enrich (trafilatura).
 
     `name` is a source key (hn, github, arxiv, reddit, rss) or a qualified call:
       arxiv:cs.AI   -> arxiv(category="cs.AI")
       reddit:python -> reddit_top(sub="python")
       blog.google    -> rss(url="https://blog.google/technology/ai/rss/")
+
+    Enrichment is env-tunable for CI budgets: FETCH_ENRICH (max items to enrich,
+    default 3; 0 disables page fetches entirely) and FETCH_ENRICH_TIMEOUT
+    (seconds per page, default 10).
     """
     recent_titles = recent_titles or []
 
@@ -289,24 +294,34 @@ def fetch(name: str, cfg, recent_titles: list[str] | None = None, enrich: int = 
                 try:
                     items.extend(fut.result(timeout=SOURCE_TIMEOUT))
                 except cf.TimeoutError:
-                    print(f"  [fetch] source '{src}' exceeded {SOURCE_TIMEOUT}s; skipped")
+                    print(f"  [fetch] source '{src}' exceeded {SOURCE_TIMEOUT}s; skipped", flush=True)
                 except Exception as e:
-                    print(f"  [fetch] source '{src}' error: {e}")
+                    print(f"  [fetch] source '{src}' error: {e}", flush=True)
     else:
         try:
             items = resolve(name)
         except Exception as e:  # a failing source never kills the run
-            print(f"  [fetch:{name}] failed: {e}")
+            print(f"  [fetch:{name}] failed: {e}", flush=True)
             return []
     fresh = [it for it in items if not _dupe(it["title"], recent_titles)]
     skipped = len(items) - len(fresh)
-    # enrich the strongest thin briefs so the LLM writes from real substance
+    # enrich the strongest thin briefs so the LLM writes from real substance.
+    # CI sets FETCH_ENRICH=0/1 to skip most page fetches (each is a full HTTP
+    # round-trip; 6 per source was dominating the step budget).
+    try:
+        enrich = int(os.environ.get("FETCH_ENRICH", str(enrich)))
+    except ValueError:
+        pass
+    try:
+        enrich_timeout = int(os.environ.get("FETCH_ENRICH_TIMEOUT", "10"))
+    except ValueError:
+        enrich_timeout = 10
     thin = [it for it in fresh if len(it.get("summary", "")) < 90]
     thin.sort(key=lambda it: it.get("score_hint", 0), reverse=True)
     enriched = 0
-    for it in thin[:enrich]:
-        _enrich(it)
+    for it in thin[:max(enrich, 0)]:
+        _enrich(it, timeout=enrich_timeout)
         if it.get("_enriched"):
             enriched += 1
-    print(f"  [fetch:{name}] {len(fresh)} fresh candidates ({skipped} fuzzy-dupes, {enriched} enriched via trafilatura)")
+    print(f"  [fetch:{name}] {len(fresh)} fresh candidates ({skipped} fuzzy-dupes, {enriched} enriched via trafilatura)", flush=True)
     return fresh

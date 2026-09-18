@@ -1,5 +1,7 @@
 # Bloggy — always-on AI/ML/tech blog engine (100% free stack)
 
+![System architecture](docs/architecture.png)
+
 Writes blogs about **AI, ML, tech news, GitHub repos, and dev skills** on autopilot,
 reaches students worldwide, and costs **$0/month**:
 

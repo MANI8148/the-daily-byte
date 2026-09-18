@@ -26,7 +26,7 @@ def _notify(cfg: Config, text: str) -> None:
             timeout=30,
         )
     except Exception as e:
-        print(f"  [notify] telegram failed: {e}")
+        print(f"  [notify] telegram failed: {e}", flush=True)
 
 
 def _draft_one(cfg: Config, db, brief: dict, mock_llm: bool, auto_publish: bool | None) -> dict:
@@ -77,7 +77,7 @@ def _draft_one(cfg: Config, db, brief: dict, mock_llm: bool, auto_publish: bool 
     try:
         db.mark_seen(brief.get("url", ""))
     except Exception as e:
-        print(f"  [dedup] mark_seen failed: {e}")
+        print(f"  [dedup] mark_seen failed: {e}", flush=True)
     image_url = images.run(cfg, fm, brief, model)
     site_path = publish.save_site_copy(cfg, fm, body, model, image_url=image_url)
     art["post_id"] = post_id
@@ -152,13 +152,15 @@ def run_once(
         step = max(1, n // max(1, cfg.lanes_per_run))
         start = hour % n
         chosen = [cfg.lanes[(start + i * step) % n] for i in range(cfg.lanes_per_run)]
-        print(f"  [lanes] run covers {len(chosen)}/{n} lanes (hour={hour}, start={start}, step={step})")
+        print(f"  [lanes] run covers {len(chosen)}/{n} lanes (hour={hour}, start={start}, step={step})", flush=True)
         recent = db.recent_posts(50)
         recent_titles = [str(p.get("title", "")) for p in recent if isinstance(p, dict)]
         seen_urls: set[str] = set()
         per = max(count, 1)  # articles per chosen lane (default 1)
         briefs = []
+        import time as _t
         for lane_idx, lane_sources in enumerate(chosen):
+            _lane_t0 = _t.time()
             lane_label = cfg.lane_section[lane_idx] if lane_idx < len(cfg.lane_section) else "Tech"
             lane_items: list[dict] = []
             for sname in lane_sources:
@@ -168,15 +170,17 @@ def run_once(
                         it["lane"] = lane_label  # tag for lane-aware scoring
                     lane_items.extend(fetched)
                 except Exception as e:
-                    print(f"  [fetch:{sname}] failed: {e}")
+                    print(f"  [fetch:{sname}] failed: {e}", flush=True)
             fresh = [it for it in lane_items if not db.seen(it["url"]) and it["url"] not in seen_urls]
             if not fresh:
+                print(f"  [lanes] lane {lane_idx} ({lane_label}): no fresh candidates ({_t.time()-_lane_t0:.1f}s)", flush=True)
                 continue
             # Rank WITHIN this lane so one lane can't crowd out another.
             picks = score.pick(fresh, per)
             for p in picks:
                 seen_urls.add(p["url"])
             briefs.extend(picks)
+            print(f"  [lanes] lane {lane_idx} ({lane_label}): {len(fresh)} fresh -> {len(picks)} picks ({_t.time()-_lane_t0:.1f}s)", flush=True)
         if not briefs:
             summary["status"] = "no-candidates"
             return summary
@@ -195,8 +199,10 @@ def run_once(
         briefs = score.pick(fresh, max(count, 1))
 
     # ---- 2..6 per article ----
-    for brief in briefs:
+    for i, brief in enumerate(briefs):
+        print(f"  [run] drafting {i+1}/{len(briefs)}: {str(brief.get('title', ''))[:80]}", flush=True)
         summary["articles"].append(_draft_one(cfg, db, brief, mock_llm, auto_publish))
+        print(f"  [run] article {i+1}/{len(briefs)} done: {summary['articles'][-1].get('status')}", flush=True)
 
     # pprint-friendly top-level fields (last article wins; status reflects the batch)
     last = summary["articles"][-1] if summary["articles"] else {}
@@ -216,5 +222,5 @@ def review_push(cfg, doc: str, fm: dict) -> dict | None:
     try:
         return review_stage.push_pr(cfg, doc, str(fm.get("title", "")), str(fm.get("slug", "post")))
     except Exception as e:
-        print(f"  [review] push_pr failed: {e}")
+        print(f"  [review] push_pr failed: {e}", flush=True)
         return {"status": "error", "note": str(e)[:200]}
