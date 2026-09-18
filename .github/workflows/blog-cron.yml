@@ -64,6 +64,9 @@ jobs:
       FETCH_ENRICH: "1"
       FETCH_ENRICH_TIMEOUT: "8"
       OLLAMA_TIMEOUT: "60"
+      # Single full-chain pass per article (6+ tiers already); a retry doubles
+      # dead-tier burn and blew the step budget (exit 124 with 1/3 drafted).
+      LLM_RETRIES: "0"
     steps:
       - uses: actions/checkout@v4
         with:

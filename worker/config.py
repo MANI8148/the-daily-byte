@@ -227,7 +227,7 @@ class Config:
     approve_token: str = field(default_factory=lambda: _env("APPROVE_TOKEN", "changeme"))
     daemon_interval_min: int = int(_env("DAEMON_INTERVAL_MIN", "360"))
     max_candidates: int = 12            # items fetched per source
-    max_llm_retries: int = 1
+    max_llm_retries: int = int(_env("LLM_RETRIES", "1"))  # CI sets 0: one full-chain pass is enough with 6+ tiers
 
     # Where the site lives
     content_dir: Path = field(default_factory=lambda: Path(_env("CONTENT_DIR", "content")))

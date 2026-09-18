@@ -43,6 +43,12 @@ def slugify(title: str) -> str:
     return s[:70] or "post"
 
 
+# Base URLs proven auth-dead (403 even via curl rescue) earlier in THIS process.
+# Keys don't resurrect mid-run, so later articles skip them instead of
+# re-paying the curl-rescue + timeout cost on every attempt.
+_AUTH_DEAD: set[str] = set()
+
+
 def _chat(cfg: Config, messages: list[dict], max_tokens: int = 2000, model: str | None = None,
           need_title: bool = False) -> str:
     """OpenAI-compatible chat call with a fallback chain.
@@ -68,6 +74,13 @@ def _chat(cfg: Config, messages: list[dict], max_tokens: int = 2000, model: str 
 
     for i, ep in enumerate(endpoints):
         if not ep["api_key"]:
+            continue
+        if ep["base_url"] in _AUTH_DEAD:
+            # A 403-even-via-curl verdict earlier this run: the key is dead,
+            # it won't resurrect mid-run. Skip (saves ~1 min/article of curl
+            # rescue + timeouts; CI proof: 3 articles x 2 attempts re-proving it).
+            print(f"  [llm] {ep['base_url']} known dead this run; skipping", flush=True)
+            last_err = RuntimeError(f"403 auth dead (cached): {ep['base_url']}")
             continue
         try:
             data = post_json(
@@ -111,10 +124,12 @@ def _chat(cfg: Config, messages: list[dict], max_tokens: int = 2000, model: str 
                     # Don't retry-pointlessly; surface it and move to the next tier fast.
                     print(f"  [llm] {ep['base_url']} -> 403 even via curl rescue; auth dead for this key", flush=True)
                     last_err = RuntimeError(f"403 auth dead: {ep['base_url']}")
+                    _AUTH_DEAD.add(ep["base_url"])
                     continue
                 except Exception as e2:
                     last_err = e2
                     print(f"  [llm] {ep['base_url']} -> 403 (urllib) and curl rescue failed ({type(e2).__name__}); auth dead, skipping", flush=True)
+                    _AUTH_DEAD.add(ep["base_url"])
                     continue
             if e.code in (400, 404, 422, 429, 401, 500, 502, 503, 504):
                 # 404/400/422 = bad model name or bad request for THIS provider —
