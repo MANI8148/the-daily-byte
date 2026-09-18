@@ -8,7 +8,10 @@ Refresh anytime with: `.venv/bin/python -u scripts/list_free_models.py`
 How to use: copy any model ID below into `OPENAI_MODEL` (Groq primary) or the
 `model` field of an `LLM_FALLBACKS` entry. The worker tries tiers in order
 (Groq → OpenRouter → TokenRouter → Ollama → opencode CLI), so put the
-strongest model first.
+strongest model first. Tip: `LLM_FALLBACKS` accepts MULTIPLE entries on the
+same provider with different models (same key) — the chain walks them all, so
+one overloaded/empty free model can't dead-end the run. The current
+`LLM_FALLBACKS` does exactly this (4 OpenRouter free IDs + TokenRouter).
 
 ## Groq — primary (`OPENAI_BASE_URL=https://api.groq.com/openai/v1`)
 Groq has no `:free` suffix; the free tier is key-based. All Active per docs.

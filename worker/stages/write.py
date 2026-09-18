@@ -137,9 +137,19 @@ def _chat(cfg: Config, messages: list[dict], max_tokens: int = 2000, model: str 
         try:
             out = chat_via_ollama(cfg, messages)
             if out:
-                if need_title and "title:" not in out.lower():
-                    last_err = RuntimeError("ollama returned text without article frontmatter")
-                    print("  [llm] ollama reply has no frontmatter; trying next tier", flush=True)
+                if need_title:
+                    # Full frontmatter+body validation HERE (not just "title:"):
+                    # a tiny local model emits confident near-misses ("title:"
+                    # inside prose) that pass a substring check but fail the
+                    # real gate — and a returned value short-circuits the chain
+                    # so opencode CLI never gets tried.
+                    fm, body = parse_frontmatter(out)
+                    if not fm.get("title") or not body.strip():
+                        last_err = RuntimeError("ollama returned text without article frontmatter/body")
+                        print("  [llm] ollama reply has no usable frontmatter/body; trying next tier", flush=True)
+                    else:
+                        print(f"  [llm] used local Ollama ({cfg.ollama_model})", flush=True)
+                        return out
                 else:
                     print(f"  [llm] used local Ollama ({cfg.ollama_model})", flush=True)
                     return out
