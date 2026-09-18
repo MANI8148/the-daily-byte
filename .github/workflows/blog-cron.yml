@@ -67,6 +67,9 @@ jobs:
       # Single full-chain pass per article (6+ tiers already); a retry doubles
       # dead-tier burn and blew the step budget (exit 124 with 1/3 drafted).
       LLM_RETRIES: "0"
+      # 2 lanes x 1 post = 2 articles/hr. Free-tier LLM calls queue ~50s each;
+      # 3 articles couldn't finish inside the 12-min job (exit 124).
+      LANES_PER_RUN: "2"
     steps:
       - uses: actions/checkout@v4
         with:
